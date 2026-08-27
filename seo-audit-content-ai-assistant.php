@@ -1,18 +1,19 @@
 <?php
 /**
- * Plugin Name:       SEO Automation
- * Plugin URI:        https://nexcove.com/seo-automation
+ * Plugin Name:       SEO Audit and Content AI Assistant
+ * Plugin URI:        https://nexcove.co.uk/seo-audit-content-ai-assistant
  * Description:       A comprehensive SEO automation suite: research, write, optimize, audit, fix, and verify SEO improvements from one integrated system.
- * Version:           2.0.0
+ * Version:           2.1.0
  * Author:            SSOMAI
+ * Author URI:        https://nexcove.co.uk
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain:       seo-automation
+ * Text Domain:       seo-audit-content-ai-assistant
  * Domain Path:       /languages
  * Requires at least: 5.8
  * Requires PHP:      7.4
  *
- * @package SEOAutomation
+ * @package SEOACAI
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -22,7 +23,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 // -----------------------------------------------------------------------
 // Constants
 // -----------------------------------------------------------------------
-// SEO_AUTOMATION_* are the plugin's own constants. THEBLOG_* / SEO_AGENT_*
+// SEOACAI_* are the plugin's own constants. THEBLOG_* / SEO_AGENT_*
 // are kept as aliases so any external code (child themes, mu-plugins)
 // written against the pre-merge plugins keeps working unchanged.
 //
@@ -31,70 +32,70 @@ if ( ! defined( 'ABSPATH' ) ) {
 // active at the same time, we never throw redefinition warnings and we
 // never silently steal/overwrite constants they rely on.
 
-if ( ! defined( 'SEO_AUTOMATION_VERSION' ) ) {
-	define( 'SEO_AUTOMATION_VERSION', '2.0.0' );
+if ( ! defined( 'SEOACAI_VERSION' ) ) {
+	define( 'SEOACAI_VERSION', '2.1.0' );
 }
-if ( ! defined( 'SEO_AUTOMATION_FILE' ) ) {
-	define( 'SEO_AUTOMATION_FILE', __FILE__ );
+if ( ! defined( 'SEOACAI_FILE' ) ) {
+	define( 'SEOACAI_FILE', __FILE__ );
 }
-if ( ! defined( 'SEO_AUTOMATION_DIR' ) ) {
-	define( 'SEO_AUTOMATION_DIR', plugin_dir_path( __FILE__ ) );
+if ( ! defined( 'SEOACAI_DIR' ) ) {
+	define( 'SEOACAI_DIR', plugin_dir_path( __FILE__ ) );
 }
-if ( ! defined( 'SEO_AUTOMATION_URL' ) ) {
-	define( 'SEO_AUTOMATION_URL', plugin_dir_url( __FILE__ ) );
+if ( ! defined( 'SEOACAI_URL' ) ) {
+	define( 'SEOACAI_URL', plugin_dir_url( __FILE__ ) );
 }
-if ( ! defined( 'SEO_AUTOMATION_BASENAME' ) ) {
-	define( 'SEO_AUTOMATION_BASENAME', plugin_basename( __FILE__ ) );
+if ( ! defined( 'SEOACAI_BASENAME' ) ) {
+	define( 'SEOACAI_BASENAME', plugin_basename( __FILE__ ) );
 }
 
 // Back-compat aliases for code still referencing the pre-merge constants.
 if ( ! defined( 'THEBLOG_VERSION' ) ) {
-	define( 'THEBLOG_VERSION', SEO_AUTOMATION_VERSION );
+	define( 'THEBLOG_VERSION', SEOACAI_VERSION );
 }
 if ( ! defined( 'THEBLOG_FILE' ) ) {
-	define( 'THEBLOG_FILE', SEO_AUTOMATION_FILE );
+	define( 'THEBLOG_FILE', SEOACAI_FILE );
 }
 if ( ! defined( 'THEBLOG_DIR' ) ) {
-	define( 'THEBLOG_DIR', SEO_AUTOMATION_DIR );
+	define( 'THEBLOG_DIR', SEOACAI_DIR );
 }
 if ( ! defined( 'THEBLOG_URL' ) ) {
-	define( 'THEBLOG_URL', SEO_AUTOMATION_URL );
+	define( 'THEBLOG_URL', SEOACAI_URL );
 }
 if ( ! defined( 'THEBLOG_BASENAME' ) ) {
-	define( 'THEBLOG_BASENAME', SEO_AUTOMATION_BASENAME );
+	define( 'THEBLOG_BASENAME', SEOACAI_BASENAME );
 }
 
 if ( ! defined( 'SEO_AGENT_VERSION' ) ) {
-	define( 'SEO_AGENT_VERSION', SEO_AUTOMATION_VERSION );
+	define( 'SEO_AGENT_VERSION', SEOACAI_VERSION );
 }
 if ( ! defined( 'SEO_AGENT_FILE' ) ) {
-	define( 'SEO_AGENT_FILE', SEO_AUTOMATION_FILE );
+	define( 'SEO_AGENT_FILE', SEOACAI_FILE );
 }
 if ( ! defined( 'SEO_AGENT_DIR' ) ) {
-	define( 'SEO_AGENT_DIR', SEO_AUTOMATION_DIR );
+	define( 'SEO_AGENT_DIR', SEOACAI_DIR );
 }
 if ( ! defined( 'SEO_AGENT_URL' ) ) {
-	define( 'SEO_AGENT_URL', SEO_AUTOMATION_URL );
+	define( 'SEO_AGENT_URL', SEOACAI_URL );
 }
 
 // -----------------------------------------------------------------------
 // Legacy plugin conflict guard
 // -----------------------------------------------------------------------
-// SEO Automation fully replaces the standalone "TheBlog Automation" and
+// SEO Audit and Content AI Assistant fully replaces the standalone "TheBlog Automation" and
 // "SEO Agent" plugins, and supersedes the "SEO Suite" build this plugin
 // was previously released as — it is not designed to run alongside any of
 // them (they fight over the same constants, CPTs, cron hooks and option
 // keys). If a conflicting plugin is still active, bail out of booting
-// SEO Automation's own hooks (rather than fatal on a stale path) and show
+// SEO Audit and Content AI Assistant's own hooks (rather than fatal on a stale path) and show
 // an admin notice telling the site owner to deactivate the old plugin(s).
 
 /**
  * Detect whether a superseded build of this plugin is still active.
  *
  * @return string[] Plugin basenames (relative to wp-content/plugins) that
- *                   are active and conflict with SEO Automation.
+ *                   are active and conflict with SEO Audit and Content AI Assistant.
  */
-function seo_automation_conflicting_plugins() {
+function seoacai_conflicting_plugins() {
 	if ( ! function_exists( 'is_plugin_active' ) ) {
 		require_once ABSPATH . 'wp-admin/includes/plugin.php';
 	}
@@ -103,11 +104,12 @@ function seo_automation_conflicting_plugins() {
 		'theblog-automation/theblog-automation.php',
 		'seo-agent/seo-agent.php',
 		'seo-suite/seo-suite.php',
+		'seo-automation/seo-automation.php',
 	);
 
 	$active = array();
 	foreach ( $candidates as $plugin ) {
-		if ( $plugin !== SEO_AUTOMATION_BASENAME && is_plugin_active( $plugin ) ) {
+		if ( SEOACAI_BASENAME !== $plugin && is_plugin_active( $plugin ) ) {
 			$active[] = $plugin;
 		}
 	}
@@ -118,8 +120,26 @@ function seo_automation_conflicting_plugins() {
 /**
  * Show an admin notice pointing at the conflicting legacy plugin(s).
  */
-function seo_automation_conflict_notice() {
-	$conflicts = seo_automation_conflicting_plugins();
+function seoacai_conflict_notice() {
+	// Keep the notice where it is actionable — the Plugins screen (where the
+	// old plugin is deactivated), the Dashboard, and this plugin's own
+	// screens (which are inert while a conflict is unresolved). Every other
+	// admin page is left alone.
+	$screen = function_exists( 'get_current_screen' ) ? get_current_screen() : null;
+
+	if ( ! $screen instanceof WP_Screen ) {
+		return;
+	}
+
+	$is_relevant_screen = in_array( $screen->id, array( 'dashboard', 'plugins', 'plugins-network' ), true )
+		|| false !== strpos( $screen->id, 'seo-agent' )
+		|| false !== strpos( $screen->id, 'theblog' );
+
+	if ( ! $is_relevant_screen ) {
+		return;
+	}
+
+	$conflicts = seoacai_conflicting_plugins();
 
 	if ( empty( $conflicts ) ) {
 		return;
@@ -127,12 +147,12 @@ function seo_automation_conflict_notice() {
 
 	printf(
 		'<div class="notice notice-error"><p><strong>%1$s</strong> %2$s</p><p>%3$s</p></div>',
-		esc_html__( 'SEO Automation:', 'seo-automation' ),
-		esc_html__( 'SEO Automation replaces the standalone TheBlog Automation and SEO Agent plugins, and supersedes the earlier SEO Suite build. They cannot be active at the same time — deactivate the old plugin(s) below to avoid conflicts and fatal errors.', 'seo-automation' ),
+		esc_html__( 'SEO Audit and Content AI Assistant:', 'seo-audit-content-ai-assistant' ),
+		esc_html__( 'SEO Audit and Content AI Assistant replaces the standalone TheBlog Automation and SEO Agent plugins, and supersedes the earlier SEO Suite build. They cannot be active at the same time — deactivate the old plugin(s) below to avoid conflicts and fatal errors.', 'seo-audit-content-ai-assistant' ),
 		esc_html( implode( ', ', $conflicts ) )
 	);
 }
-add_action( 'admin_notices', 'seo_automation_conflict_notice' );
+add_action( 'admin_notices', 'seoacai_conflict_notice' );
 
 // -----------------------------------------------------------------------
 // Autoloading
@@ -144,7 +164,7 @@ add_action( 'admin_notices', 'seo_automation_conflict_notice' );
 // The namespace deliberately keeps its original SEOAgent\ name: it is
 // internal, and renaming it would break every third-party integration
 // hooked onto the published class names for no user-visible gain.
-require_once SEO_AUTOMATION_DIR . 'src/autoload.php';
+require_once SEOACAI_DIR . 'src/autoload.php';
 
 // -----------------------------------------------------------------------
 // Activation / Deactivation
@@ -154,11 +174,11 @@ require_once SEO_AUTOMATION_DIR . 'src/autoload.php';
  * Activate both feature sets: audit engine tables/cron/capability, and
  * content pipeline defaults.
  */
-function seo_automation_activate() {
+function seoacai_activate() {
 	// Refuse to activate cleanly alongside the plugins this replaces —
 	// their activation hooks already created the CPTs/cron/tables this
 	// plugin also creates, so running both would duplicate state.
-	if ( ! empty( seo_automation_conflicting_plugins() ) ) {
+	if ( ! empty( seoacai_conflicting_plugins() ) ) {
 		return;
 	}
 
@@ -175,7 +195,7 @@ function seo_automation_activate() {
  * Deactivate both feature sets. Data is preserved; only scheduled
  * cron events are cleared.
  */
-function seo_automation_deactivate() {
+function seoacai_deactivate() {
 	if ( class_exists( 'SEOAgent\\Blog\\Deactivator' ) ) {
 		\SEOAgent\Blog\Deactivator::deactivate();
 	}
@@ -185,27 +205,27 @@ function seo_automation_deactivate() {
 	}
 }
 
-register_activation_hook( __FILE__, 'seo_automation_activate' );
-register_deactivation_hook( __FILE__, 'seo_automation_deactivate' );
+register_activation_hook( __FILE__, 'seoacai_activate' );
+register_deactivation_hook( __FILE__, 'seoacai_deactivate' );
 
 // -----------------------------------------------------------------------
 // Boot
 // -----------------------------------------------------------------------
 
 /**
- * Boot the unified SEO Automation plugin: content generation + SEO auditing.
+ * Boot the unified SEO Audit and Content AI Assistant plugin: content generation + SEO auditing.
  *
  * A single admin menu is registered by SEOAgent\Admin\AdminMenu, which
  * attaches the content-generation screens (SEOAgent\Blog\Admin) as
- * submenus of its own top-level "SEO Automation" menu.
+ * submenus of its own top-level "SEO Audit and Content AI Assistant" menu.
  */
-function seo_automation_run() {
+function seoacai_run() {
 	// Don't double-boot: if a legacy standalone plugin is still active it
-	// already registered its own CPTs/cron/menus. Booting SEO Automation's
+	// already registered its own CPTs/cron/menus. Booting SEO Audit and Content AI Assistant's
 	// copies too would duplicate all of that. The admin notice above
 	// tells the site owner to deactivate the old plugin(s); once that's
 	// done this function runs normally on the next request.
-	if ( ! empty( seo_automation_conflicting_plugins() ) ) {
+	if ( ! empty( seoacai_conflicting_plugins() ) ) {
 		return;
 	}
 
@@ -236,4 +256,4 @@ function seo_automation_run() {
 	}
 }
 
-add_action( 'plugins_loaded', 'seo_automation_run' );
+add_action( 'plugins_loaded', 'seoacai_run' );

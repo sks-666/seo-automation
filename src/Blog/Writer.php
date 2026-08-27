@@ -88,7 +88,7 @@ class Writer {
 		}
 
 		if ( empty( $draft['title'] ) || empty( $draft['content_html'] ) ) {
-			return new \WP_Error( 'theblog_draft_incomplete', __( 'Draft was missing a title or content.', 'seo-automation' ) );
+			return new \WP_Error( 'theblog_draft_incomplete', __( 'Draft was missing a title or content.', 'seo-audit-content-ai-assistant' ) );
 		}
 
 		$draft['content_html'] = wp_kses_post( $draft['content_html'] );

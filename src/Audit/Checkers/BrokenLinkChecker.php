@@ -45,7 +45,7 @@ final class BrokenLinkChecker extends AbstractChecker {
 	 * {@inheritDoc}
 	 */
 	public function label(): string {
-		return __( 'Broken links', 'seo-automation' );
+		return __( 'Broken links', 'seo-audit-content-ai-assistant' );
 	}
 
 	/**
@@ -59,7 +59,7 @@ final class BrokenLinkChecker extends AbstractChecker {
 	 * {@inheritDoc}
 	 */
 	public function description(): string {
-		return __( 'Collects every link on the site and verifies each distinct destination once.', 'seo-automation' );
+		return __( 'Collects every link on the site and verifies each distinct destination once.', 'seo-audit-content-ai-assistant' );
 	}
 
 	/**
@@ -202,13 +202,13 @@ final class BrokenLinkChecker extends AbstractChecker {
 					'url'          => $url,
 					'key'          => md5( $url ),
 					'title'        => $internal
-						? __( 'Internal link is broken', 'seo-automation' )
-						: __( 'External link is broken', 'seo-automation' ),
+						? __( 'Internal link is broken', 'seo-audit-content-ai-assistant' )
+						: __( 'External link is broken', 'seo-audit-content-ai-assistant' ),
 					'detail'       => sprintf(
 						/* translators: 1: URL, 2: status or error, 3: number of pages. */
-						__( '%1$s returned %2$s. It is linked from %3$d page(s).', 'seo-automation' ),
+						__( '%1$s returned %2$s. It is linked from %3$d page(s).', 'seo-audit-content-ai-assistant' ),
 						$url,
-						0 === $status ? ( $result['error'] ?: __( 'no response', 'seo-automation' ) ) : (string) $status,
+						0 === $status ? ( $result['error'] ?: __( 'no response', 'seo-audit-content-ai-assistant' ) ) : (string) $status,
 						count( $sources )
 					),
 					'evidence'     => array(

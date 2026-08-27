@@ -36,7 +36,7 @@ final class SchemaChecker extends AbstractChecker {
 	 * {@inheritDoc}
 	 */
 	public function label(): string {
-		return __( 'Structured data', 'seo-automation' );
+		return __( 'Structured data', 'seo-audit-content-ai-assistant' );
 	}
 
 	/**
@@ -50,7 +50,7 @@ final class SchemaChecker extends AbstractChecker {
 	 * {@inheritDoc}
 	 */
 	public function description(): string {
-		return __( 'Samples one page per template and checks the JSON-LD it emits for validity and completeness.', 'seo-automation' );
+		return __( 'Samples one page per template and checks the JSON-LD it emits for validity and completeness.', 'seo-audit-content-ai-assistant' );
 	}
 
 	/**
@@ -97,7 +97,7 @@ final class SchemaChecker extends AbstractChecker {
 			array(
 				'url'      => home_url( '/' ),
 				'template' => 'front_page',
-				'label'    => __( 'Home page', 'seo-automation' ),
+				'label'    => __( 'Home page', 'seo-audit-content-ai-assistant' ),
 				'expects'  => array( 'Organization', 'WebSite' ),
 			),
 		);
@@ -126,7 +126,7 @@ final class SchemaChecker extends AbstractChecker {
 				'template' => 'single_' . $post_type,
 				'label'    => sprintf(
 					/* translators: %s: post type name. */
-					__( 'Single %s', 'seo-automation' ),
+					__( 'Single %s', 'seo-audit-content-ai-assistant' ),
 					$post_type
 				),
 				'post_id'  => $id,
@@ -152,7 +152,7 @@ final class SchemaChecker extends AbstractChecker {
 				'template' => 'archive_' . $taxonomy,
 				'label'    => sprintf(
 					/* translators: %s: taxonomy name. */
-					__( '%s archive', 'seo-automation' ),
+					__( '%s archive', 'seo-audit-content-ai-assistant' ),
 					$taxonomy
 				),
 				'expects'  => array( 'BreadcrumbList' ),
@@ -226,17 +226,17 @@ final class SchemaChecker extends AbstractChecker {
 							'code'     => $has_blocks ? 'schema.invalid_json' : 'schema.missing',
 							'severity' => $has_blocks ? Issue::SEVERITY_HIGH : Issue::SEVERITY_MEDIUM,
 							'title'    => $has_blocks
-								? __( 'Structured data is present but does not parse', 'seo-automation' )
-								: __( 'Template emits no structured data', 'seo-automation' ),
+								? __( 'Structured data is present but does not parse', 'seo-audit-content-ai-assistant' )
+								: __( 'Template emits no structured data', 'seo-audit-content-ai-assistant' ),
 							'detail'   => $has_blocks
 								? sprintf(
 									/* translators: %s: sampled URL. */
-									__( '%s contains JSON-LD blocks that fail to decode, so search engines discard them entirely.', 'seo-automation' ),
+									__( '%s contains JSON-LD blocks that fail to decode, so search engines discard them entirely.', 'seo-audit-content-ai-assistant' ),
 									$url
 								)
 								: sprintf(
 									/* translators: 1: template label, 2: expected types. */
-									__( 'The %1$s template outputs no JSON-LD. Expected at least: %2$s.', 'seo-automation' ),
+									__( 'The %1$s template outputs no JSON-LD. Expected at least: %2$s.', 'seo-audit-content-ai-assistant' ),
 									(string) ( $target['label'] ?? '' ),
 									implode( ', ', (array) ( $target['expects'] ?? array() ) )
 								),
@@ -282,15 +282,15 @@ final class SchemaChecker extends AbstractChecker {
 						'key'      => ( $target['template'] ?? $url ) . '|' . $expected,
 						'title'    => sprintf(
 							/* translators: %s: schema type. */
-							__( 'No %s structured data', 'seo-automation' ),
+							__( 'No %s structured data', 'seo-audit-content-ai-assistant' ),
 							$expected
 						),
 						'detail'   => sprintf(
 							/* translators: 1: schema type, 2: template label, 3: types found. */
-							__( 'The %2$s template does not emit %1$s. Found instead: %3$s.', 'seo-automation' ),
+							__( 'The %2$s template does not emit %1$s. Found instead: %3$s.', 'seo-audit-content-ai-assistant' ),
 							$expected,
 							(string) ( $target['label'] ?? '' ),
-							$present ? implode( ', ', $present ) : __( 'nothing', 'seo-automation' )
+							$present ? implode( ', ', $present ) : __( 'nothing', 'seo-audit-content-ai-assistant' )
 						),
 						'evidence' => array(
 							'expected' => $expected,
@@ -357,10 +357,10 @@ final class SchemaChecker extends AbstractChecker {
 						'code'     => 'schema.product.incomplete',
 						'severity' => Issue::SEVERITY_HIGH,
 						'key'      => ( $base['key'] ?? '' ) . '|product',
-						'title'    => __( 'Product structured data is incomplete', 'seo-automation' ),
+						'title'    => __( 'Product structured data is incomplete', 'seo-audit-content-ai-assistant' ),
 						'detail'   => sprintf(
 							/* translators: %s: comma-separated property names. */
-							__( 'The Product node is missing %s. Google requires these for a product rich result and will drop the whole node without them.', 'seo-automation' ),
+							__( 'The Product node is missing %s. Google requires these for a product rich result and will drop the whole node without them.', 'seo-audit-content-ai-assistant' ),
 							implode( ', ', $missing )
 						),
 						'evidence' => array(

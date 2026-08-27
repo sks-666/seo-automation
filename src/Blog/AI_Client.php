@@ -15,8 +15,16 @@ class AI_Client {
 
 	protected static $providers = array();
 
+	/**
+	 * Provider keys that talk to a vendor API directly. Used only as the
+	 * fallback for sites without the core AI Client.
+	 */
+	const DIRECT_PROVIDERS = array( 'anthropic', 'openai', 'deepseek' );
+
 	protected static function make( $key ) {
 		switch ( $key ) {
+			case 'wp_ai_client':
+				return new Provider_WP_AI_Client();
 			case 'anthropic':
 				return new Provider_Anthropic();
 			case 'openai':
@@ -36,10 +44,48 @@ class AI_Client {
 	}
 
 	/**
+	 * The provider a fresh install should start on.
+	 *
+	 * WordPress 7.0+ sites default to the core AI Client, so the site owner
+	 * configures a provider once in WordPress itself and this plugin never
+	 * handles a vendor API key. Older sites fall back to a direct provider.
+	 *
+	 * @return string
+	 */
+	public static function default_provider_key() {
+		return Provider_WP_AI_Client::is_available() ? 'wp_ai_client' : 'anthropic';
+	}
+
+	/**
+	 * First direct provider that actually has a key stored, for use when the
+	 * core AI Client is selected but unavailable (a site that has since been
+	 * rolled back below WordPress 7.0).
+	 *
+	 * @return string
+	 */
+	protected static function first_configured_direct_provider() {
+		foreach ( self::DIRECT_PROVIDERS as $key ) {
+			$provider = self::get_cached( $key );
+
+			if ( $provider && $provider->is_configured() ) {
+				return $key;
+			}
+		}
+
+		return 'anthropic';
+	}
+
+	/**
 	 * Provider used for research/writing/SEO text tasks.
 	 */
 	public static function text_provider() {
-		return self::get_cached( Settings::get( 'ai_provider', 'anthropic' ) );
+		$selected = Settings::get( 'ai_provider', self::default_provider_key() );
+
+		if ( 'wp_ai_client' === $selected && ! Provider_WP_AI_Client::is_available() ) {
+			$selected = self::first_configured_direct_provider();
+		}
+
+		return self::get_cached( $selected );
 	}
 
 	/**
@@ -50,6 +96,11 @@ class AI_Client {
 		if ( 'none' === $configured ) {
 			return null;
 		}
+
+		if ( 'wp_ai_client' === $configured && ! Provider_WP_AI_Client::is_available() ) {
+			return null;
+		}
+
 		$provider = self::get_cached( $configured );
 		return ( $provider && $provider->supports_images() ) ? $provider : null;
 	}
@@ -57,7 +108,7 @@ class AI_Client {
 	public static function generate_text( $system_prompt, $user_prompt, $args = array() ) {
 		$provider = self::text_provider();
 		if ( ! $provider ) {
-			return new \WP_Error( 'theblog_no_provider', __( 'No AI provider is configured.', 'seo-automation' ) );
+			return new \WP_Error( 'theblog_no_provider', __( 'No AI provider is configured.', 'seo-audit-content-ai-assistant' ) );
 		}
 		return $provider->generate_text( $system_prompt, $user_prompt, $args );
 	}
@@ -97,7 +148,7 @@ class AI_Client {
 
 		if ( null === $decoded ) {
 			Logger::error( 'AI response could not be parsed as JSON. Raw response (truncated): ' . substr( $raw, 0, 1500 ) );
-			return new \WP_Error( 'theblog_bad_json', __( 'AI response could not be parsed as JSON. See Logs for the raw response.', 'seo-automation' ), $raw );
+			return new \WP_Error( 'theblog_bad_json', __( 'AI response could not be parsed as JSON. See Logs for the raw response.', 'seo-audit-content-ai-assistant' ), $raw );
 		}
 
 		return $decoded;

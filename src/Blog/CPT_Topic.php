@@ -22,7 +22,7 @@ class CPT_Topic {
 		register_post_type(
 			self::POST_TYPE,
 			array(
-				'label'           => __( 'Topics', 'seo-automation' ),
+				'label'           => __( 'Topics', 'seo-audit-content-ai-assistant' ),
 				'public'          => false,
 				'show_ui'         => false, // we render our own list screen
 				'show_in_menu'    => false,
@@ -38,12 +38,12 @@ class CPT_Topic {
 	 */
 	public static function statuses() {
 		return array(
-			'queued'     => __( 'Queued', 'seo-automation' ),
-			'processing' => __( 'Processing', 'seo-automation' ),
-			'ready'      => __( 'Ready for Review', 'seo-automation' ),
-			'published'  => __( 'Published', 'seo-automation' ),
-			'rejected'   => __( 'Rejected', 'seo-automation' ),
-			'error'      => __( 'Error', 'seo-automation' ),
+			'queued'     => __( 'Queued', 'seo-audit-content-ai-assistant' ),
+			'processing' => __( 'Processing', 'seo-audit-content-ai-assistant' ),
+			'ready'      => __( 'Ready for Review', 'seo-audit-content-ai-assistant' ),
+			'published'  => __( 'Published', 'seo-audit-content-ai-assistant' ),
+			'rejected'   => __( 'Rejected', 'seo-audit-content-ai-assistant' ),
+			'error'      => __( 'Error', 'seo-audit-content-ai-assistant' ),
 		);
 	}
 
@@ -53,8 +53,8 @@ class CPT_Topic {
 	 */
 	public static function content_sources() {
 		return array(
-			'topic'       => __( 'Topic / Keyword', 'seo-automation' ),
-			'product_url' => __( 'WooCommerce Product', 'seo-automation' ),
+			'topic'       => __( 'Topic / Keyword', 'seo-audit-content-ai-assistant' ),
+			'product_url' => __( 'WooCommerce Product', 'seo-audit-content-ai-assistant' ),
 		);
 	}
 
@@ -65,16 +65,16 @@ class CPT_Topic {
 	 */
 	public static function content_types() {
 		return array(
-			'seo_blog_article' => __( 'SEO Blog Article', 'seo-automation' ),
+			'seo_blog_article' => __( 'SEO Blog Article', 'seo-audit-content-ai-assistant' ),
 		);
 	}
 
 	public static function article_lengths() {
 		return array(
-			'800-1200'   => __( '800–1200 words', 'seo-automation' ),
-			'1200-1800'  => __( '1200–1800 words', 'seo-automation' ),
-			'1500-2000'  => __( '1500–2000 words', 'seo-automation' ),
-			'2000-2800'  => __( '2000–2800 words', 'seo-automation' ),
+			'800-1200'   => __( '800–1200 words', 'seo-audit-content-ai-assistant' ),
+			'1200-1800'  => __( '1200–1800 words', 'seo-audit-content-ai-assistant' ),
+			'1500-2000'  => __( '1500–2000 words', 'seo-audit-content-ai-assistant' ),
+			'2000-2800'  => __( '2000–2800 words', 'seo-audit-content-ai-assistant' ),
 		);
 	}
 

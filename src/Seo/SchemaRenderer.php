@@ -75,9 +75,16 @@ final class SchemaRenderer {
 			'mainEntity' => $entities,
 		);
 
+		// JSON_HEX_TAG is required: without it a stored value containing
+		// `</script>` would close the element early and let the rest of the
+		// value be parsed as markup. The other HEX_* flags harden the same
+		// output against being reused in an HTML attribute context.
 		printf(
 			'<script type="application/ld+json">%s</script>' . "\n",
-			wp_json_encode( $graph, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE )
+			wp_json_encode(
+				$graph,
+				JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT
+			)
 		);
 	}
 }

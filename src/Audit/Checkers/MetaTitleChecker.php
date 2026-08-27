@@ -38,7 +38,7 @@ final class MetaTitleChecker extends PostChecker {
 	 * {@inheritDoc}
 	 */
 	public function label(): string {
-		return __( 'Meta titles', 'seo-automation' );
+		return __( 'Meta titles', 'seo-audit-content-ai-assistant' );
 	}
 
 	/**
@@ -52,7 +52,7 @@ final class MetaTitleChecker extends PostChecker {
 	 * {@inheritDoc}
 	 */
 	public function description(): string {
-		return __( 'Checks every page for a title that exists, fits the search result, and describes the page.', 'seo-automation' );
+		return __( 'Checks every page for a title that exists, fits the search result, and describes the page.', 'seo-audit-content-ai-assistant' );
 	}
 
 	/**
@@ -97,8 +97,8 @@ final class MetaTitleChecker extends PostChecker {
 						array(
 							'code'        => 'meta.title.missing',
 							'severity'    => Issue::SEVERITY_CRITICAL,
-							'title'       => __( 'No title tag', 'seo-automation' ),
-							'detail'      => __( 'This page produces an empty title tag, so search engines invent one from the page content. Set an explicit title.', 'seo-automation' ),
+							'title'       => __( 'No title tag', 'seo-audit-content-ai-assistant' ),
+							'detail'      => __( 'This page produces an empty title tag, so search engines invent one from the page content. Set an explicit title.', 'seo-audit-content-ai-assistant' ),
 							'evidence'    => $evidence,
 							'fix_mode'    => Issue::MODE_ASSISTED,
 							'fix_payload' => array(
@@ -121,9 +121,9 @@ final class MetaTitleChecker extends PostChecker {
 						array(
 							'code'        => 'meta.title.unresolved_variable',
 							'severity'    => Issue::SEVERITY_HIGH,
-							'title'       => __( 'Title contains an unresolved variable', 'seo-automation' ),
+							'title'       => __( 'Title contains an unresolved variable', 'seo-audit-content-ai-assistant' ),
 							/* translators: %s: the rendered title. */
-							'detail'      => sprintf( __( 'The title renders as "%s". A template variable did not resolve, so the raw placeholder is published.', 'seo-automation' ), $title ),
+							'detail'      => sprintf( __( 'The title renders as "%s". A template variable did not resolve, so the raw placeholder is published.', 'seo-audit-content-ai-assistant' ), $title ),
 							'evidence'    => $evidence,
 							'fix_mode'    => Issue::MODE_ASSISTED,
 							'fix_payload' => array(
@@ -147,10 +147,10 @@ final class MetaTitleChecker extends PostChecker {
 					array(
 						'code'        => 'meta.title.too_long',
 						'severity'    => Issue::SEVERITY_MEDIUM,
-						'title'       => __( 'Title will be truncated in search results', 'seo-automation' ),
+						'title'       => __( 'Title will be truncated in search results', 'seo-audit-content-ai-assistant' ),
 						'detail'      => sprintf(
 							/* translators: 1: character count, 2: pixel width, 3: character limit. */
-							__( 'The title is %1$d characters (about %2$dpx) against a practical limit of %3$d characters. Google will cut it mid-phrase.', 'seo-automation' ),
+							__( 'The title is %1$d characters (about %2$dpx) against a practical limit of %3$d characters. Google will cut it mid-phrase.', 'seo-audit-content-ai-assistant' ),
 							$length,
 							$pixels,
 							$max
@@ -171,10 +171,10 @@ final class MetaTitleChecker extends PostChecker {
 					array(
 						'code'        => 'meta.title.too_short',
 						'severity'    => Issue::SEVERITY_LOW,
-						'title'       => __( 'Title is shorter than it needs to be', 'seo-automation' ),
+						'title'       => __( 'Title is shorter than it needs to be', 'seo-audit-content-ai-assistant' ),
 						'detail'      => sprintf(
 							/* translators: 1: character count, 2: minimum length. */
-							__( 'The title is %1$d characters against a target of at least %2$d. There is unused space to describe the page and earn the click.', 'seo-automation' ),
+							__( 'The title is %1$d characters against a target of at least %2$d. There is unused space to describe the page and earn the click.', 'seo-audit-content-ai-assistant' ),
 							$length,
 							$min
 						),
@@ -202,10 +202,10 @@ final class MetaTitleChecker extends PostChecker {
 						array(
 							'code'        => 'meta.title.missing_focus_keyword',
 							'severity'    => Issue::SEVERITY_LOW,
-							'title'       => __( 'Title does not contain the focus keyword', 'seo-automation' ),
+							'title'       => __( 'Title does not contain the focus keyword', 'seo-audit-content-ai-assistant' ),
 							'detail'      => sprintf(
 								/* translators: 1: focus keyword, 2: current title. */
-								__( 'The focus keyword is "%1$s" but the title reads "%2$s".', 'seo-automation' ),
+								__( 'The focus keyword is "%1$s" but the title reads "%2$s".', 'seo-audit-content-ai-assistant' ),
 								$primary,
 								$title
 							),

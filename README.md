@@ -1,4 +1,4 @@
-# SEO Automation
+# SEO Audit and Content AI Assistant
 
 A comprehensive SEO automation suite: research, write, optimize, and audit content from one unified plugin with a single PSR-4 codebase and one admin menu.
 
@@ -31,16 +31,16 @@ A comprehensive SEO automation suite: research, write, optimize, and audit conte
 
 ## Installation
 
-1. Upload the `seo-automation` folder to `/wp-content/plugins/`.
+1. Upload the `seo-audit-content-ai-assistant` folder to `/wp-content/plugins/`.
 2. Activate the plugin through the "Plugins" screen in WordPress.
-3. Go to SEO Automation → Settings to configure AI providers and SEO plugin integrations.
-4. Use the single SEO Automation menu in the WordPress dashboard — it holds both the
+3. Go to SEO Audit and Content AI Assistant → Settings to configure AI providers and SEO plugin integrations.
+4. Use the single SEO Audit and Content AI Assistant menu in the WordPress dashboard — it holds both the
    audit screens (Dashboard, Issues, Change log, Settings) and the content
    generation screens (Dashboard, Topics, Review Queue, Settings, Logs).
 
 ## Codebase
 
-The plugin is distributed as `seo-automation` and uses the `seo-automation`
+The plugin is distributed as `seo-audit-content-ai-assistant` and uses the `seo-audit-content-ai-assistant`
 text domain. Its internal PHP namespace, database tables, option keys, REST
 namespace, capability, cron hooks and WP-CLI command deliberately keep their
 original `SEOAgent` / `seo_agent` / `theblog` names: they are internal or
@@ -54,10 +54,10 @@ The whole plugin is one PSR-4 tree under `src/`, autoloaded via `src/autoload.ph
 - `src/Blog/*` (namespace `SEOAgent\Blog\`) — the content-generation engine:
   AI providers, research/writer pipeline, WooCommerce product analysis,
   topic queue, scheduler, review queue.
-- `src/Admin/AdminMenu.php` registers the single top-level "SEO Automation" admin
+- `src/Admin/AdminMenu.php` registers the single top-level "SEO Audit and Content AI Assistant" admin
   menu; `SEOAgent\Blog\Admin::add_submenus()` attaches the content screens to
   it as submenus, so the plugin surfaces one menu entry in wp-admin.
-- `seo-automation.php` is the single bootstrap file (one set of plugin headers,
+- `seo-audit-content-ai-assistant.php` is the single bootstrap file (one set of plugin headers,
   one activation/deactivation hook, one `plugins_loaded` handler).
 
 ## Configuration
@@ -78,13 +78,13 @@ If none of these are installed, the suite manages metadata directly.
 ## Usage
 
 ### Content Generation (TheBlog Automation)
-1. Go to SEO Automation → Topics to add content topics
+1. Go to SEO Audit and Content AI Assistant → Topics to add content topics
 2. For WooCommerce products, use the "WooCommerce Product" content source
 3. Enable Autopilot in Settings for automated content generation
 4. Review and approve content in the Review Queue
 
 ### SEO Auditing & Optimization (SEO Agent)
-1. Go to SEO Automation → Dashboard to see site health score
+1. Go to SEO Audit and Content AI Assistant → Dashboard to see site health score
 2. Run audits manually or schedule them
 3. Review issues in the issue queue
 4. Apply fixes with confidence (each change is recorded and reversible)

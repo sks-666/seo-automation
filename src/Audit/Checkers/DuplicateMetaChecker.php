@@ -38,7 +38,7 @@ final class DuplicateMetaChecker extends SiteChecker {
 	 * {@inheritDoc}
 	 */
 	public function label(): string {
-		return __( 'Duplicate titles and descriptions', 'seo-automation' );
+		return __( 'Duplicate titles and descriptions', 'seo-audit-content-ai-assistant' );
 	}
 
 	/**
@@ -52,7 +52,7 @@ final class DuplicateMetaChecker extends SiteChecker {
 	 * {@inheritDoc}
 	 */
 	public function description(): string {
-		return __( 'Finds pages competing with each other by sharing the same title or description.', 'seo-automation' );
+		return __( 'Finds pages competing with each other by sharing the same title or description.', 'seo-audit-content-ai-assistant' );
 	}
 
 	/**
@@ -72,7 +72,7 @@ final class DuplicateMetaChecker extends SiteChecker {
 					$context,
 					'meta.title.duplicate',
 					Issue::SEVERITY_HIGH,
-					__( 'Duplicate title across pages', 'seo-automation' ),
+					__( 'Duplicate title across pages', 'seo-audit-content-ai-assistant' ),
 					'meta_title'
 				)
 			);
@@ -86,7 +86,7 @@ final class DuplicateMetaChecker extends SiteChecker {
 					$context,
 					'meta.description.duplicate',
 					Issue::SEVERITY_MEDIUM,
-					__( 'Duplicate description across pages', 'seo-automation' ),
+					__( 'Duplicate description across pages', 'seo-audit-content-ai-assistant' ),
 					'meta_description'
 				)
 			);
@@ -160,7 +160,7 @@ final class DuplicateMetaChecker extends SiteChecker {
 					'title'        => $title,
 					'detail'       => sprintf(
 						/* translators: 1: number of pages, 2: the duplicated value. */
-						__( '%1$d pages share the value "%2$s". They compete for the same result and Google picks one arbitrarily.', 'seo-automation' ),
+						__( '%1$d pages share the value "%2$s". They compete for the same result and Google picks one arbitrarily.', 'seo-audit-content-ai-assistant' ),
 						$total,
 						$row['value']
 					),
@@ -233,10 +233,10 @@ final class DuplicateMetaChecker extends SiteChecker {
 					'object_id'    => 0,
 					'key'          => md5( 'post_title|' . $row['value'] ),
 					'object_label' => (string) $row['value'],
-					'title'        => __( 'Several published pages share the same name', 'seo-automation' ),
+					'title'        => __( 'Several published pages share the same name', 'seo-audit-content-ai-assistant' ),
 					'detail'       => sprintf(
 						/* translators: 1: count, 2: shared title. */
-						__( '%1$d published items are all called "%2$s". Unless their titles are differentiated they cannibalise each other.', 'seo-automation' ),
+						__( '%1$d published items are all called "%2$s". Unless their titles are differentiated they cannibalise each other.', 'seo-audit-content-ai-assistant' ),
 						(int) $row['total'],
 						$row['value']
 					),

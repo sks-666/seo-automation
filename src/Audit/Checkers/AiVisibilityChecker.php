@@ -56,7 +56,7 @@ final class AiVisibilityChecker extends SiteChecker {
 	 * {@inheritDoc}
 	 */
 	public function label(): string {
-		return __( 'AI search visibility', 'seo-automation' );
+		return __( 'AI search visibility', 'seo-audit-content-ai-assistant' );
 	}
 
 	/**
@@ -70,7 +70,7 @@ final class AiVisibilityChecker extends SiteChecker {
 	 * {@inheritDoc}
 	 */
 	public function description(): string {
-		return __( 'Checks whether answer engines can crawl the site, and whether it gives them the entity and authorship signals they need to cite it.', 'seo-automation' );
+		return __( 'Checks whether answer engines can crawl the site, and whether it gives them the entity and authorship signals they need to cite it.', 'seo-audit-content-ai-assistant' );
 	}
 
 	/**
@@ -124,10 +124,10 @@ final class AiVisibilityChecker extends SiteChecker {
 					'severity'    => Issue::SEVERITY_INFO,
 					'object_type' => 'site',
 					'object_id'   => 0,
-					'title'       => __( 'Answer-engine crawlers are blocked in robots.txt', 'seo-automation' ),
+					'title'       => __( 'Answer-engine crawlers are blocked in robots.txt', 'seo-audit-content-ai-assistant' ),
 					'detail'      => sprintf(
 						/* translators: %s: comma-separated crawler names. */
-						__( 'robots.txt blocks %s. Reported for confirmation rather than as a fault: blocking training crawlers is a legitimate choice, but blocking the search and user-fetch agents also removes the site from the answers those products give.', 'seo-automation' ),
+						__( 'robots.txt blocks %s. Reported for confirmation rather than as a fault: blocking training crawlers is a legitimate choice, but blocking the search and user-fetch agents also removes the site from the answers those products give.', 'seo-audit-content-ai-assistant' ),
 						implode( ', ', $blocked )
 					),
 					'url'         => RobotsChecker::url(),
@@ -163,8 +163,8 @@ final class AiVisibilityChecker extends SiteChecker {
 					'severity'    => Issue::SEVERITY_INFO,
 					'object_type' => 'site',
 					'object_id'   => 0,
-					'title'       => __( 'No llms.txt', 'seo-automation' ),
-					'detail'      => __( 'llms.txt is an emerging convention for handing answer engines a curated map of your most useful pages. Adoption is not universal and no engine currently requires it, so treat this as an opportunity rather than a defect.', 'seo-automation' ),
+					'title'       => __( 'No llms.txt', 'seo-audit-content-ai-assistant' ),
+					'detail'      => __( 'llms.txt is an emerging convention for handing answer engines a curated map of your most useful pages. Adoption is not universal and no engine currently requires it, so treat this as an opportunity rather than a defect.', 'seo-audit-content-ai-assistant' ),
 					'url'         => $url,
 					'evidence'    => array( 'status' => $response['status'] ),
 					'fixer'       => 'llms_txt',
@@ -217,8 +217,8 @@ final class AiVisibilityChecker extends SiteChecker {
 					'severity'    => Issue::SEVERITY_MEDIUM,
 					'object_type' => 'site',
 					'object_id'   => 0,
-					'title'       => __( 'The site does not identify who publishes it', 'seo-automation' ),
-					'detail'      => __( 'The home page emits no Organization, LocalBusiness or Person node. Answer engines cite sources they can name and connect to a known entity; without one the site is quotable but not attributable.', 'seo-automation' ),
+					'title'       => __( 'The site does not identify who publishes it', 'seo-audit-content-ai-assistant' ),
+					'detail'      => __( 'The home page emits no Organization, LocalBusiness or Person node. Answer engines cite sources they can name and connect to a known entity; without one the site is quotable but not attributable.', 'seo-audit-content-ai-assistant' ),
 					'url'         => home_url( '/' ),
 					'evidence'    => array( 'types_found' => array_slice( array_map( static fn( $node ) => Html::node_types( $node ), $nodes ), 0, 10 ) ),
 					'fix_mode'    => Issue::MODE_MANUAL,
@@ -235,8 +235,8 @@ final class AiVisibilityChecker extends SiteChecker {
 					'severity'    => Issue::SEVERITY_LOW,
 					'object_type' => 'site',
 					'object_id'   => 0,
-					'title'       => __( 'Publisher entity has no sameAs links', 'seo-automation' ),
-					'detail'      => __( 'The organisation node names the publisher but does not link it to profiles elsewhere. sameAs is what lets an engine reconcile this site with the same entity in its knowledge graph.', 'seo-automation' ),
+					'title'       => __( 'Publisher entity has no sameAs links', 'seo-audit-content-ai-assistant' ),
+					'detail'      => __( 'The organisation node names the publisher but does not link it to profiles elsewhere. sameAs is what lets an engine reconcile this site with the same entity in its knowledge graph.', 'seo-audit-content-ai-assistant' ),
 					'url'         => home_url( '/' ),
 					'evidence'    => array( 'organisation' => array_slice( (array) $organisation, 0, 12 ) ),
 					'fix_mode'    => Issue::MODE_MANUAL,
@@ -251,8 +251,8 @@ final class AiVisibilityChecker extends SiteChecker {
 					'severity'    => Issue::SEVERITY_LOW,
 					'object_type' => 'site',
 					'object_id'   => 0,
-					'title'       => __( 'Publisher entity has no logo', 'seo-automation' ),
-					'detail'      => __( 'A logo on the organisation node is what surfaces beside a citation in answer results and knowledge panels.', 'seo-automation' ),
+					'title'       => __( 'Publisher entity has no logo', 'seo-audit-content-ai-assistant' ),
+					'detail'      => __( 'A logo on the organisation node is what surfaces beside a citation in answer results and knowledge panels.', 'seo-audit-content-ai-assistant' ),
 					'url'         => home_url( '/' ),
 					'evidence'    => array( 'organisation' => array_slice( (array) $organisation, 0, 12 ) ),
 					'fix_mode'    => Issue::MODE_MANUAL,

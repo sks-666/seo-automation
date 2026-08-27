@@ -31,7 +31,7 @@ final class NativeAdapter extends AbstractAdapter {
 	 * {@inheritDoc}
 	 */
 	public function label(): string {
-		return __( 'SEO Agent (built in)', 'seo-automation' );
+		return __( 'SEO Audit and Content AI Assistant (built in)', 'seo-audit-content-ai-assistant' );
 	}
 
 	/**

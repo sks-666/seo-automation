@@ -25,7 +25,7 @@ class Scheduler {
 		if ( ! isset( $schedules['hourly'] ) ) {
 			$schedules['hourly'] = array(
 				'interval' => HOUR_IN_SECONDS,
-				'display'  => __( 'Once Hourly', 'seo-automation' ),
+				'display'  => __( 'Once Hourly', 'seo-audit-content-ai-assistant' ),
 			);
 		}
 		return $schedules;

@@ -42,7 +42,7 @@ final class FaqChecker extends PostChecker {
 	 * {@inheritDoc}
 	 */
 	public function label(): string {
-		return __( 'FAQ optimisation', 'seo-automation' );
+		return __( 'FAQ optimisation', 'seo-audit-content-ai-assistant' );
 	}
 
 	/**
@@ -56,7 +56,7 @@ final class FaqChecker extends PostChecker {
 	 * {@inheritDoc}
 	 */
 	public function description(): string {
-		return __( 'Finds question-and-answer content that is not marked up as an FAQ, and answers too vague to be quoted.', 'seo-automation' );
+		return __( 'Finds question-and-answer content that is not marked up as an FAQ, and answers too vague to be quoted.', 'seo-audit-content-ai-assistant' );
 	}
 
 	/**
@@ -88,10 +88,10 @@ final class FaqChecker extends PostChecker {
 					array(
 						'code'        => 'faq.schema.missing',
 						'severity'    => Issue::SEVERITY_MEDIUM,
-						'title'       => __( 'Question content is not marked up as an FAQ', 'seo-automation' ),
+						'title'       => __( 'Question content is not marked up as an FAQ', 'seo-audit-content-ai-assistant' ),
 						'detail'      => sprintf(
 							/* translators: %d: number of questions found. */
-							__( 'This page answers %d questions in its headings but emits no FAQPage structured data. Marking it up is what makes those answers eligible to be surfaced directly.', 'seo-automation' ),
+							__( 'This page answers %d questions in its headings but emits no FAQPage structured data. Marking it up is what makes those answers eligible to be surfaced directly.', 'seo-audit-content-ai-assistant' ),
 							count( $questions )
 						),
 						'evidence'    => array(
@@ -131,10 +131,10 @@ final class FaqChecker extends PostChecker {
 					array(
 						'code'     => 'faq.answer.too_short',
 						'severity' => Issue::SEVERITY_LOW,
-						'title'    => __( 'FAQ answers are too short to stand alone', 'seo-automation' ),
+						'title'    => __( 'FAQ answers are too short to stand alone', 'seo-audit-content-ai-assistant' ),
 						'detail'   => sprintf(
 							/* translators: %d: number of short answers. */
-							__( '%d answers run to fewer than 20 words. An answer that only makes sense in context cannot be quoted on its own by a search or answer engine.', 'seo-automation' ),
+							__( '%d answers run to fewer than 20 words. An answer that only makes sense in context cannot be quoted on its own by a search or answer engine.', 'seo-audit-content-ai-assistant' ),
 							count( $weak )
 						),
 						'evidence' => array(

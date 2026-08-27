@@ -32,7 +32,7 @@ final class RobotsChecker extends SiteChecker {
 	 * {@inheritDoc}
 	 */
 	public function label(): string {
-		return __( 'Crawlability', 'seo-automation' );
+		return __( 'Crawlability', 'seo-audit-content-ai-assistant' );
 	}
 
 	/**
@@ -46,7 +46,7 @@ final class RobotsChecker extends SiteChecker {
 	 * {@inheritDoc}
 	 */
 	public function description(): string {
-		return __( 'Checks the site-wide indexing switch and robots.txt for rules that block search engines.', 'seo-automation' );
+		return __( 'Checks the site-wide indexing switch and robots.txt for rules that block search engines.', 'seo-audit-content-ai-assistant' );
 	}
 
 	/**
@@ -64,8 +64,8 @@ final class RobotsChecker extends SiteChecker {
 					'severity'    => Issue::SEVERITY_CRITICAL,
 					'object_type' => 'site',
 					'object_id'   => 0,
-					'title'       => __( 'Search engines are discouraged site-wide', 'seo-automation' ),
-					'detail'      => __( 'Settings → Reading has "Discourage search engines from indexing this site" enabled. WordPress is emitting a site-wide noindex; nothing on this site can rank until it is turned off.', 'seo-automation' ),
+					'title'       => __( 'Search engines are discouraged site-wide', 'seo-audit-content-ai-assistant' ),
+					'detail'      => __( 'Settings → Reading has "Discourage search engines from indexing this site" enabled. WordPress is emitting a site-wide noindex; nothing on this site can rank until it is turned off.', 'seo-audit-content-ai-assistant' ),
 					'url'         => admin_url( 'options-reading.php' ),
 					'evidence'    => array( 'blog_public' => get_option( 'blog_public' ) ),
 					'fixer'       => 'site_visibility',
@@ -99,10 +99,10 @@ final class RobotsChecker extends SiteChecker {
 						'severity'    => Issue::SEVERITY_LOW,
 						'object_type' => 'site',
 						'object_id'   => 0,
-						'title'       => __( 'robots.txt is not reachable', 'seo-automation' ),
+						'title'       => __( 'robots.txt is not reachable', 'seo-audit-content-ai-assistant' ),
 						'detail'      => sprintf(
 							/* translators: 1: URL, 2: HTTP status or error. */
-							__( '%1$s returned %2$s. Crawling still works without it, but you lose the place to declare your sitemap.', 'seo-automation' ),
+							__( '%1$s returned %2$s. Crawling still works without it, but you lose the place to declare your sitemap.', 'seo-audit-content-ai-assistant' ),
 							$url,
 							'' !== $response['error'] ? $response['error'] : (string) $response['status']
 						),
@@ -133,8 +133,8 @@ final class RobotsChecker extends SiteChecker {
 					'severity'    => Issue::SEVERITY_CRITICAL,
 					'object_type' => 'site',
 					'object_id'   => 0,
-					'title'       => __( 'robots.txt blocks the entire site', 'seo-automation' ),
-					'detail'      => __( 'robots.txt contains "Disallow: /" for all user agents. No search engine will crawl anything.', 'seo-automation' ),
+					'title'       => __( 'robots.txt blocks the entire site', 'seo-audit-content-ai-assistant' ),
+					'detail'      => __( 'robots.txt contains "Disallow: /" for all user agents. No search engine will crawl anything.', 'seo-audit-content-ai-assistant' ),
 					'url'         => $url,
 					'evidence'    => array(
 						'rules'   => $wildcard,
@@ -156,10 +156,10 @@ final class RobotsChecker extends SiteChecker {
 						'object_type' => 'site',
 						'object_id'   => 0,
 						'key'         => $path,
-						'title'       => __( 'robots.txt blocks CSS or JavaScript', 'seo-automation' ),
+						'title'       => __( 'robots.txt blocks CSS or JavaScript', 'seo-audit-content-ai-assistant' ),
 						'detail'      => sprintf(
 							/* translators: %s: blocked path. */
-							__( '"%s" is disallowed. Google renders pages before judging them, so blocking assets makes your pages look broken to the crawler.', 'seo-automation' ),
+							__( '"%s" is disallowed. Google renders pages before judging them, so blocking assets makes your pages look broken to the crawler.', 'seo-audit-content-ai-assistant' ),
 							$path
 						),
 						'url'         => $url,
@@ -177,8 +177,8 @@ final class RobotsChecker extends SiteChecker {
 					'severity'    => Issue::SEVERITY_LOW,
 					'object_type' => 'site',
 					'object_id'   => 0,
-					'title'       => __( 'robots.txt does not declare a sitemap', 'seo-automation' ),
-					'detail'      => __( 'Adding a Sitemap: line is the standard way to point every crawler at your sitemap without registering it anywhere.', 'seo-automation' ),
+					'title'       => __( 'robots.txt does not declare a sitemap', 'seo-audit-content-ai-assistant' ),
+					'detail'      => __( 'Adding a Sitemap: line is the standard way to point every crawler at your sitemap without registering it anywhere.', 'seo-audit-content-ai-assistant' ),
 					'url'         => $url,
 					'evidence'    => array( 'excerpt' => substr( $body, 0, 1000 ) ),
 					'fix_mode'    => Issue::MODE_MANUAL,

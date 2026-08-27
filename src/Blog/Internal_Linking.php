@@ -86,7 +86,7 @@ class Internal_Linking {
 			esc_url( $product['permalink'] ),
 			sprintf(
 				/* translators: %s: product title */
-				esc_html__( 'View the %s', 'seo-automation' ),
+				esc_html__( 'View the %s', 'seo-audit-content-ai-assistant' ),
 				esc_html( $product['title'] )
 			)
 		);
@@ -97,7 +97,7 @@ class Internal_Linking {
 				esc_url( $product['category_links'][0]['url'] ),
 				sprintf(
 					/* translators: %s: category name */
-					esc_html__( 'Browse more in %s', 'seo-automation' ),
+					esc_html__( 'Browse more in %s', 'seo-audit-content-ai-assistant' ),
 					esc_html( $product['category_links'][0]['name'] )
 				)
 			);
@@ -109,7 +109,7 @@ class Internal_Linking {
 				esc_url( $product['related_products'][0]['url'] ),
 				sprintf(
 					/* translators: %s: related product title */
-					esc_html__( 'You may also like: %s', 'seo-automation' ),
+					esc_html__( 'You may also like: %s', 'seo-audit-content-ai-assistant' ),
 					esc_html( $product['related_products'][0]['title'] )
 				)
 			);

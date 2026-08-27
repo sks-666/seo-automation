@@ -30,16 +30,36 @@ class Featured_Image {
 			$keyword
 		);
 
-		$image_url = $provider->generate_image( $prompt );
-		if ( is_wp_error( $image_url ) ) {
-			return $image_url;
+		$image = $provider->generate_image( $prompt );
+		if ( is_wp_error( $image ) ) {
+			return $image;
 		}
 
 		require_once ABSPATH . 'wp-admin/includes/media.php';
 		require_once ABSPATH . 'wp-admin/includes/file.php';
 		require_once ABSPATH . 'wp-admin/includes/image.php';
 
-		$attachment_id = media_sideload_image( $image_url, $post_id, $title, 'id' );
+		// Providers return either a remote URL (the direct vendor APIs) or an
+		// absolute path to a temporary file (the core AI Client, which hands
+		// images back inline rather than as a URL).
+		if ( 0 === strpos( $image, 'http://' ) || 0 === strpos( $image, 'https://' ) ) {
+			$attachment_id = media_sideload_image( $image, $post_id, $title, 'id' );
+		} else {
+			$attachment_id = media_handle_sideload(
+				array(
+					'name'     => basename( $image ),
+					'tmp_name' => $image,
+				),
+				$post_id,
+				$title
+			);
+
+			// media_handle_sideload() moves the file on success; clean up the
+			// leftover temp file if it rejected the upload.
+			if ( is_wp_error( $attachment_id ) && file_exists( $image ) ) {
+				wp_delete_file( $image );
+			}
+		}
 
 		if ( is_wp_error( $attachment_id ) ) {
 			return $attachment_id;

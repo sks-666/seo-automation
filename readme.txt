@@ -1,10 +1,10 @@
-=== SEO Automation ===
-Contributors: ssomai
+=== SEO Audit and Content AI Assistant ===
+Contributors: lafaa, ssomai
 Tags: seo, content, audit, woocommerce, schema
 Requires at least: 5.8
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 2.0.0
+Stable tag: 2.1.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -12,7 +12,7 @@ Audit your site's SEO, fix what it finds, and generate optimised content — wit
 
 == Description ==
 
-SEO Automation combines two things most sites handle separately: finding what is wrong with your SEO, and producing content that is right from the start.
+SEO Audit and Content AI Assistant combines two things most sites handle separately: finding what is wrong with your SEO, and producing content that is right from the start.
 
 **The audit loop**
 
@@ -55,9 +55,13 @@ Metadata is read and written through whichever SEO plugin you already use — Yo
 
 This plugin can send data to third-party services. **No data leaves your site unless you supply an API key for that service and trigger an action that uses it.** No external request is made on installation, activation, or normal page views, and no usage tracking, analytics, or telemetry of any kind is collected.
 
-**AI text providers — Anthropic, OpenAI, or DeepSeek**
+**WordPress AI Client (recommended, WordPress 7.0 and later)**
 
-Used only for content generation and AI-assisted metadata suggestions, and only for the one provider you select in the settings.
+On WordPress 7.0 and later the plugin defaults to the AI Client built into WordPress core. You connect a provider once under **Settings → Connectors**; WordPress holds the credentials and routes the request. This plugin stores no API key in that mode and contacts no vendor directly — where the data goes is determined entirely by the provider you connected in WordPress.
+
+**AI text providers — Anthropic, OpenAI, or DeepSeek (direct)**
+
+The fallback for sites below WordPress 7.0, and available on any version if you would rather pick a vendor yourself. Used only for content generation and AI-assisted metadata suggestions, and only for the one provider you select in the settings.
 
 * What is sent: the topic or keyword you entered, and — where relevant to the request — existing post or WooCommerce product content from your site (title, description, attributes) that the plugin is asked to write about or optimise.
 * When: only when you generate content manually, or when you enable Autopilot and a scheduled generation runs.
@@ -65,11 +69,11 @@ Used only for content generation and AI-assisted metadata suggestions, and only 
 
 Anthropic: [Terms](https://www.anthropic.com/legal/commercial-terms) | [Privacy Policy](https://www.anthropic.com/legal/privacy)
 OpenAI: [Terms](https://openai.com/policies/terms-of-use) | [Privacy Policy](https://openai.com/policies/privacy-policy)
-DeepSeek: [Terms](https://www.deepseek.com/terms) | [Privacy Policy](https://www.deepseek.com/privacy)
+DeepSeek: [Terms](https://cdn.deepseek.com/policies/en-US/deepseek-terms-of-use.html) | [Privacy Policy](https://cdn.deepseek.com/policies/en-US/deepseek-privacy-policy.html)
 
-**OpenAI image generation**
+**Featured image generation**
 
-Optional, and disabled by default. If you set the image provider to OpenAI, the plugin sends a text prompt describing the desired featured image to `api.openai.com`. No image from your media library is uploaded. Covered by the OpenAI links above.
+Optional, and disabled by default. Featured images can be generated through the WordPress AI Client, or directly through OpenAI. In the direct case the plugin sends a text prompt describing the desired image to `api.openai.com`, covered by the OpenAI links above. No image from your media library is ever uploaded.
 
 **Google PageSpeed Insights**
 
@@ -84,10 +88,10 @@ Google: [Terms](https://developers.google.com/terms) | [Privacy Policy](https://
 
 == Installation ==
 
-1. Upload the `seo-automation` folder to `/wp-content/plugins/`, or install the plugin through the WordPress Plugins screen.
+1. Upload the `seo-audit-content-ai-assistant` folder to `/wp-content/plugins/`, or install the plugin through the WordPress Plugins screen.
 2. Activate the plugin through the Plugins screen.
-3. Go to **SEO Automation → Audit: Settings** to choose which post types and taxonomies to audit and to set your safety mode.
-4. To generate content, go to **SEO Automation → Content: Settings** and add an API key for your chosen AI provider.
+3. Go to **SEO Audit & Content → Audit: Settings** to choose which post types and taxonomies to audit and to set your safety mode.
+4. To generate content, go to **SEO Audit & Content → Content: Settings** and choose a Text Provider. On WordPress 7.0 and later, leave it on **WordPress AI** and connect a provider under **Settings → Connectors**; on earlier versions, pick a provider and enter its API key.
 
 The plugin is fully functional for auditing without any API key. Keys are only needed for content generation and for field-data Core Web Vitals.
 
@@ -95,7 +99,7 @@ The plugin is fully functional for auditing without any API key. Keys are only n
 
 = Does the plugin need an API key to work? =
 
-No. The entire audit and fix engine runs locally with no API key and no external requests. Keys are only required for AI content generation and for PageSpeed Insights field data.
+No. The entire audit and fix engine runs locally with no API key and no external requests. AI content generation needs a provider: on WordPress 7.0 and later that is whatever you have connected under Settings → Connectors, so this plugin stores no key at all. On earlier versions you supply a provider key here. PageSpeed Insights field data needs its own key either way.
 
 = Will it change my site without asking? =
 
@@ -123,9 +127,16 @@ No. WooCommerce-specific checks and the product-to-article feature activate only
 
 == Changelog ==
 
+= 2.1.0 =
+* Renamed the plugin to SEO Audit and Content AI Assistant.
+* Content generation now runs through the AI Client built into WordPress 7.0 by default, so WordPress holds the provider credentials and this plugin stores no API key. Direct Anthropic, OpenAI, and DeepSeek providers remain available, and are used automatically on WordPress 6.9 and earlier.
+* Hardened the FAQ JSON-LD output so a stored answer containing markup can no longer break out of the script element.
+* Confined the plugin's admin notices to the screens where they are actionable.
+* Corrected the DeepSeek terms and privacy policy links in the external services disclosure.
+
 = 2.0.0 =
-* Renamed the plugin to SEO Automation.
-* Fixed internationalisation: all user-facing strings now use the `seo-automation` text domain and are translatable. Previously the declared text domain did not match the strings in the code, so no string could be translated.
+* Renamed the plugin to SEO Audit and Content AI Assistant.
+* Fixed internationalisation: all user-facing strings now use the `seo-audit-content-ai-assistant` text domain and are translatable. Previously the declared text domain did not match the strings in the code, so no string could be translated.
 * API keys are now write-only in the admin. Stored keys are no longer rendered into the settings page HTML, and saving an unrelated setting no longer risks clearing a configured key. Removing a key is now an explicit action.
 * Added `readme.txt` with full disclosure of every external service the plugin can contact.
 * Added the missing `License` and `License URI` plugin headers.
@@ -137,6 +148,9 @@ No. WooCommerce-specific checks and the product-to-article feature activate only
 * Removed a redundant suppress_filters argument and an unnecessary load_plugin_textdomain() call.
 
 == Upgrade Notice ==
+
+= 2.1.0 =
+The plugin has been renamed and its main file renamed with it, so WordPress will deactivate the plugin during this update. Reactivate it once from the Plugins screen. All settings, audits, issues, and change history are preserved. On WordPress 7.0 and later you can switch the Text Provider to "WordPress AI" and remove the API keys stored by this plugin.
 
 = 2.0.0 =
 The main plugin file has been renamed, so WordPress will deactivate the plugin during this update. Reactivate it once from the Plugins screen. All settings, audits, issues, and change history are preserved, and no reconfiguration is needed.

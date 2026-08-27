@@ -11,11 +11,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 $posts = Review_Queue::get_pending_posts( 50 );
 ?>
 <div class="wrap theblog-wrap">
-	<h1><?php esc_html_e( 'Review Queue', 'seo-automation' ); ?></h1>
-	<p class="description"><?php esc_html_e( 'Every AI-generated draft lands here first. Nothing publishes until you approve it.', 'seo-automation' ); ?></p>
+	<h1><?php esc_html_e( 'Review Queue', 'seo-audit-content-ai-assistant' ); ?></h1>
+	<p class="description"><?php esc_html_e( 'Every AI-generated draft lands here first. Nothing publishes until you approve it.', 'seo-audit-content-ai-assistant' ); ?></p>
 
 	<?php if ( empty( $posts ) ) : ?>
-		<div class="theblog-panel"><p><?php esc_html_e( 'Nothing waiting for review right now.', 'seo-automation' ); ?></p></div>
+		<div class="theblog-panel"><p><?php esc_html_e( 'Nothing waiting for review right now.', 'seo-audit-content-ai-assistant' ); ?></p></div>
 	<?php endif; ?>
 
 	<?php foreach ( $posts as $post ) :
@@ -51,11 +51,11 @@ $posts = Review_Queue::get_pending_posts( 50 );
 				<p><?php echo esc_html( wp_trim_words( wp_strip_all_tags( $post->post_content ), 40 ) ); ?></p>
 				<p class="theblog-meta-row">
 					<?php if ( 'product_url' === $content_source ) : ?>
-						<span><strong><?php esc_html_e( 'Source:', 'seo-automation' ); ?></strong> <?php esc_html_e( 'WooCommerce Product', 'seo-automation' ); ?><?php if ( $product_id ) : ?> (<a href="<?php echo esc_url( get_edit_post_link( $product_id ) ); ?>"><?php esc_html_e( 'view product', 'seo-automation' ); ?></a>)<?php endif; ?></span>
+						<span><strong><?php esc_html_e( 'Source:', 'seo-audit-content-ai-assistant' ); ?></strong> <?php esc_html_e( 'WooCommerce Product', 'seo-audit-content-ai-assistant' ); ?><?php if ( $product_id ) : ?> (<a href="<?php echo esc_url( get_edit_post_link( $product_id ) ); ?>"><?php esc_html_e( 'view product', 'seo-audit-content-ai-assistant' ); ?></a>)<?php endif; ?></span>
 					<?php endif; ?>
-					<?php if ( $focus_kw ) : ?><span><strong><?php esc_html_e( 'Primary keyword:', 'seo-automation' ); ?></strong> <?php echo esc_html( $focus_kw ); ?></span><?php endif; ?>
-					<?php if ( '' !== $density ) : ?><span><strong><?php esc_html_e( 'Keyword density:', 'seo-automation' ); ?></strong> <?php echo esc_html( $density ); ?>%</span><?php endif; ?>
-					<span><strong><?php esc_html_e( 'Author:', 'seo-automation' ); ?></strong> <?php echo esc_html( get_the_author_meta( 'display_name', $post->post_author ) ); ?></span>
+					<?php if ( $focus_kw ) : ?><span><strong><?php esc_html_e( 'Primary keyword:', 'seo-audit-content-ai-assistant' ); ?></strong> <?php echo esc_html( $focus_kw ); ?></span><?php endif; ?>
+					<?php if ( '' !== $density ) : ?><span><strong><?php esc_html_e( 'Keyword density:', 'seo-audit-content-ai-assistant' ); ?></strong> <?php echo esc_html( $density ); ?>%</span><?php endif; ?>
+					<span><strong><?php esc_html_e( 'Author:', 'seo-audit-content-ai-assistant' ); ?></strong> <?php echo esc_html( get_the_author_meta( 'display_name', $post->post_author ) ); ?></span>
 				</p>
 
 				<?php if ( ! empty( $faqs ) && is_array( $faqs ) ) : ?>
@@ -65,7 +65,7 @@ $posts = Review_Queue::get_pending_posts( 50 );
 							echo esc_html(
 								sprintf(
 									/* translators: %d: number of FAQ entries generated for this post. */
-									_n( '%d FAQ generated', '%d FAQs generated', count( $faqs ), 'seo-automation' ),
+									_n( '%d FAQ generated', '%d FAQs generated', count( $faqs ), 'seo-audit-content-ai-assistant' ),
 									count( $faqs )
 								)
 							);
@@ -81,15 +81,15 @@ $posts = Review_Queue::get_pending_posts( 50 );
 
 				<?php if ( ! empty( $seo_analysis ) && is_array( $seo_analysis ) ) : ?>
 					<div class="theblog-seo-analysis">
-						<strong><?php esc_html_e( 'SEO Analysis', 'seo-automation' ); ?></strong>
+						<strong><?php esc_html_e( 'SEO Analysis', 'seo-audit-content-ai-assistant' ); ?></strong>
 						<div class="theblog-seo-scores">
 							<div>
 								<span class="theblog-seo-score-badge"><?php echo (int) $seo_analysis['rank_math_score']; ?>/100</span>
-								<span class="theblog-seo-score-label"><?php esc_html_e( 'Rank Math compatibility', 'seo-automation' ); ?></span>
+								<span class="theblog-seo-score-label"><?php esc_html_e( 'Rank Math compatibility', 'seo-audit-content-ai-assistant' ); ?></span>
 							</div>
 							<div>
 								<span class="theblog-seo-score-badge"><?php echo (int) $seo_analysis['yoast_score']; ?>/100</span>
-								<span class="theblog-seo-score-label"><?php esc_html_e( 'Yoast compatibility', 'seo-automation' ); ?></span>
+								<span class="theblog-seo-score-label"><?php esc_html_e( 'Yoast compatibility', 'seo-audit-content-ai-assistant' ); ?></span>
 							</div>
 						</div>
 
@@ -135,19 +135,19 @@ $posts = Review_Queue::get_pending_posts( 50 );
 				<?php endif; ?>
 
 				<div class="theblog-review-actions">
-					<a class="button" href="<?php echo esc_url( get_edit_post_link( $post->ID ) ); ?>"><?php esc_html_e( 'Edit', 'seo-automation' ); ?></a>
-					<a class="button" href="<?php echo esc_url( get_preview_post_link( $post->ID ) ); ?>" target="_blank"><?php esc_html_e( 'Preview', 'seo-automation' ); ?></a>
+					<a class="button" href="<?php echo esc_url( get_edit_post_link( $post->ID ) ); ?>"><?php esc_html_e( 'Edit', 'seo-audit-content-ai-assistant' ); ?></a>
+					<a class="button" href="<?php echo esc_url( get_preview_post_link( $post->ID ) ); ?>" target="_blank"><?php esc_html_e( 'Preview', 'seo-audit-content-ai-assistant' ); ?></a>
 					<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" style="display:inline;">
 						<?php wp_nonce_field( 'theblog_review_' . $post->ID ); ?>
 						<input type="hidden" name="action" value="theblog_approve_post" />
 						<input type="hidden" name="post_id" value="<?php echo (int) $post->ID; ?>" />
-						<button type="submit" class="button button-primary"><?php esc_html_e( 'Approve & Publish', 'seo-automation' ); ?></button>
+						<button type="submit" class="button button-primary"><?php esc_html_e( 'Approve & Publish', 'seo-audit-content-ai-assistant' ); ?></button>
 					</form>
-					<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" style="display:inline;" onsubmit="return confirm('<?php echo esc_js( __( 'Reject and move this draft to Trash?', 'seo-automation' ) ); ?>');">
+					<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" style="display:inline;" onsubmit="return confirm('<?php echo esc_js( __( 'Reject and move this draft to Trash?', 'seo-audit-content-ai-assistant' ) ); ?>');">
 						<?php wp_nonce_field( 'theblog_review_' . $post->ID ); ?>
 						<input type="hidden" name="action" value="theblog_reject_post" />
 						<input type="hidden" name="post_id" value="<?php echo (int) $post->ID; ?>" />
-						<button type="submit" class="button button-link-delete"><?php esc_html_e( 'Reject', 'seo-automation' ); ?></button>
+						<button type="submit" class="button button-link-delete"><?php esc_html_e( 'Reject', 'seo-audit-content-ai-assistant' ); ?></button>
 					</form>
 				</div>
 			</div>

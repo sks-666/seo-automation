@@ -19,18 +19,18 @@ defined( 'ABSPATH' ) || exit;
 $score = $audit['score'] ?? null;
 ?>
 <div class="wrap">
-	<h1><?php esc_html_e( 'SEO Agent', 'seo-automation' ); ?></h1>
+	<h1><?php esc_html_e( 'SEO Audit', 'seo-audit-content-ai-assistant' ); ?></h1>
 
 	<p>
 		<?php AdminMenu::form_open( 'run_audit' ); ?>
-			<button type="submit" class="button button-primary"><?php esc_html_e( 'Run audit now', 'seo-automation' ); ?></button>
+			<button type="submit" class="button button-primary"><?php esc_html_e( 'Run audit now', 'seo-audit-content-ai-assistant' ); ?></button>
 		</form>
 		<?php if ( $audit ) : ?>
 			<span style="margin-left:12px;color:#646970">
 				<?php
 				printf(
 					/* translators: 1: audit ID, 2: finish time. */
-					esc_html__( 'Last completed: audit #%1$d at %2$s UTC', 'seo-automation' ),
+					esc_html__( 'Last completed: audit #%1$d at %2$s UTC', 'seo-audit-content-ai-assistant' ),
 					(int) $audit['id'],
 					esc_html( (string) $audit['finished_at'] )
 				);
@@ -41,7 +41,7 @@ $score = $audit['score'] ?? null;
 
 	<div class="seoagent-cards">
 		<div class="seoagent-card">
-			<h3><?php esc_html_e( 'Health score', 'seo-automation' ); ?></h3>
+			<h3><?php esc_html_e( 'Health score', 'seo-audit-content-ai-assistant' ); ?></h3>
 			<div class="seoagent-score"><?php echo null === $score ? '&mdash;' : (int) $score; ?></div>
 		</div>
 
@@ -53,28 +53,28 @@ $score = $audit['score'] ?? null;
 		<?php endforeach; ?>
 
 		<div class="seoagent-card">
-			<h3><?php esc_html_e( 'Fixable now', 'seo-automation' ); ?></h3>
+			<h3><?php esc_html_e( 'Fixable now', 'seo-audit-content-ai-assistant' ); ?></h3>
 			<div class="value"><?php echo (int) $fixable; ?></div>
 		</div>
 	</div>
 
 	<?php if ( ! $audit ) : ?>
 		<div class="notice notice-info inline">
-			<p><?php esc_html_e( 'No audit has completed yet. Run one to see where the site stands.', 'seo-automation' ); ?></p>
+			<p><?php esc_html_e( 'No audit has completed yet. Run one to see where the site stands.', 'seo-audit-content-ai-assistant' ); ?></p>
 		</div>
 	<?php endif; ?>
 
-	<h2><?php esc_html_e( 'Highest impact right now', 'seo-automation' ); ?></h2>
+	<h2><?php esc_html_e( 'Highest impact right now', 'seo-audit-content-ai-assistant' ); ?></h2>
 
 	<?php if ( empty( $top['items'] ) ) : ?>
-		<p><?php esc_html_e( 'Nothing open. Either the site is in good shape or no audit has run.', 'seo-automation' ); ?></p>
+		<p><?php esc_html_e( 'Nothing open. Either the site is in good shape or no audit has run.', 'seo-audit-content-ai-assistant' ); ?></p>
 	<?php else : ?>
 		<table class="wp-list-table widefat fixed striped">
 			<thead>
 				<tr>
-					<th style="width:90px"><?php esc_html_e( 'Severity', 'seo-automation' ); ?></th>
-					<th><?php esc_html_e( 'Issue', 'seo-automation' ); ?></th>
-					<th style="width:25%"><?php esc_html_e( 'Where', 'seo-automation' ); ?></th>
+					<th style="width:90px"><?php esc_html_e( 'Severity', 'seo-audit-content-ai-assistant' ); ?></th>
+					<th><?php esc_html_e( 'Issue', 'seo-audit-content-ai-assistant' ); ?></th>
+					<th style="width:25%"><?php esc_html_e( 'Where', 'seo-audit-content-ai-assistant' ); ?></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -95,7 +95,7 @@ $score = $audit['score'] ?? null;
 									<?php echo esc_html( $issue['object_label'] ?: $issue['url'] ); ?>
 								</a>
 							<?php else : ?>
-								<?php echo esc_html( $issue['object_label'] ?: __( 'Site-wide', 'seo-automation' ) ); ?>
+								<?php echo esc_html( $issue['object_label'] ?: __( 'Site-wide', 'seo-audit-content-ai-assistant' ) ); ?>
 							<?php endif; ?>
 						</td>
 					</tr>
@@ -108,7 +108,7 @@ $score = $audit['score'] ?? null;
 				<?php
 				printf(
 					/* translators: %d: total open issues. */
-					esc_html__( 'View all %d open issues', 'seo-automation' ),
+					esc_html__( 'View all %d open issues', 'seo-audit-content-ai-assistant' ),
 					(int) $top['total']
 				);
 				?>
