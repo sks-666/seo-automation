@@ -1,11 +1,11 @@
 <?php
 /**
  * Plugin Name:       SEO Audit and Content AI Assistant
- * Plugin URI:        https://nexcove.co.uk/seo-audit-content-ai-assistant
+ * Plugin URI:        https://nexcove.co.uk/apps/seo-audit-content-ai-assistant
  * Description:       A comprehensive SEO automation suite: research, write, optimize, audit, fix, and verify SEO improvements from one integrated system.
  * Version:           2.1.0
  * Author:            SSOMAI
- * Author URI:        https://nexcove.co.uk
+ * Author URI:        https://nexcove.co.uk/digital
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       seo-audit-content-ai-assistant
