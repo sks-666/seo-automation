@@ -34,7 +34,7 @@ final class BrokenLinkFixer extends AbstractFixer {
 	 * {@inheritDoc}
 	 */
 	public function label(): string {
-		return __( 'Replace or remove a broken link', 'seo-automation' );
+		return __( 'Replace or remove a broken link', 'seo-audit-content-ai-assistant' );
 	}
 
 	/**
@@ -42,8 +42,8 @@ final class BrokenLinkFixer extends AbstractFixer {
 	 */
 	public function required_input(): array {
 		return array(
-			'replacement' => __( 'The working URL to point at instead. Pass "unlink" as true to strip the link and keep the text.', 'seo-automation' ),
-			'unlink'      => __( 'Set true to remove the anchor, keeping its text. Use when there is no equivalent destination.', 'seo-automation' ),
+			'replacement' => __( 'The working URL to point at instead. Pass "unlink" as true to strip the link and keep the text.', 'seo-audit-content-ai-assistant' ),
+			'unlink'      => __( 'Set true to remove the anchor, keeping its text. Use when there is no equivalent destination.', 'seo-audit-content-ai-assistant' ),
 		);
 	}
 
@@ -108,13 +108,13 @@ final class BrokenLinkFixer extends AbstractFixer {
 				$unlink
 					? sprintf(
 						/* translators: 1: broken URL, 2: post title. */
-						__( 'Removed the link to %1$s in "%2$s", keeping the text', 'seo-automation' ),
+						__( 'Removed the link to %1$s in "%2$s", keeping the text', 'seo-audit-content-ai-assistant' ),
 						$broken,
 						$post->post_title
 					)
 					: sprintf(
 						/* translators: 1: broken URL, 2: replacement URL, 3: post title. */
-						__( 'Repointed %1$s to %2$s in "%3$s"', 'seo-automation' ),
+						__( 'Repointed %1$s to %2$s in "%3$s"', 'seo-audit-content-ai-assistant' ),
 						$broken,
 						$replacement,
 						$post->post_title

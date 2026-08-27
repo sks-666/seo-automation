@@ -23,7 +23,7 @@ $page             = (int) ( $filters['page'] ?? 1 );
 $total_pages      = (int) ceil( $result['total'] / 50 );
 ?>
 <div class="wrap">
-	<h1><?php esc_html_e( 'Issues', 'seo-automation' ); ?></h1>
+	<h1><?php esc_html_e( 'Issues', 'seo-audit-content-ai-assistant' ); ?></h1>
 
 	<form method="get" style="margin:16px 0">
 		<input type="hidden" name="page" value="seo-agent-issues" />
@@ -37,7 +37,7 @@ $total_pages      = (int) ceil( $result['total'] / 50 );
 		</select>
 
 		<select name="severity">
-			<option value=""><?php esc_html_e( 'Any severity', 'seo-automation' ); ?></option>
+			<option value=""><?php esc_html_e( 'Any severity', 'seo-audit-content-ai-assistant' ); ?></option>
 			<?php foreach ( array( 'critical', 'high', 'medium', 'low', 'info' ) as $severity ) : ?>
 				<option value="<?php echo esc_attr( $severity ); ?>" <?php selected( $current_severity, $severity ); ?>>
 					<?php echo esc_html( ucfirst( $severity ) ); ?>
@@ -46,7 +46,7 @@ $total_pages      = (int) ceil( $result['total'] / 50 );
 		</select>
 
 		<select name="checker">
-			<option value=""><?php esc_html_e( 'Any check', 'seo-automation' ); ?></option>
+			<option value=""><?php esc_html_e( 'Any check', 'seo-audit-content-ai-assistant' ); ?></option>
 			<?php foreach ( $checkers as $slug => $checker ) : ?>
 				<option value="<?php echo esc_attr( $slug ); ?>" <?php selected( $current_checker, $slug ); ?>>
 					<?php echo esc_html( $checker->label() ); ?>
@@ -54,16 +54,16 @@ $total_pages      = (int) ceil( $result['total'] / 50 );
 			<?php endforeach; ?>
 		</select>
 
-		<input type="search" name="s" value="<?php echo esc_attr( $filters['search'] ?? '' ); ?>" placeholder="<?php esc_attr_e( 'Search issues', 'seo-automation' ); ?>" />
+		<input type="search" name="s" value="<?php echo esc_attr( $filters['search'] ?? '' ); ?>" placeholder="<?php esc_attr_e( 'Search issues', 'seo-audit-content-ai-assistant' ); ?>" />
 
-		<button type="submit" class="button"><?php esc_html_e( 'Filter', 'seo-automation' ); ?></button>
+		<button type="submit" class="button"><?php esc_html_e( 'Filter', 'seo-audit-content-ai-assistant' ); ?></button>
 	</form>
 
 	<p>
 		<?php
 		printf(
 			/* translators: %d: number of issues. */
-			esc_html__( '%d issues match.', 'seo-automation' ),
+			esc_html__( '%d issues match.', 'seo-audit-content-ai-assistant' ),
 			(int) $result['total']
 		);
 		?>
@@ -72,15 +72,15 @@ $total_pages      = (int) ceil( $result['total'] / 50 );
 	<table class="wp-list-table widefat striped">
 		<thead>
 			<tr>
-				<th style="width:80px"><?php esc_html_e( 'Severity', 'seo-automation' ); ?></th>
-				<th><?php esc_html_e( 'Issue', 'seo-automation' ); ?></th>
-				<th style="width:20%"><?php esc_html_e( 'Where', 'seo-automation' ); ?></th>
-				<th style="width:30%"><?php esc_html_e( 'Fix', 'seo-automation' ); ?></th>
+				<th style="width:80px"><?php esc_html_e( 'Severity', 'seo-audit-content-ai-assistant' ); ?></th>
+				<th><?php esc_html_e( 'Issue', 'seo-audit-content-ai-assistant' ); ?></th>
+				<th style="width:20%"><?php esc_html_e( 'Where', 'seo-audit-content-ai-assistant' ); ?></th>
+				<th style="width:30%"><?php esc_html_e( 'Fix', 'seo-audit-content-ai-assistant' ); ?></th>
 			</tr>
 		</thead>
 		<tbody>
 		<?php if ( empty( $result['items'] ) ) : ?>
-			<tr><td colspan="4"><?php esc_html_e( 'Nothing matches those filters.', 'seo-automation' ); ?></td></tr>
+			<tr><td colspan="4"><?php esc_html_e( 'Nothing matches those filters.', 'seo-audit-content-ai-assistant' ); ?></td></tr>
 		<?php endif; ?>
 
 		<?php
@@ -106,16 +106,16 @@ $total_pages      = (int) ceil( $result['total'] / 50 );
 							<?php echo esc_html( $issue['object_label'] ?: $issue['url'] ); ?>
 						</a>
 					<?php else : ?>
-						<?php echo esc_html( $issue['object_label'] ?: __( 'Site-wide', 'seo-automation' ) ); ?>
+						<?php echo esc_html( $issue['object_label'] ?: __( 'Site-wide', 'seo-audit-content-ai-assistant' ) ); ?>
 					<?php endif; ?>
 
 					<?php if ( ! empty( $issue['evidence']['edit_url'] ) ) : ?>
-						<br /><a href="<?php echo esc_url( $issue['evidence']['edit_url'] ); ?>"><?php esc_html_e( 'Edit', 'seo-automation' ); ?></a>
+						<br /><a href="<?php echo esc_url( $issue['evidence']['edit_url'] ); ?>"><?php esc_html_e( 'Edit', 'seo-audit-content-ai-assistant' ); ?></a>
 					<?php endif; ?>
 				</td>
 				<td>
 					<?php if ( ! $fixer ) : ?>
-						<em><?php esc_html_e( 'Needs a person — no safe automatic fix.', 'seo-automation' ); ?></em>
+						<em><?php esc_html_e( 'Needs a person — no safe automatic fix.', 'seo-audit-content-ai-assistant' ); ?></em>
 					<?php elseif ( 'open' !== $issue['status'] ) : ?>
 						<em><?php echo esc_html( ucfirst( (string) $issue['status'] ) ); ?></em>
 					<?php else : ?>
@@ -123,7 +123,7 @@ $total_pages      = (int) ceil( $result['total'] / 50 );
 							<input type="hidden" name="issue_id" value="<?php echo (int) $issue['id']; ?>" />
 
 							<?php if ( $needs_text ) : ?>
-								<textarea name="value" rows="2" style="width:100%" placeholder="<?php esc_attr_e( 'Value to write', 'seo-automation' ); ?>"><?php echo esc_textarea( $suggestion ); ?></textarea>
+								<textarea name="value" rows="2" style="width:100%" placeholder="<?php esc_attr_e( 'Value to write', 'seo-audit-content-ai-assistant' ); ?>"><?php echo esc_textarea( $suggestion ); ?></textarea>
 							<?php endif; ?>
 
 							<button type="submit" class="button button-small button-primary">
@@ -133,7 +133,7 @@ $total_pages      = (int) ceil( $result['total'] / 50 );
 
 						<?php AdminMenu::form_open( 'ignore_issue' ); ?>
 							<input type="hidden" name="issue_id" value="<?php echo (int) $issue['id']; ?>" />
-							<button type="submit" class="button button-small"><?php esc_html_e( 'Dismiss', 'seo-automation' ); ?></button>
+							<button type="submit" class="button button-small"><?php esc_html_e( 'Dismiss', 'seo-audit-content-ai-assistant' ); ?></button>
 						</form>
 					<?php endif; ?>
 				</td>

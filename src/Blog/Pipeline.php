@@ -46,7 +46,7 @@ class Pipeline {
 	protected static function run_topic_pipeline( $topic_id ) {
 		$keyword = get_the_title( $topic_id );
 		if ( ! $keyword ) {
-			throw new \Exception( esc_html__( 'Topic not found.', 'seo-automation' ) );
+			throw new \Exception( esc_html__( 'Topic not found.', 'seo-audit-content-ai-assistant' ) );
 		}
 
 		Logger::info( "Pipeline started for topic #{$topic_id}: {$keyword}" );
@@ -80,22 +80,22 @@ class Pipeline {
 	 */
 	protected static function run_product_pipeline( $topic_id ) {
 		if ( ! WooCommerce::is_active() ) {
-			throw new \Exception( esc_html__( 'WooCommerce is not active on this site.', 'seo-automation' ) );
+			throw new \Exception( esc_html__( 'WooCommerce is not active on this site.', 'seo-audit-content-ai-assistant' ) );
 		}
 
 		$product_id = (int) get_post_meta( $topic_id, '_theblog_product_id', true );
 		$product_post = $product_id ? get_post( $product_id ) : null;
 
 		if ( ! $product_post || 'product' !== $product_post->post_type ) {
-			throw new \Exception( esc_html__( 'The linked WooCommerce product could not be found.', 'seo-automation' ) );
+			throw new \Exception( esc_html__( 'The linked WooCommerce product could not be found.', 'seo-audit-content-ai-assistant' ) );
 		}
 		if ( 'trash' === $product_post->post_status ) {
-			throw new \Exception( esc_html__( 'This product has been deleted. Remove this queue entry.', 'seo-automation' ) );
+			throw new \Exception( esc_html__( 'This product has been deleted. Remove this queue entry.', 'seo-audit-content-ai-assistant' ) );
 		}
 
 		$wc_product = wc_get_product( $product_id );
 		if ( ! $wc_product ) {
-			throw new \Exception( esc_html__( 'This product could not be loaded.', 'seo-automation' ) );
+			throw new \Exception( esc_html__( 'This product could not be loaded.', 'seo-audit-content-ai-assistant' ) );
 		}
 
 		$product = WooCommerce::extract_product_data( $wc_product );
@@ -103,7 +103,7 @@ class Pipeline {
 		Logger::info( "Pipeline started for topic #{$topic_id}: product #{$product_id} ({$product['title']})" );
 
 		if ( '' === trim( $product['long_description'] ) ) {
-			throw new \Exception( esc_html__( 'Product found, but the long description is empty. Add a long description before generating SEO content.', 'seo-automation' ) );
+			throw new \Exception( esc_html__( 'Product found, but the long description is empty. Add a long description before generating SEO content.', 'seo-audit-content-ai-assistant' ) );
 		}
 
 		$brief = Product_Analysis::run( $product );

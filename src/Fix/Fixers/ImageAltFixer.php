@@ -36,7 +36,7 @@ final class ImageAltFixer extends AbstractFixer {
 	 * {@inheritDoc}
 	 */
 	public function label(): string {
-		return __( 'Set image alt text', 'seo-automation' );
+		return __( 'Set image alt text', 'seo-audit-content-ai-assistant' );
 	}
 
 	/**
@@ -44,7 +44,7 @@ final class ImageAltFixer extends AbstractFixer {
 	 */
 	public function required_input(): array {
 		return array(
-			'value' => __( 'What the image shows, in a sentence fragment of at most 125 characters. Describe the content, not the file.', 'seo-automation' ),
+			'value' => __( 'What the image shows, in a sentence fragment of at most 125 characters. Describe the content, not the file.', 'seo-audit-content-ai-assistant' ),
 		);
 	}
 
@@ -97,7 +97,7 @@ final class ImageAltFixer extends AbstractFixer {
 				$value,
 				sprintf(
 					/* translators: %s: image filename. */
-					__( 'Set alt text on "%s"', 'seo-automation' ),
+					__( 'Set alt text on "%s"', 'seo-audit-content-ai-assistant' ),
 					basename( (string) get_attached_file( $attachment_id ) )
 				)
 			),

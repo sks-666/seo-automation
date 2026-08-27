@@ -33,7 +33,7 @@ final class ProductShortDescriptionFixer extends AbstractFixer {
 	 * {@inheritDoc}
 	 */
 	public function label(): string {
-		return __( 'Write product short description', 'seo-automation' );
+		return __( 'Write product short description', 'seo-audit-content-ai-assistant' );
 	}
 
 	/**
@@ -41,7 +41,7 @@ final class ProductShortDescriptionFixer extends AbstractFixer {
 	 */
 	public function required_input(): array {
 		return array(
-			'value' => __( 'The short description shown beside the price. Lead with what the product is and who it is for.', 'seo-automation' ),
+			'value' => __( 'The short description shown beside the price. Lead with what the product is and who it is for.', 'seo-audit-content-ai-assistant' ),
 		);
 	}
 
@@ -88,7 +88,7 @@ final class ProductShortDescriptionFixer extends AbstractFixer {
 				$value,
 				sprintf(
 					/* translators: %s: product name. */
-					__( 'Added a short description to "%s"', 'seo-automation' ),
+					__( 'Added a short description to "%s"', 'seo-audit-content-ai-assistant' ),
 					$post->post_title
 				)
 			),

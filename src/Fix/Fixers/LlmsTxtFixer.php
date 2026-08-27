@@ -37,7 +37,7 @@ final class LlmsTxtFixer extends AbstractFixer {
 	 * {@inheritDoc}
 	 */
 	public function label(): string {
-		return __( 'Publish llms.txt', 'seo-automation' );
+		return __( 'Publish llms.txt', 'seo-audit-content-ai-assistant' );
 	}
 
 	/**
@@ -45,7 +45,7 @@ final class LlmsTxtFixer extends AbstractFixer {
 	 */
 	public function required_input(): array {
 		return array(
-			'content' => __( 'The llms.txt body in Markdown. Omit to generate one from the site name, tagline and top-level pages.', 'seo-automation' ),
+			'content' => __( 'The llms.txt body in Markdown. Omit to generate one from the site name, tagline and top-level pages.', 'seo-audit-content-ai-assistant' ),
 		);
 	}
 
@@ -78,7 +78,7 @@ final class LlmsTxtFixer extends AbstractFixer {
 				$content,
 				sprintf(
 					/* translators: %s: llms.txt URL. */
-					__( 'Published %s', 'seo-automation' ),
+					__( 'Published %s', 'seo-audit-content-ai-assistant' ),
 					home_url( '/llms.txt' )
 				)
 			),

@@ -16,14 +16,17 @@ class Settings {
 
 	public static function defaults() {
 		return array(
-			'ai_provider'          => 'anthropic', // anthropic | openai | deepseek
+			// wp_ai_client | anthropic | openai | deepseek. New installs on
+			// WordPress 7.0+ start on the core AI Client so no vendor key is
+			// ever stored by this plugin; older sites start on a direct provider.
+			'ai_provider'          => AI_Client::default_provider_key(),
 			'anthropic_api_key'    => '',
 			'anthropic_model'      => 'claude-sonnet-5',
 			'openai_api_key'       => '',
 			'openai_model'         => 'gpt-4o-mini',
 			'deepseek_api_key'     => '',
 			'deepseek_model'       => 'deepseek-chat',
-			'image_provider'       => 'none', // none | openai
+			'image_provider'       => 'none', // none | wp_ai_client | openai
 			'image_model'          => 'dall-e-3',
 			'autopilot_enabled'    => false,
 			'autopilot_interval'   => 'hourly', // hourly | twicedaily | daily
@@ -84,14 +87,14 @@ class Settings {
 		$defaults = self::defaults();
 		$clean    = array();
 
-		$clean['ai_provider']       = in_array( $input['ai_provider'] ?? '', array( 'anthropic', 'openai', 'deepseek' ), true ) ? $input['ai_provider'] : $defaults['ai_provider'];
+		$clean['ai_provider']       = in_array( $input['ai_provider'] ?? '', array( 'wp_ai_client', 'anthropic', 'openai', 'deepseek' ), true ) ? $input['ai_provider'] : $defaults['ai_provider'];
 		$clean['anthropic_api_key'] = self::sanitize_secret( $input, 'anthropic_api_key' );
 		$clean['anthropic_model']   = isset( $input['anthropic_model'] ) ? sanitize_text_field( $input['anthropic_model'] ) : $defaults['anthropic_model'];
 		$clean['openai_api_key']    = self::sanitize_secret( $input, 'openai_api_key' );
 		$clean['openai_model']      = isset( $input['openai_model'] ) ? sanitize_text_field( $input['openai_model'] ) : $defaults['openai_model'];
 		$clean['deepseek_api_key']  = self::sanitize_secret( $input, 'deepseek_api_key' );
 		$clean['deepseek_model']    = isset( $input['deepseek_model'] ) ? sanitize_text_field( $input['deepseek_model'] ) : $defaults['deepseek_model'];
-		$clean['image_provider']    = in_array( $input['image_provider'] ?? '', array( 'none', 'openai' ), true ) ? $input['image_provider'] : $defaults['image_provider'];
+		$clean['image_provider']    = in_array( $input['image_provider'] ?? '', array( 'none', 'wp_ai_client', 'openai' ), true ) ? $input['image_provider'] : $defaults['image_provider'];
 		$clean['image_model']       = isset( $input['image_model'] ) ? sanitize_text_field( $input['image_model'] ) : $defaults['image_model'];
 		$clean['autopilot_enabled'] = ! empty( $input['autopilot_enabled'] );
 		$clean['autopilot_interval'] = in_array( $input['autopilot_interval'] ?? '', array( 'hourly', 'twicedaily', 'daily' ), true ) ? $input['autopilot_interval'] : $defaults['autopilot_interval'];

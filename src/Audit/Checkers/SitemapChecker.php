@@ -36,7 +36,7 @@ final class SitemapChecker extends SiteChecker {
 	 * {@inheritDoc}
 	 */
 	public function label(): string {
-		return __( 'XML sitemap', 'seo-automation' );
+		return __( 'XML sitemap', 'seo-audit-content-ai-assistant' );
 	}
 
 	/**
@@ -50,7 +50,7 @@ final class SitemapChecker extends SiteChecker {
 	 * {@inheritDoc}
 	 */
 	public function description(): string {
-		return __( 'Finds the sitemap, checks it responds, and looks for URLs that are listed but excluded from the index.', 'seo-automation' );
+		return __( 'Finds the sitemap, checks it responds, and looks for URLs that are listed but excluded from the index.', 'seo-audit-content-ai-assistant' );
 	}
 
 	/**
@@ -67,8 +67,8 @@ final class SitemapChecker extends SiteChecker {
 						'severity'    => Issue::SEVERITY_HIGH,
 						'object_type' => 'site',
 						'object_id'   => 0,
-						'title'       => __( 'No XML sitemap found', 'seo-automation' ),
-						'detail'      => __( 'None of the usual sitemap locations responded. Search engines can still crawl the site through links, but new and orphaned pages will be found slowly or not at all.', 'seo-automation' ),
+						'title'       => __( 'No XML sitemap found', 'seo-audit-content-ai-assistant' ),
+						'detail'      => __( 'None of the usual sitemap locations responded. Search engines can still crawl the site through links, but new and orphaned pages will be found slowly or not at all.', 'seo-audit-content-ai-assistant' ),
 						'url'         => home_url( '/wp-sitemap.xml' ),
 						'evidence'    => array( 'candidates' => $this->candidates() ),
 						'fix_mode'    => Issue::MODE_MANUAL,
@@ -100,9 +100,9 @@ final class SitemapChecker extends SiteChecker {
 					'severity'    => Issue::SEVERITY_HIGH,
 					'object_type' => 'site',
 					'object_id'   => 0,
-					'title'       => __( 'Sitemap contains no URLs', 'seo-automation' ),
+					'title'       => __( 'Sitemap contains no URLs', 'seo-audit-content-ai-assistant' ),
 					/* translators: %s: sitemap URL. */
-					'detail'      => sprintf( __( '%s responded but lists nothing. A sitemap that submits an empty set is worse than none, because it looks authoritative.', 'seo-automation' ), $sitemap_url ),
+					'detail'      => sprintf( __( '%s responded but lists nothing. A sitemap that submits an empty set is worse than none, because it looks authoritative.', 'seo-audit-content-ai-assistant' ), $sitemap_url ),
 					'url'         => $sitemap_url,
 					'evidence'    => array( 'sitemap' => $sitemap_url ),
 					'fix_mode'    => Issue::MODE_MANUAL,
@@ -140,10 +140,10 @@ final class SitemapChecker extends SiteChecker {
 					'severity'    => Issue::SEVERITY_MEDIUM,
 					'object_type' => 'site',
 					'object_id'   => 0,
-					'title'       => __( 'Sitemap lists pages marked noindex', 'seo-automation' ),
+					'title'       => __( 'Sitemap lists pages marked noindex', 'seo-audit-content-ai-assistant' ),
 					'detail'      => sprintf(
 						/* translators: 1: count, 2: sample size. */
-						__( '%1$d of the first %2$d sitemap URLs are set to noindex. The sitemap asks for indexing while the page refuses it — pick one.', 'seo-automation' ),
+						__( '%1$d of the first %2$d sitemap URLs are set to noindex. The sitemap asks for indexing while the page refuses it — pick one.', 'seo-audit-content-ai-assistant' ),
 						count( $noindexed ),
 						count( $sample )
 					),
@@ -168,10 +168,10 @@ final class SitemapChecker extends SiteChecker {
 					'severity'    => Issue::SEVERITY_LOW,
 					'object_type' => 'site',
 					'object_id'   => 0,
-					'title'       => __( 'robots.txt does not point at the sitemap that exists', 'seo-automation' ),
+					'title'       => __( 'robots.txt does not point at the sitemap that exists', 'seo-audit-content-ai-assistant' ),
 					'detail'      => sprintf(
 						/* translators: %s: sitemap URL. */
-						__( '%s works but is not referenced in robots.txt, so crawlers have to guess its location.', 'seo-automation' ),
+						__( '%s works but is not referenced in robots.txt, so crawlers have to guess its location.', 'seo-audit-content-ai-assistant' ),
 						$sitemap_url
 					),
 					'url'         => $sitemap_url,

@@ -30,7 +30,7 @@ class Provider_Anthropic implements AI_Provider_Interface {
 
 	public function generate_text( $system_prompt, $user_prompt, $args = array() ) {
 		if ( ! $this->is_configured() ) {
-			return new \WP_Error( 'theblog_not_configured', __( 'Anthropic API key is not set.', 'seo-automation' ) );
+			return new \WP_Error( 'theblog_not_configured', __( 'Anthropic API key is not set.', 'seo-audit-content-ai-assistant' ) );
 		}
 
 		$defaults = array(
@@ -91,13 +91,13 @@ class Provider_Anthropic implements AI_Provider_Interface {
 		}
 
 		if ( '' === $text ) {
-			return new \WP_Error( 'theblog_empty_response', __( 'Anthropic returned an empty response.', 'seo-automation' ) );
+			return new \WP_Error( 'theblog_empty_response', __( 'Anthropic returned an empty response.', 'seo-audit-content-ai-assistant' ) );
 		}
 
 		return $text;
 	}
 
 	public function generate_image( $prompt, $args = array() ) {
-		return new \WP_Error( 'theblog_unsupported', __( 'Anthropic does not support image generation.', 'seo-automation' ) );
+		return new \WP_Error( 'theblog_unsupported', __( 'Anthropic does not support image generation.', 'seo-audit-content-ai-assistant' ) );
 	}
 }

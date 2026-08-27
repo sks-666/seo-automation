@@ -44,7 +44,7 @@ final class CoreWebVitalsChecker extends SiteChecker {
 	 * {@inheritDoc}
 	 */
 	public function label(): string {
-		return __( 'Core Web Vitals', 'seo-automation' );
+		return __( 'Core Web Vitals', 'seo-audit-content-ai-assistant' );
 	}
 
 	/**
@@ -58,7 +58,7 @@ final class CoreWebVitalsChecker extends SiteChecker {
 	 * {@inheritDoc}
 	 */
 	public function description(): string {
-		return __( 'Reports field data from PageSpeed Insights when a key is configured, and otherwise inspects the page for the causes of poor vitals.', 'seo-automation' );
+		return __( 'Reports field data from PageSpeed Insights when a key is configured, and otherwise inspects the page for the causes of poor vitals.', 'seo-audit-content-ai-assistant' );
 	}
 
 	/**
@@ -117,21 +117,21 @@ final class CoreWebVitalsChecker extends SiteChecker {
 				'good'  => 2500,
 				'poor'  => 4000,
 				'unit'  => 'ms',
-				'cause' => __( 'Usually an oversized hero image, a slow server response, or a render-blocking stylesheet.', 'seo-automation' ),
+				'cause' => __( 'Usually an oversized hero image, a slow server response, or a render-blocking stylesheet.', 'seo-audit-content-ai-assistant' ),
 			),
 			'CUMULATIVE_LAYOUT_SHIFT_SCORE'    => array(
 				'label' => 'CLS',
 				'good'  => 10,
 				'poor'  => 25,
 				'unit'  => '/100',
-				'cause' => __( 'Usually images or ads without reserved dimensions, or a web font swapping in late.', 'seo-automation' ),
+				'cause' => __( 'Usually images or ads without reserved dimensions, or a web font swapping in late.', 'seo-audit-content-ai-assistant' ),
 			),
 			'INTERACTION_TO_NEXT_PAINT'        => array(
 				'label' => 'INP',
 				'good'  => 200,
 				'poor'  => 500,
 				'unit'  => 'ms',
-				'cause' => __( 'Usually heavy JavaScript on the main thread — sliders, chat widgets and tracking scripts.', 'seo-automation' ),
+				'cause' => __( 'Usually heavy JavaScript on the main thread — sliders, chat widgets and tracking scripts.', 'seo-audit-content-ai-assistant' ),
 			),
 		);
 
@@ -160,13 +160,13 @@ final class CoreWebVitalsChecker extends SiteChecker {
 					'url'          => $url,
 					'title'        => sprintf(
 						/* translators: 1: metric name, 2: rating. */
-						__( '%1$s is %2$s for real visitors', 'seo-automation' ),
+						__( '%1$s is %2$s for real visitors', 'seo-audit-content-ai-assistant' ),
 						$spec['label'],
-						$poor ? __( 'poor', 'seo-automation' ) : __( 'below the "good" threshold', 'seo-automation' )
+						$poor ? __( 'poor', 'seo-audit-content-ai-assistant' ) : __( 'below the "good" threshold', 'seo-audit-content-ai-assistant' )
 					),
 					'detail'       => sprintf(
 						/* translators: 1: metric, 2: value, 3: unit, 4: good threshold, 5: likely cause. */
-						__( '%1$s at the 75th percentile is %2$d%3$s against a "good" threshold of %4$d. %5$s', 'seo-automation' ),
+						__( '%1$s at the 75th percentile is %2$d%3$s against a "good" threshold of %4$d. %5$s', 'seo-audit-content-ai-assistant' ),
 						$spec['label'],
 						$value,
 						$spec['unit'],
@@ -207,7 +207,7 @@ final class CoreWebVitalsChecker extends SiteChecker {
 		$head   = $this->head( $body );
 		$issues = array();
 
-		$note = __( 'Diagnosed from the page markup, not measured from real visits. Add a PageSpeed Insights API key in the settings for field data.', 'seo-automation' );
+		$note = __( 'Diagnosed from the page markup, not measured from real visits. Add a PageSpeed Insights API key in the settings for field data.', 'seo-audit-content-ai-assistant' );
 
 		// Images without intrinsic dimensions are the single most common CLS cause.
 		$images       = Html::images( $body );
@@ -224,10 +224,10 @@ final class CoreWebVitalsChecker extends SiteChecker {
 					'object_type' => 'site',
 					'object_id'   => 0,
 					'url'         => $url,
-					'title'       => __( 'Images render without declared dimensions', 'seo-automation' ),
+					'title'       => __( 'Images render without declared dimensions', 'seo-audit-content-ai-assistant' ),
 					'detail'      => sprintf(
 						/* translators: 1: count, 2: total images, 3: methodology note. */
-						__( '%1$d of %2$d images on the home page have no width and height attribute, so the browser cannot reserve space and the layout jumps as they load. %3$s', 'seo-automation' ),
+						__( '%1$d of %2$d images on the home page have no width and height attribute, so the browser cannot reserve space and the layout jumps as they load. %3$s', 'seo-audit-content-ai-assistant' ),
 						count( $no_dimensions ),
 						count( $images ),
 						$note
@@ -272,10 +272,10 @@ final class CoreWebVitalsChecker extends SiteChecker {
 						'object_type' => 'site',
 						'object_id'   => 0,
 						'url'         => $url,
-						'title'       => __( 'Render-blocking scripts in the document head', 'seo-automation' ),
+						'title'       => __( 'Render-blocking scripts in the document head', 'seo-audit-content-ai-assistant' ),
 						'detail'      => sprintf(
 							/* translators: 1: count, 2: methodology note. */
-							__( '%1$d external scripts load in the head with neither defer nor async. Each one stops the parser until it has been fetched and executed, delaying first paint. %2$s', 'seo-automation' ),
+							__( '%1$d external scripts load in the head with neither defer nor async. Each one stops the parser until it has been fetched and executed, delaying first paint. %2$s', 'seo-audit-content-ai-assistant' ),
 							count( $blocking ),
 							$note
 						),
@@ -300,10 +300,10 @@ final class CoreWebVitalsChecker extends SiteChecker {
 					'object_type' => 'site',
 					'object_id'   => 0,
 					'url'         => $url,
-					'title'       => __( 'Many separate stylesheets', 'seo-automation' ),
+					'title'       => __( 'Many separate stylesheets', 'seo-audit-content-ai-assistant' ),
 					'detail'      => sprintf(
 						/* translators: 1: count, 2: methodology note. */
-						__( 'The head loads %1$d stylesheets. Every one is a render-blocking request; this is the usual signature of several plugins each shipping their own CSS. %2$s', 'seo-automation' ),
+						__( 'The head loads %1$d stylesheets. Every one is a render-blocking request; this is the usual signature of several plugins each shipping their own CSS. %2$s', 'seo-audit-content-ai-assistant' ),
 						$stylesheets,
 						$note
 					),
@@ -381,10 +381,10 @@ final class CoreWebVitalsChecker extends SiteChecker {
 					'object_type' => 'site',
 					'object_id'   => 0,
 					'url'         => admin_url( 'upload.php' ),
-					'title'       => __( 'Oversized images in the media library', 'seo-automation' ),
+					'title'       => __( 'Oversized images in the media library', 'seo-audit-content-ai-assistant' ),
 					'detail'      => sprintf(
 						/* translators: 1: count, 2: size threshold in KB. */
-						__( '%1$d recently uploaded images exceed %2$dKB. Whenever one of these is the largest element on a page it sets LCP on its own.', 'seo-automation' ),
+						__( '%1$d recently uploaded images exceed %2$dKB. Whenever one of these is the largest element on a page it sets LCP on its own.', 'seo-audit-content-ai-assistant' ),
 						count( $heavy ),
 						(int) ( self::LARGE_IMAGE_BYTES / 1000 )
 					),

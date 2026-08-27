@@ -24,12 +24,12 @@ class WooCommerce {
 	 */
 	public static function resolve_product_from_url( $url ) {
 		if ( ! self::is_active() ) {
-			return new \WP_Error( 'theblog_wc_inactive', __( 'WooCommerce is not active on this site.', 'seo-automation' ) );
+			return new \WP_Error( 'theblog_wc_inactive', __( 'WooCommerce is not active on this site.', 'seo-audit-content-ai-assistant' ) );
 		}
 
 		$url = esc_url_raw( trim( (string) $url ) );
 		if ( empty( $url ) || ! wp_http_validate_url( $url ) ) {
-			return new \WP_Error( 'theblog_invalid_url', __( 'That does not look like a valid URL.', 'seo-automation' ) );
+			return new \WP_Error( 'theblog_invalid_url', __( 'That does not look like a valid URL.', 'seo-audit-content-ai-assistant' ) );
 		}
 
 		// Drop query string / fragment before resolving; url_to_postid()
@@ -46,23 +46,23 @@ class WooCommerce {
 		}
 
 		if ( ! $post_id ) {
-			return new \WP_Error( 'theblog_product_not_found', __( 'Could not resolve a WordPress post/product from that URL. Make sure it is a URL on this site.', 'seo-automation' ) );
+			return new \WP_Error( 'theblog_product_not_found', __( 'Could not resolve a WordPress post/product from that URL. Make sure it is a URL on this site.', 'seo-audit-content-ai-assistant' ) );
 		}
 
 		$post = get_post( $post_id );
 
 		if ( ! $post || 'product' !== $post->post_type ) {
-			return new \WP_Error( 'theblog_not_a_product', __( 'That URL does not point to a WooCommerce product.', 'seo-automation' ) );
+			return new \WP_Error( 'theblog_not_a_product', __( 'That URL does not point to a WooCommerce product.', 'seo-audit-content-ai-assistant' ) );
 		}
 
 		if ( 'trash' === $post->post_status ) {
-			return new \WP_Error( 'theblog_product_deleted', __( 'This product has been deleted (it is in the Trash).', 'seo-automation' ) );
+			return new \WP_Error( 'theblog_product_deleted', __( 'This product has been deleted (it is in the Trash).', 'seo-audit-content-ai-assistant' ) );
 		}
 
 		$product = wc_get_product( $post_id );
 
 		if ( ! $product ) {
-			return new \WP_Error( 'theblog_product_not_found', __( 'This product could not be loaded.', 'seo-automation' ) );
+			return new \WP_Error( 'theblog_product_not_found', __( 'This product could not be loaded.', 'seo-audit-content-ai-assistant' ) );
 		}
 
 		return $product;

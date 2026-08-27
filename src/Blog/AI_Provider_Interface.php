@@ -38,11 +38,15 @@ interface AI_Provider_Interface {
 	public function generate_text( $system_prompt, $user_prompt, $args = array() );
 
 	/**
-	 * Generate an image and return its temporary URL.
+	 * Generate an image.
+	 *
+	 * Implementations return either a remote URL or an absolute path to a
+	 * temporary local file, whichever the underlying service produces.
+	 * Featured_Image::run() handles both.
 	 *
 	 * @param string $prompt
 	 * @param array  $args
-	 * @return string|WP_Error Image URL.
+	 * @return string|WP_Error Image URL, or absolute local file path.
 	 */
 	public function generate_image( $prompt, $args = array() );
 }

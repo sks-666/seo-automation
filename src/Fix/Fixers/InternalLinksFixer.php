@@ -37,7 +37,7 @@ final class InternalLinksFixer extends AbstractFixer {
 	 * {@inheritDoc}
 	 */
 	public function label(): string {
-		return __( 'Add internal links', 'seo-automation' );
+		return __( 'Add internal links', 'seo-audit-content-ai-assistant' );
 	}
 
 	/**
@@ -45,7 +45,7 @@ final class InternalLinksFixer extends AbstractFixer {
 	 */
 	public function required_input(): array {
 		return array(
-			'links' => __( 'A list of {source_post_id, phrase, target_post_id} objects. The phrase must already appear as plain text in the source page.', 'seo-automation' ),
+			'links' => __( 'A list of {source_post_id, phrase, target_post_id} objects. The phrase must already appear as plain text in the source page.', 'seo-audit-content-ai-assistant' ),
 		);
 	}
 
@@ -139,7 +139,7 @@ final class InternalLinksFixer extends AbstractFixer {
 				$updated,
 				sprintf(
 					/* translators: 1: number of links, 2: post title. */
-					__( 'Added %1$d internal links to "%2$s"', 'seo-automation' ),
+					__( 'Added %1$d internal links to "%2$s"', 'seo-audit-content-ai-assistant' ),
 					$applied,
 					$post->post_title
 				)

@@ -32,7 +32,7 @@ class Provider_OpenAI implements AI_Provider_Interface {
 
 	public function generate_text( $system_prompt, $user_prompt, $args = array() ) {
 		if ( ! $this->is_configured() ) {
-			return new \WP_Error( 'theblog_not_configured', __( 'OpenAI API key is not set.', 'seo-automation' ) );
+			return new \WP_Error( 'theblog_not_configured', __( 'OpenAI API key is not set.', 'seo-audit-content-ai-assistant' ) );
 		}
 
 		$defaults = array(
@@ -88,7 +88,7 @@ class Provider_OpenAI implements AI_Provider_Interface {
 		$text = $data['choices'][0]['message']['content'] ?? '';
 
 		if ( '' === $text ) {
-			return new \WP_Error( 'theblog_empty_response', __( 'OpenAI returned an empty response.', 'seo-automation' ) );
+			return new \WP_Error( 'theblog_empty_response', __( 'OpenAI returned an empty response.', 'seo-audit-content-ai-assistant' ) );
 		}
 
 		return $text;
@@ -96,7 +96,7 @@ class Provider_OpenAI implements AI_Provider_Interface {
 
 	public function generate_image( $prompt, $args = array() ) {
 		if ( ! $this->supports_images() ) {
-			return new \WP_Error( 'theblog_unsupported', __( 'OpenAI image generation is not enabled.', 'seo-automation' ) );
+			return new \WP_Error( 'theblog_unsupported', __( 'OpenAI image generation is not enabled.', 'seo-audit-content-ai-assistant' ) );
 		}
 
 		$defaults = array(
@@ -138,7 +138,7 @@ class Provider_OpenAI implements AI_Provider_Interface {
 		$url = $data['data'][0]['url'] ?? '';
 
 		if ( '' === $url ) {
-			return new \WP_Error( 'theblog_empty_response', __( 'OpenAI returned no image.', 'seo-automation' ) );
+			return new \WP_Error( 'theblog_empty_response', __( 'OpenAI returned no image.', 'seo-audit-content-ai-assistant' ) );
 		}
 
 		return $url;

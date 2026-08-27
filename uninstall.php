@@ -1,8 +1,8 @@
 <?php
 /**
- * Combined uninstall handler for SEO Automation (TheBlog Automation + SEO Agent).
+ * Combined uninstall handler for SEO Audit and Content AI Assistant (TheBlog Automation + SEO Agent).
  *
- * @package SEOAutomation
+ * @package SEOACAI
  */
 if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 	exit;
@@ -12,7 +12,7 @@ if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 delete_option( 'theblog_settings' );
 delete_option( 'theblog_logs' );
 
-$seo_automation_topics = get_posts(
+$seoacai_topics = get_posts(
 	array(
 		'post_type'      => 'theblog_topic',
 		'posts_per_page' => -1,
@@ -21,8 +21,8 @@ $seo_automation_topics = get_posts(
 	)
 );
 
-foreach ( $seo_automation_topics as $seo_automation_topic_id ) {
-	wp_delete_post( $seo_automation_topic_id, true );
+foreach ( $seoacai_topics as $seoacai_topic_id ) {
+	wp_delete_post( $seoacai_topic_id, true );
 }
 
 // SEO Agent uninstall
@@ -42,14 +42,14 @@ delete_option( 'seo_agent_llms_txt' );
 wp_clear_scheduled_hook( 'seo_agent_scheduled_audit' );
 
 // Capability.
-$seo_automation_admin_role = get_role( 'administrator' );
-if ( $seo_automation_admin_role ) {
-	$seo_automation_admin_role->remove_cap( 'manage_seo_agent' );
+$seoacai_admin_role = get_role( 'administrator' );
+if ( $seoacai_admin_role ) {
+	$seoacai_admin_role->remove_cap( 'manage_seo_agent' );
 }
 
 // Working meta the plugin wrote for its own use, which is not site content.
-foreach ( array( '_seo_agent_simhash', '_seo_agent_simhash_source' ) as $seo_automation_meta_key ) {
-	delete_post_meta_by_key( $seo_automation_meta_key );
+foreach ( array( '_seo_agent_simhash', '_seo_agent_simhash_source' ) as $seoacai_meta_key ) {
+	delete_post_meta_by_key( $seoacai_meta_key );
 }
 
 // Transients used to carry state between audit slices.

@@ -49,7 +49,7 @@ final class InternalLinkChecker extends AbstractChecker {
 	 * {@inheritDoc}
 	 */
 	public function label(): string {
-		return __( 'Internal linking', 'seo-automation' );
+		return __( 'Internal linking', 'seo-audit-content-ai-assistant' );
 	}
 
 	/**
@@ -63,7 +63,7 @@ final class InternalLinkChecker extends AbstractChecker {
 	 * {@inheritDoc}
 	 */
 	public function description(): string {
-		return __( 'Maps the internal link graph to find orphaned pages, under-linked content and uninformative anchor text.', 'seo-automation' );
+		return __( 'Maps the internal link graph to find orphaned pages, under-linked content and uninformative anchor text.', 'seo-audit-content-ai-assistant' );
 	}
 
 	/**
@@ -167,10 +167,10 @@ final class InternalLinkChecker extends AbstractChecker {
 						array(
 							'code'     => 'link.internal.too_few',
 							'severity' => Issue::SEVERITY_MEDIUM,
-							'title'    => __( 'Page barely links anywhere else', 'seo-automation' ),
+							'title'    => __( 'Page barely links anywhere else', 'seo-audit-content-ai-assistant' ),
 							'detail'   => sprintf(
 								/* translators: 1: link count, 2: target, 3: word count. */
-								__( 'This page has %1$d internal links against a target of %2$d, across %3$d words. Internal links are how authority and crawlers reach the rest of the site.', 'seo-automation' ),
+								__( 'This page has %1$d internal links against a target of %2$d, across %3$d words. Internal links are how authority and crawlers reach the rest of the site.', 'seo-audit-content-ai-assistant' ),
 								$internal,
 								$min_links,
 								$words
@@ -196,10 +196,10 @@ final class InternalLinkChecker extends AbstractChecker {
 						array(
 							'code'     => 'link.anchor.generic',
 							'severity' => Issue::SEVERITY_LOW,
-							'title'    => __( 'Links with uninformative anchor text', 'seo-automation' ),
+							'title'    => __( 'Links with uninformative anchor text', 'seo-audit-content-ai-assistant' ),
 							'detail'   => sprintf(
 								/* translators: %d: number of links. */
-								__( '%d links use anchor text like "click here". The anchor is the main clue about what is on the other end — for readers and for search engines.', 'seo-automation' ),
+								__( '%d links use anchor text like "click here". The anchor is the main clue about what is on the other end — for readers and for search engines.', 'seo-audit-content-ai-assistant' ),
 								count( $generic )
 							),
 							'evidence' => array(
@@ -305,8 +305,8 @@ final class InternalLinkChecker extends AbstractChecker {
 					'object_id'    => $post->ID,
 					'object_label' => $post->post_title,
 					'url'          => (string) get_permalink( $post ),
-					'title'        => __( 'Orphan page: nothing links to it', 'seo-automation' ),
-					'detail'       => __( 'No other page on the site links here and it is not in a menu. Crawlers reach it only through the sitemap, and it inherits no authority from the rest of the site.', 'seo-automation' ),
+					'title'        => __( 'Orphan page: nothing links to it', 'seo-audit-content-ai-assistant' ),
+					'detail'       => __( 'No other page on the site links here and it is not in a menu. Crawlers reach it only through the sitemap, and it inherits no authority from the rest of the site.', 'seo-audit-content-ai-assistant' ),
 					'evidence'     => array(
 						'post_type' => $post->post_type,
 						'slug'      => $post->post_name,
