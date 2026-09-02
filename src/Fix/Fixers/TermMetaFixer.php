@@ -34,7 +34,7 @@ final class TermMetaFixer extends AbstractFixer {
 	 * {@inheritDoc}
 	 */
 	public function label(): string {
-		return __( 'Set archive title or description', 'seo-audit-content-ai-assistant' );
+		return __( 'Set archive title or description', 'nexcove-seo-audit-content-assistant' );
 	}
 
 	/**
@@ -42,7 +42,7 @@ final class TermMetaFixer extends AbstractFixer {
 	 */
 	public function required_input(): array {
 		return array(
-			'value' => __( 'The title or description text. Which one is taken from the issue.', 'seo-audit-content-ai-assistant' ),
+			'value' => __( 'The title or description text. Which one is taken from the issue.', 'nexcove-seo-audit-content-assistant' ),
 		);
 	}
 
@@ -97,7 +97,7 @@ final class TermMetaFixer extends AbstractFixer {
 				$value,
 				sprintf(
 					/* translators: 1: field name, 2: term name. */
-					__( 'Set the %1$s on the "%2$s" archive', 'seo-audit-content-ai-assistant' ),
+					__( 'Set the %1$s on the "%2$s" archive', 'nexcove-seo-audit-content-assistant' ),
 					$field,
 					$term->name
 				)

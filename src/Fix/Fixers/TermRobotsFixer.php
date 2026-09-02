@@ -39,7 +39,7 @@ final class TermRobotsFixer extends AbstractFixer {
 	 * {@inheritDoc}
 	 */
 	public function label(): string {
-		return __( 'Set archive indexing rule', 'seo-audit-content-ai-assistant' );
+		return __( 'Set archive indexing rule', 'nexcove-seo-audit-content-assistant' );
 	}
 
 	/**
@@ -85,7 +85,7 @@ final class TermRobotsFixer extends AbstractFixer {
 				$robots,
 				sprintf(
 					/* translators: 1: directive, 2: term name. */
-					__( 'Set "%1$s" on the "%2$s" archive', 'seo-audit-content-ai-assistant' ),
+					__( 'Set "%1$s" on the "%2$s" archive', 'nexcove-seo-audit-content-assistant' ),
 					$robots,
 					$term->name
 				)

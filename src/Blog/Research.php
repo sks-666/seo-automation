@@ -42,7 +42,7 @@ class Research {
 		}
 
 		if ( empty( $brief['outline'] ) ) {
-			return new \WP_Error( 'theblog_research_incomplete', __( 'Research brief was missing an outline.', 'seo-audit-content-ai-assistant' ) );
+			return new \WP_Error( 'theblog_research_incomplete', __( 'Research brief was missing an outline.', 'nexcove-seo-audit-content-assistant' ) );
 		}
 
 		return $brief;

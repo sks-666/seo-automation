@@ -19,12 +19,12 @@ foreach ( $changes as $change ) {
 }
 ?>
 <div class="wrap">
-	<h1><?php esc_html_e( 'Change log', 'seo-audit-content-ai-assistant' ); ?></h1>
+	<h1><?php esc_html_e( 'Change log', 'nexcove-seo-audit-content-assistant' ); ?></h1>
 
-	<p><?php esc_html_e( 'Every write this plugin has made, with the value it replaced. Anything here can be put back exactly as it was.', 'seo-audit-content-ai-assistant' ); ?></p>
+	<p><?php esc_html_e( 'Every write this plugin has made, with the value it replaced. Anything here can be put back exactly as it was.', 'nexcove-seo-audit-content-assistant' ); ?></p>
 
 	<?php if ( empty( $grouped ) ) : ?>
-		<p><?php esc_html_e( 'Nothing has been changed yet.', 'seo-audit-content-ai-assistant' ); ?></p>
+		<p><?php esc_html_e( 'Nothing has been changed yet.', 'nexcove-seo-audit-content-assistant' ); ?></p>
 	<?php endif; ?>
 
 	<?php foreach ( $grouped as $batch => $rows ) : ?>
@@ -37,16 +37,16 @@ foreach ( $changes as $change ) {
 			<?php
 			printf(
 				/* translators: 1: number of changes, 2: timestamp, 3: user name. */
-				esc_html__( '%1$d change(s) at %2$s UTC by %3$s', 'seo-audit-content-ai-assistant' ),
+				esc_html__( '%1$d change(s) at %2$s UTC by %3$s', 'nexcove-seo-audit-content-assistant' ),
 				count( $rows ),
 				esc_html( $when ),
-				esc_html( $user ? $user->display_name : __( 'the agent', 'seo-audit-content-ai-assistant' ) )
+				esc_html( $user ? $user->display_name : __( 'the agent', 'nexcove-seo-audit-content-assistant' ) )
 			);
 			?>
 			<?php if ( ! empty( $applied ) ) : ?>
 				<?php AdminMenu::form_open( 'revert_batch' ); ?>
 					<input type="hidden" name="batch" value="<?php echo esc_attr( $batch ); ?>" />
-					<button type="submit" class="button button-small"><?php esc_html_e( 'Revert this batch', 'seo-audit-content-ai-assistant' ); ?></button>
+					<button type="submit" class="button button-small"><?php esc_html_e( 'Revert this batch', 'nexcove-seo-audit-content-assistant' ); ?></button>
 				</form>
 			<?php endif; ?>
 		</h2>
@@ -54,9 +54,9 @@ foreach ( $changes as $change ) {
 		<table class="wp-list-table widefat striped">
 			<thead>
 				<tr>
-					<th style="width:22%"><?php esc_html_e( 'Target', 'seo-audit-content-ai-assistant' ); ?></th>
-					<th><?php esc_html_e( 'Change', 'seo-audit-content-ai-assistant' ); ?></th>
-					<th style="width:90px"><?php esc_html_e( 'Status', 'seo-audit-content-ai-assistant' ); ?></th>
+					<th style="width:22%"><?php esc_html_e( 'Target', 'nexcove-seo-audit-content-assistant' ); ?></th>
+					<th><?php esc_html_e( 'Change', 'nexcove-seo-audit-content-assistant' ); ?></th>
+					<th style="width:90px"><?php esc_html_e( 'Status', 'nexcove-seo-audit-content-assistant' ); ?></th>
 				</tr>
 			</thead>
 			<tbody>

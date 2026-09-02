@@ -37,7 +37,7 @@ class Review_Queue {
 		check_admin_referer( 'theblog_review_' . $post_id );
 
 		if ( ! current_user_can( 'publish_posts' ) ) {
-			wp_die( esc_html__( 'You are not allowed to publish posts.', 'seo-audit-content-ai-assistant' ) );
+			wp_die( esc_html__( 'You are not allowed to publish posts.', 'nexcove-seo-audit-content-assistant' ) );
 		}
 
 		if ( $post_id ) {
@@ -65,7 +65,7 @@ class Review_Queue {
 		check_admin_referer( 'theblog_review_' . $post_id );
 
 		if ( ! current_user_can( 'delete_posts' ) ) {
-			wp_die( esc_html__( 'You are not allowed to delete posts.', 'seo-audit-content-ai-assistant' ) );
+			wp_die( esc_html__( 'You are not allowed to delete posts.', 'nexcove-seo-audit-content-assistant' ) );
 		}
 
 		if ( $post_id ) {

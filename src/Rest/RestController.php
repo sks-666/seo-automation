@@ -329,7 +329,7 @@ class RestController {
 		if ( ! is_user_logged_in() ) {
 			return new \WP_Error(
 				'seo_agent_unauthenticated',
-				__( 'Authenticate with a WordPress application password.', 'seo-audit-content-ai-assistant' ),
+				__( 'Authenticate with a WordPress application password.', 'nexcove-seo-audit-content-assistant' ),
 				array( 'status' => 401 )
 			);
 		}
@@ -337,7 +337,7 @@ class RestController {
 		if ( ! current_user_can( Plugin::CAPABILITY ) && ! current_user_can( 'manage_options' ) ) {
 			return new \WP_Error(
 				'seo_agent_forbidden',
-				__( 'Your account cannot manage SEO Agent.', 'seo-audit-content-ai-assistant' ),
+				__( 'Your account cannot manage SEO Agent.', 'nexcove-seo-audit-content-assistant' ),
 				array( 'status' => 403 )
 			);
 		}
@@ -350,7 +350,7 @@ class RestController {
 			if ( '' === $supplied || ! hash_equals( $expected, hash( 'sha256', $supplied ) ) ) {
 				return new \WP_Error(
 					'seo_agent_bad_token',
-					__( 'Missing or invalid X-SEO-Agent-Token header.', 'seo-audit-content-ai-assistant' ),
+					__( 'Missing or invalid X-SEO-Agent-Token header.', 'nexcove-seo-audit-content-assistant' ),
 					array( 'status' => 403 )
 				);
 			}
@@ -402,7 +402,7 @@ class RestController {
 				'language'         => get_bloginfo( 'language' ),
 				'wordpress'        => $wp_version,
 				'php'              => PHP_VERSION,
-				'plugin_version'   => defined( 'SEOACAI_VERSION' ) ? SEOACAI_VERSION : 'dev',
+				'plugin_version'   => defined( 'NEXCOVE_SEO_VERSION' ) ? NEXCOVE_SEO_VERSION : 'dev',
 				'indexable'        => '1' === (string) get_option( 'blog_public' ),
 				'permalink_structure' => get_option( 'permalink_structure' ),
 				'seo_plugin'       => array(
@@ -502,7 +502,7 @@ class RestController {
 		$audit = $this->plugin->audits()->find( (int) $request['id'] );
 
 		if ( ! $audit ) {
-			return new \WP_Error( 'seo_agent_not_found', __( 'Audit not found.', 'seo-audit-content-ai-assistant' ), array( 'status' => 404 ) );
+			return new \WP_Error( 'seo_agent_not_found', __( 'Audit not found.', 'nexcove-seo-audit-content-assistant' ), array( 'status' => 404 ) );
 		}
 
 		return new \WP_REST_Response( $audit, 200 );
@@ -534,7 +534,7 @@ class RestController {
 		$audit    = $this->plugin->audits()->find( $audit_id );
 
 		if ( ! $audit ) {
-			return new \WP_Error( 'seo_agent_not_found', __( 'Audit not found.', 'seo-audit-content-ai-assistant' ), array( 'status' => 404 ) );
+			return new \WP_Error( 'seo_agent_not_found', __( 'Audit not found.', 'nexcove-seo-audit-content-assistant' ), array( 'status' => 404 ) );
 		}
 
 		$issues = $this->plugin->issues();
@@ -668,7 +668,7 @@ class RestController {
 		$issue = $this->plugin->issues()->find( (int) $request['id'] );
 
 		if ( ! $issue ) {
-			return new \WP_Error( 'seo_agent_not_found', __( 'Issue not found.', 'seo-audit-content-ai-assistant' ), array( 'status' => 404 ) );
+			return new \WP_Error( 'seo_agent_not_found', __( 'Issue not found.', 'nexcove-seo-audit-content-assistant' ), array( 'status' => 404 ) );
 		}
 
 		$shaped = $this->shape_issue( $issue );
@@ -820,7 +820,7 @@ class RestController {
 		$described = $this->describe_object( (string) $request['type'], (int) $request['id'] );
 
 		if ( null === $described ) {
-			return new \WP_Error( 'seo_agent_not_found', __( 'Object not found.', 'seo-audit-content-ai-assistant' ), array( 'status' => 404 ) );
+			return new \WP_Error( 'seo_agent_not_found', __( 'Object not found.', 'nexcove-seo-audit-content-assistant' ), array( 'status' => 404 ) );
 		}
 
 		return new \WP_REST_Response( $described, 200 );
@@ -877,7 +877,7 @@ class RestController {
 				'seo_agent_invalid_setting',
 				sprintf(
 					/* translators: %s: comma-separated setting names. */
-					__( 'These settings were rejected as invalid: %s. Nothing was saved.', 'seo-audit-content-ai-assistant' ),
+					__( 'These settings were rejected as invalid: %s. Nothing was saved.', 'nexcove-seo-audit-content-assistant' ),
 					implode( ', ', array_keys( $rejected ) )
 				),
 				array(

@@ -31,7 +31,7 @@ final class NativeAdapter extends AbstractAdapter {
 	 * {@inheritDoc}
 	 */
 	public function label(): string {
-		return __( 'SEO Audit and Content AI Assistant (built in)', 'seo-audit-content-ai-assistant' );
+		return __( 'Nexcove SEO Audit and Content Assistant (built in)', 'nexcove-seo-audit-content-assistant' );
 	}
 
 	/**

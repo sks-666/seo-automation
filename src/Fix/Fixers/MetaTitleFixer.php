@@ -30,7 +30,7 @@ final class MetaTitleFixer extends MetaFieldFixer {
 	 * {@inheritDoc}
 	 */
 	public function label(): string {
-		return __( 'Set meta title', 'seo-audit-content-ai-assistant' );
+		return __( 'Set meta title', 'nexcove-seo-audit-content-assistant' );
 	}
 
 	/**

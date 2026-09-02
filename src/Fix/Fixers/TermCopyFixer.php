@@ -34,7 +34,7 @@ final class TermCopyFixer extends AbstractFixer {
 	 * {@inheritDoc}
 	 */
 	public function label(): string {
-		return __( 'Write archive introduction', 'seo-audit-content-ai-assistant' );
+		return __( 'Write archive introduction', 'nexcove-seo-audit-content-assistant' );
 	}
 
 	/**
@@ -42,7 +42,7 @@ final class TermCopyFixer extends AbstractFixer {
 	 */
 	public function required_input(): array {
 		return array(
-			'value' => __( 'Introductory copy for the archive page. Basic HTML is allowed. Write for the shopper or reader landing here, not for the crawler.', 'seo-audit-content-ai-assistant' ),
+			'value' => __( 'Introductory copy for the archive page. Basic HTML is allowed. Write for the shopper or reader landing here, not for the crawler.', 'nexcove-seo-audit-content-assistant' ),
 		);
 	}
 
@@ -83,7 +83,7 @@ final class TermCopyFixer extends AbstractFixer {
 				$value,
 				sprintf(
 					/* translators: %s: term name. */
-					__( 'Added introductory copy to the "%s" archive', 'seo-audit-content-ai-assistant' ),
+					__( 'Added introductory copy to the "%s" archive', 'nexcove-seo-audit-content-assistant' ),
 					$term->name
 				)
 			),

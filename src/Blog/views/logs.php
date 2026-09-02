@@ -11,25 +11,25 @@ if ( ! defined( 'ABSPATH' ) ) {
 $logs = Logger::get_logs();
 ?>
 <div class="wrap theblog-wrap">
-	<h1><?php esc_html_e( 'Logs', 'seo-audit-content-ai-assistant' ); ?></h1>
+	<h1><?php esc_html_e( 'Logs', 'nexcove-seo-audit-content-assistant' ); ?></h1>
 
-	<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" onsubmit="return confirm('<?php echo esc_js( __( 'Clear all logs?', 'seo-audit-content-ai-assistant' ) ); ?>');">
+	<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" onsubmit="return confirm('<?php echo esc_js( __( 'Clear all logs?', 'nexcove-seo-audit-content-assistant' ) ); ?>');">
 		<?php wp_nonce_field( 'theblog_clear_logs' ); ?>
 		<input type="hidden" name="action" value="theblog_clear_logs" />
-		<button type="submit" class="button"><?php esc_html_e( 'Clear Logs', 'seo-audit-content-ai-assistant' ); ?></button>
+		<button type="submit" class="button"><?php esc_html_e( 'Clear Logs', 'nexcove-seo-audit-content-assistant' ); ?></button>
 	</form>
 
 	<table class="widefat striped theblog-logs-table">
 		<thead>
 			<tr>
-				<th style="width:160px;"><?php esc_html_e( 'Time', 'seo-audit-content-ai-assistant' ); ?></th>
-				<th style="width:80px;"><?php esc_html_e( 'Level', 'seo-audit-content-ai-assistant' ); ?></th>
-				<th><?php esc_html_e( 'Message', 'seo-audit-content-ai-assistant' ); ?></th>
+				<th style="width:160px;"><?php esc_html_e( 'Time', 'nexcove-seo-audit-content-assistant' ); ?></th>
+				<th style="width:80px;"><?php esc_html_e( 'Level', 'nexcove-seo-audit-content-assistant' ); ?></th>
+				<th><?php esc_html_e( 'Message', 'nexcove-seo-audit-content-assistant' ); ?></th>
 			</tr>
 		</thead>
 		<tbody>
 			<?php if ( empty( $logs ) ) : ?>
-				<tr><td colspan="3"><?php esc_html_e( 'No log entries yet.', 'seo-audit-content-ai-assistant' ); ?></td></tr>
+				<tr><td colspan="3"><?php esc_html_e( 'No log entries yet.', 'nexcove-seo-audit-content-assistant' ); ?></td></tr>
 			<?php endif; ?>
 			<?php foreach ( $logs as $entry ) : ?>
 				<tr>

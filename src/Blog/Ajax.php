@@ -22,17 +22,17 @@ class Ajax {
 		check_ajax_referer( 'theblog_analyze_product', 'nonce' );
 
 		if ( ! current_user_can( 'edit_posts' ) ) {
-			wp_send_json_error( array( 'message' => __( 'You are not allowed to do this.', 'seo-audit-content-ai-assistant' ) ), 403 );
+			wp_send_json_error( array( 'message' => __( 'You are not allowed to do this.', 'nexcove-seo-audit-content-assistant' ) ), 403 );
 		}
 
 		$url = isset( $_POST['product_url'] ) ? esc_url_raw( wp_unslash( $_POST['product_url'] ) ) : '';
 
 		if ( '' === $url ) {
-			wp_send_json_error( array( 'message' => __( 'Enter a product URL first.', 'seo-audit-content-ai-assistant' ) ) );
+			wp_send_json_error( array( 'message' => __( 'Enter a product URL first.', 'nexcove-seo-audit-content-assistant' ) ) );
 		}
 
 		if ( ! WooCommerce::is_active() ) {
-			wp_send_json_error( array( 'message' => __( 'WooCommerce is not active on this site.', 'seo-audit-content-ai-assistant' ) ) );
+			wp_send_json_error( array( 'message' => __( 'WooCommerce is not active on this site.', 'nexcove-seo-audit-content-assistant' ) ) );
 		}
 
 		$product = WooCommerce::resolve_product_from_url( $url );
@@ -43,13 +43,13 @@ class Ajax {
 		$product_id = $product->get_id();
 
 		if ( CPT_Topic::has_active_product_entry( $product_id ) ) {
-			wp_send_json_error( array( 'message' => __( 'This product is already queued or currently generating. Check the queue below.', 'seo-audit-content-ai-assistant' ) ) );
+			wp_send_json_error( array( 'message' => __( 'This product is already queued or currently generating. Check the queue below.', 'nexcove-seo-audit-content-assistant' ) ) );
 		}
 
 		$data = WooCommerce::extract_product_data( $product );
 
 		if ( '' === trim( $data['long_description'] ) ) {
-			wp_send_json_error( array( 'message' => __( 'Product found, but the long description is empty. Add a long description before generating SEO content.', 'seo-audit-content-ai-assistant' ) ) );
+			wp_send_json_error( array( 'message' => __( 'Product found, but the long description is empty. Add a long description before generating SEO content.', 'nexcove-seo-audit-content-assistant' ) ) );
 		}
 
 		$brief = Product_Analysis::run( $data );

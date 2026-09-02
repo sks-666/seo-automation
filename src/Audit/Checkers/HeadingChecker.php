@@ -38,7 +38,7 @@ final class HeadingChecker extends PostChecker {
 	 * {@inheritDoc}
 	 */
 	public function label(): string {
-		return __( 'Heading structure', 'seo-audit-content-ai-assistant' );
+		return __( 'Heading structure', 'nexcove-seo-audit-content-assistant' );
 	}
 
 	/**
@@ -52,7 +52,7 @@ final class HeadingChecker extends PostChecker {
 	 * {@inheritDoc}
 	 */
 	public function description(): string {
-		return __( 'Checks that each page has one clear top-level heading and a sensible outline beneath it.', 'seo-audit-content-ai-assistant' );
+		return __( 'Checks that each page has one clear top-level heading and a sensible outline beneath it.', 'nexcove-seo-audit-content-assistant' );
 	}
 
 	/**
@@ -78,8 +78,8 @@ final class HeadingChecker extends PostChecker {
 						'object_id'    => $post->ID,
 						'object_label' => $post->post_title,
 						'url'          => (string) get_permalink( $post ),
-						'title'        => __( 'Long page with no subheadings', 'seo-audit-content-ai-assistant' ),
-						'detail'       => __( 'This page runs past 600 words with no headings. Readers cannot scan it and search engines have no section signals to work with.', 'seo-audit-content-ai-assistant' ),
+						'title'        => __( 'Long page with no subheadings', 'nexcove-seo-audit-content-assistant' ),
+						'detail'       => __( 'This page runs past 600 words with no headings. Readers cannot scan it and search engines have no section signals to work with.', 'nexcove-seo-audit-content-assistant' ),
 						'evidence'     => $this->post_context( $post ),
 						'fix_mode'     => Issue::MODE_MANUAL,
 					)
@@ -104,10 +104,10 @@ final class HeadingChecker extends PostChecker {
 					array(
 						'code'     => 'headings.multiple_h1',
 						'severity' => Issue::SEVERITY_MEDIUM,
-						'title'    => __( 'Several H1 headings on one page', 'seo-audit-content-ai-assistant' ),
+						'title'    => __( 'Several H1 headings on one page', 'nexcove-seo-audit-content-assistant' ),
 						'detail'   => sprintf(
 							/* translators: %d: number of H1 headings. */
-							__( 'The content contains %d H1 headings, on top of whatever the theme renders for the page title. Demote all but the first to H2.', 'seo-audit-content-ai-assistant' ),
+							__( 'The content contains %d H1 headings, on top of whatever the theme renders for the page title. Demote all but the first to H2.', 'nexcove-seo-audit-content-assistant' ),
 							count( $h1s )
 						),
 						'evidence' => array_merge(
@@ -155,10 +155,10 @@ final class HeadingChecker extends PostChecker {
 					array(
 						'code'     => 'headings.skipped_level',
 						'severity' => Issue::SEVERITY_LOW,
-						'title'    => __( 'Heading levels skip a step', 'seo-audit-content-ai-assistant' ),
+						'title'    => __( 'Heading levels skip a step', 'nexcove-seo-audit-content-assistant' ),
 						'detail'   => sprintf(
 							/* translators: 1: from level, 2: to level, 3: heading text. */
-							__( 'The outline jumps from H%1$d to H%2$d at "%3$s". Use the next level down so the page structure stays parseable.', 'seo-audit-content-ai-assistant' ),
+							__( 'The outline jumps from H%1$d to H%2$d at "%3$s". Use the next level down so the page structure stays parseable.', 'nexcove-seo-audit-content-assistant' ),
 							$skips[0]['from'],
 							$skips[0]['to'],
 							$skips[0]['text']
@@ -191,10 +191,10 @@ final class HeadingChecker extends PostChecker {
 					array(
 						'code'     => 'headings.empty',
 						'severity' => Issue::SEVERITY_LOW,
-						'title'    => __( 'Empty heading tags', 'seo-audit-content-ai-assistant' ),
+						'title'    => __( 'Empty heading tags', 'nexcove-seo-audit-content-assistant' ),
 						'detail'   => sprintf(
 							/* translators: %d: number of empty headings. */
-							__( '%d heading tags contain no text, usually left behind by a page builder. They add noise to the outline.', 'seo-audit-content-ai-assistant' ),
+							__( '%d heading tags contain no text, usually left behind by a page builder. They add noise to the outline.', 'nexcove-seo-audit-content-assistant' ),
 							count( $empty )
 						),
 						'evidence' => array_merge(

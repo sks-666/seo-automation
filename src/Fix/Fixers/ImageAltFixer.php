@@ -36,7 +36,7 @@ final class ImageAltFixer extends AbstractFixer {
 	 * {@inheritDoc}
 	 */
 	public function label(): string {
-		return __( 'Set image alt text', 'seo-audit-content-ai-assistant' );
+		return __( 'Set image alt text', 'nexcove-seo-audit-content-assistant' );
 	}
 
 	/**
@@ -44,7 +44,7 @@ final class ImageAltFixer extends AbstractFixer {
 	 */
 	public function required_input(): array {
 		return array(
-			'value' => __( 'What the image shows, in a sentence fragment of at most 125 characters. Describe the content, not the file.', 'seo-audit-content-ai-assistant' ),
+			'value' => __( 'What the image shows, in a sentence fragment of at most 125 characters. Describe the content, not the file.', 'nexcove-seo-audit-content-assistant' ),
 		);
 	}
 
@@ -97,7 +97,7 @@ final class ImageAltFixer extends AbstractFixer {
 				$value,
 				sprintf(
 					/* translators: %s: image filename. */
-					__( 'Set alt text on "%s"', 'seo-audit-content-ai-assistant' ),
+					__( 'Set alt text on "%s"', 'nexcove-seo-audit-content-assistant' ),
 					basename( (string) get_attached_file( $attachment_id ) )
 				)
 			),

@@ -36,7 +36,7 @@ final class HeadingLevelFixer extends AbstractFixer {
 	 * {@inheritDoc}
 	 */
 	public function label(): string {
-		return __( 'Demote surplus H1 headings', 'seo-audit-content-ai-assistant' );
+		return __( 'Demote surplus H1 headings', 'nexcove-seo-audit-content-assistant' );
 	}
 
 	/**
@@ -99,7 +99,7 @@ final class HeadingLevelFixer extends AbstractFixer {
 				$updated,
 				sprintf(
 					/* translators: 1: number of headings, 2: post title. */
-					__( 'Demoted %1$d surplus H1 headings to H2 in "%2$s"', 'seo-audit-content-ai-assistant' ),
+					__( 'Demoted %1$d surplus H1 headings to H2 in "%2$s"', 'nexcove-seo-audit-content-assistant' ),
 					$count,
 					$post->post_title
 				)

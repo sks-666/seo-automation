@@ -46,7 +46,7 @@ final class DuplicateContentChecker extends AbstractChecker {
 	 * {@inheritDoc}
 	 */
 	public function label(): string {
-		return __( 'Duplicate content', 'seo-audit-content-ai-assistant' );
+		return __( 'Duplicate content', 'nexcove-seo-audit-content-assistant' );
 	}
 
 	/**
@@ -60,7 +60,7 @@ final class DuplicateContentChecker extends AbstractChecker {
 	 * {@inheritDoc}
 	 */
 	public function description(): string {
-		return __( 'Finds pages whose body content substantially repeats another page, the usual cause being shared product or template copy.', 'seo-audit-content-ai-assistant' );
+		return __( 'Finds pages whose body content substantially repeats another page, the usual cause being shared product or template copy.', 'nexcove-seo-audit-content-assistant' );
 	}
 
 	/**
@@ -234,7 +234,7 @@ final class DuplicateContentChecker extends AbstractChecker {
 						return CheckerResult::done(
 							$issues,
 							count( $rows ),
-							array( __( 'Reporting stopped at 100 duplicate pairs.', 'seo-audit-content-ai-assistant' ) )
+							array( __( 'Reporting stopped at 100 duplicate pairs.', 'nexcove-seo-audit-content-assistant' ) )
 						);
 					}
 				}
@@ -270,10 +270,10 @@ final class DuplicateContentChecker extends AbstractChecker {
 				'key'          => (string) $b_id,
 				'object_label' => (string) $a['post_title'],
 				'url'          => (string) get_permalink( $a_id ),
-				'title'        => __( 'Two pages have near-identical content', 'seo-audit-content-ai-assistant' ),
+				'title'        => __( 'Two pages have near-identical content', 'nexcove-seo-audit-content-assistant' ),
 				'detail'       => sprintf(
 					/* translators: 1: similarity percentage, 2: first page title, 3: second page title. */
-					__( '"%2$s" and "%3$s" are %1$d%% the same. Either differentiate them, consolidate them, or canonicalise one to the other.', 'seo-audit-content-ai-assistant' ),
+					__( '"%2$s" and "%3$s" are %1$d%% the same. Either differentiate them, consolidate them, or canonicalise one to the other.', 'nexcove-seo-audit-content-assistant' ),
 					$percent,
 					(string) $a['post_title'],
 					(string) $b['post_title']

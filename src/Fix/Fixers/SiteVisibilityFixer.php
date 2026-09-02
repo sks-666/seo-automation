@@ -37,7 +37,7 @@ final class SiteVisibilityFixer extends AbstractFixer {
 	 * {@inheritDoc}
 	 */
 	public function label(): string {
-		return __( 'Allow search engines to index the site', 'seo-audit-content-ai-assistant' );
+		return __( 'Allow search engines to index the site', 'nexcove-seo-audit-content-assistant' );
 	}
 
 	/**
@@ -45,7 +45,7 @@ final class SiteVisibilityFixer extends AbstractFixer {
 	 */
 	public function required_input(): array {
 		return array(
-			'confirm_production' => __( 'Must be true. Confirms this is the live site and not a staging or development copy.', 'seo-audit-content-ai-assistant' ),
+			'confirm_production' => __( 'Must be true. Confirms this is the live site and not a staging or development copy.', 'nexcove-seo-audit-content-assistant' ),
 		);
 	}
 
@@ -74,7 +74,7 @@ final class SiteVisibilityFixer extends AbstractFixer {
 				'option:blog_public',
 				$before,
 				'1',
-				__( 'Allowed search engines to index the site', 'seo-audit-content-ai-assistant' )
+				__( 'Allowed search engines to index the site', 'nexcove-seo-audit-content-assistant' )
 			),
 		);
 	}

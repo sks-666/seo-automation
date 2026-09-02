@@ -29,25 +29,25 @@ class Admin {
 	}
 
 	/**
-	 * Add this feature set's screens under the shared "SEO Audit and Content AI Assistant" parent menu.
+	 * Add this feature set's screens under the shared "Nexcove SEO Audit and Content Assistant" parent menu.
 	 *
 	 * @param string $parent_slug Parent menu slug to attach to.
 	 */
 	public static function add_submenus( $parent_slug = self::PARENT_SLUG ) {
-		add_submenu_page( $parent_slug, __( 'Dashboard', 'seo-audit-content-ai-assistant' ), __( 'Content: Dashboard', 'seo-audit-content-ai-assistant' ), 'edit_posts', 'theblog-dashboard', array( __CLASS__, 'render_dashboard' ) );
-		add_submenu_page( $parent_slug, __( 'Topics', 'seo-audit-content-ai-assistant' ), __( 'Content: Topics', 'seo-audit-content-ai-assistant' ), 'edit_posts', 'theblog-topics', array( __CLASS__, 'render_topics' ) );
-		add_submenu_page( $parent_slug, __( 'Review Queue', 'seo-audit-content-ai-assistant' ), __( 'Content: Review Queue', 'seo-audit-content-ai-assistant' ), 'edit_posts', 'theblog-review-queue', array( __CLASS__, 'render_review_queue' ) );
-		add_submenu_page( $parent_slug, __( 'Settings', 'seo-audit-content-ai-assistant' ), __( 'Content: Settings', 'seo-audit-content-ai-assistant' ), 'manage_options', 'theblog-settings', array( __CLASS__, 'render_settings' ) );
-		add_submenu_page( $parent_slug, __( 'Logs', 'seo-audit-content-ai-assistant' ), __( 'Content: Logs', 'seo-audit-content-ai-assistant' ), 'manage_options', 'theblog-logs', array( __CLASS__, 'render_logs' ) );
+		add_submenu_page( $parent_slug, __( 'Dashboard', 'nexcove-seo-audit-content-assistant' ), __( 'Content: Dashboard', 'nexcove-seo-audit-content-assistant' ), 'edit_posts', 'theblog-dashboard', array( __CLASS__, 'render_dashboard' ) );
+		add_submenu_page( $parent_slug, __( 'Topics', 'nexcove-seo-audit-content-assistant' ), __( 'Content: Topics', 'nexcove-seo-audit-content-assistant' ), 'edit_posts', 'theblog-topics', array( __CLASS__, 'render_topics' ) );
+		add_submenu_page( $parent_slug, __( 'Review Queue', 'nexcove-seo-audit-content-assistant' ), __( 'Content: Review Queue', 'nexcove-seo-audit-content-assistant' ), 'edit_posts', 'theblog-review-queue', array( __CLASS__, 'render_review_queue' ) );
+		add_submenu_page( $parent_slug, __( 'Settings', 'nexcove-seo-audit-content-assistant' ), __( 'Content: Settings', 'nexcove-seo-audit-content-assistant' ), 'manage_options', 'theblog-settings', array( __CLASS__, 'render_settings' ) );
+		add_submenu_page( $parent_slug, __( 'Logs', 'nexcove-seo-audit-content-assistant' ), __( 'Content: Logs', 'nexcove-seo-audit-content-assistant' ), 'manage_options', 'theblog-logs', array( __CLASS__, 'render_logs' ) );
 	}
 
 	public static function enqueue_assets( $hook ) {
 		if ( strpos( $hook, 'theblog' ) === false ) {
 			return;
 		}
-		wp_enqueue_style( 'theblog-admin', SEOACAI_URL . 'src/Blog/assets/css/admin.css', array(), SEOACAI_VERSION );
+		wp_enqueue_style( 'theblog-admin', NEXCOVE_SEO_URL . 'src/Blog/assets/css/admin.css', array(), NEXCOVE_SEO_VERSION );
 
-		wp_enqueue_script( 'theblog-admin', SEOACAI_URL . 'src/Blog/assets/js/admin.js', array( 'jquery' ), SEOACAI_VERSION, true );
+		wp_enqueue_script( 'theblog-admin', NEXCOVE_SEO_URL . 'src/Blog/assets/js/admin.js', array( 'jquery' ), NEXCOVE_SEO_VERSION, true );
 		wp_localize_script(
 			'theblog-admin',
 			'TheblogAdmin',
@@ -56,11 +56,11 @@ class Admin {
 				'analyzeNonce'     => wp_create_nonce( 'theblog_analyze_product' ),
 				'wooCommerceActive' => WooCommerce::is_active(),
 				'i18n'             => array(
-					'analyzing'      => __( 'Analyzing product…', 'seo-audit-content-ai-assistant' ),
-					'analyzeProduct' => __( 'Analyze Product', 'seo-audit-content-ai-assistant' ),
-					'enterUrl'       => __( 'Enter a product URL first.', 'seo-audit-content-ai-assistant' ),
-					'genericError'   => __( 'Something went wrong. Please try again.', 'seo-audit-content-ai-assistant' ),
-					'productFound'   => __( 'Product Found ✓', 'seo-audit-content-ai-assistant' ),
+					'analyzing'      => __( 'Analyzing product…', 'nexcove-seo-audit-content-assistant' ),
+					'analyzeProduct' => __( 'Analyze Product', 'nexcove-seo-audit-content-assistant' ),
+					'enterUrl'       => __( 'Enter a product URL first.', 'nexcove-seo-audit-content-assistant' ),
+					'genericError'   => __( 'Something went wrong. Please try again.', 'nexcove-seo-audit-content-assistant' ),
+					'productFound'   => __( 'Product Found ✓', 'nexcove-seo-audit-content-assistant' ),
 				),
 			)
 		);
@@ -98,7 +98,7 @@ class Admin {
 		check_admin_referer( 'theblog_add_topic' );
 
 		if ( ! current_user_can( 'edit_posts' ) ) {
-			wp_die( esc_html__( 'You are not allowed to do this.', 'seo-audit-content-ai-assistant' ) );
+			wp_die( esc_html__( 'You are not allowed to do this.', 'nexcove-seo-audit-content-assistant' ) );
 		}
 
 		$content_source = isset( $_POST['content_source'] ) && 'product_url' === $_POST['content_source'] ? 'product_url' : 'topic';
@@ -168,7 +168,7 @@ class Admin {
 		check_admin_referer( 'theblog_generate_' . $topic_id );
 
 		if ( ! current_user_can( 'edit_posts' ) ) {
-			wp_die( esc_html__( 'You are not allowed to do this.', 'seo-audit-content-ai-assistant' ) );
+			wp_die( esc_html__( 'You are not allowed to do this.', 'nexcove-seo-audit-content-assistant' ) );
 		}
 
 		$notice = 'generated';
@@ -192,7 +192,7 @@ class Admin {
 		check_admin_referer( 'theblog_delete_topic_' . $topic_id );
 
 		if ( ! current_user_can( 'edit_posts' ) ) {
-			wp_die( esc_html__( 'You are not allowed to do this.', 'seo-audit-content-ai-assistant' ) );
+			wp_die( esc_html__( 'You are not allowed to do this.', 'nexcove-seo-audit-content-assistant' ) );
 		}
 
 		if ( $topic_id ) {
@@ -207,7 +207,7 @@ class Admin {
 		check_admin_referer( 'theblog_save_settings' );
 
 		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_die( esc_html__( 'You are not allowed to do this.', 'seo-audit-content-ai-assistant' ) );
+			wp_die( esc_html__( 'You are not allowed to do this.', 'nexcove-seo-audit-content-assistant' ) );
 		}
 
 		$clean = Settings::sanitize( wp_unslash( $_POST ) );
@@ -243,7 +243,7 @@ class Admin {
 		check_admin_referer( 'theblog_clear_logs' );
 
 		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_die( esc_html__( 'You are not allowed to do this.', 'seo-audit-content-ai-assistant' ) );
+			wp_die( esc_html__( 'You are not allowed to do this.', 'nexcove-seo-audit-content-assistant' ) );
 		}
 
 		Logger::clear();
@@ -268,20 +268,20 @@ class Admin {
 		// phpcs:enable WordPress.Security.NonceVerification.Recommended
 
 		$messages = array(
-			'topic_added'          => array( 'success', __( 'Added to the queue.', 'seo-audit-content-ai-assistant' ) ),
-			'topic_empty'          => array( 'error', __( 'Please enter a topic/keyword.', 'seo-audit-content-ai-assistant' ) ),
-			'topic_error'          => array( 'error', __( 'Could not add to the queue.', 'seo-audit-content-ai-assistant' ) ),
-			'topic_deleted'        => array( 'success', __( 'Entry deleted.', 'seo-audit-content-ai-assistant' ) ),
-			'product_not_analyzed' => array( 'error', __( 'Click "Analyze Product" and wait for it to succeed before adding to the queue.', 'seo-audit-content-ai-assistant' ) ),
-			'duplicate_product'    => array( 'error', __( 'This product is already queued or currently generating.', 'seo-audit-content-ai-assistant' ) ),
-			'generated'       => array( 'success', __( 'Draft generated and sent to the Review Queue.', 'seo-audit-content-ai-assistant' ) ),
-			'generate_error'  => array( 'error', __( 'Generation failed. Check the Logs screen for details.', 'seo-audit-content-ai-assistant' ) ),
-			'approved'        => array( 'success', __( 'Post approved and published.', 'seo-audit-content-ai-assistant' ) ),
-			'rejected'        => array( 'success', __( 'Post rejected and moved to Trash.', 'seo-audit-content-ai-assistant' ) ),
-			'settings_saved'  => array( 'success', __( 'Settings saved.', 'seo-audit-content-ai-assistant' ) ),
-			'settings_saved_no_key' => array( 'warning', __( 'Settings saved — but the selected Text Provider has no API key entered. Generation will fail until you add one.', 'seo-audit-content-ai-assistant' ) ),
-			'settings_saved_no_connector' => array( 'warning', __( 'Settings saved — but no AI provider is connected in WordPress yet. Connect one under Settings → Connectors before generating content.', 'seo-audit-content-ai-assistant' ) ),
-			'logs_cleared'    => array( 'success', __( 'Logs cleared.', 'seo-audit-content-ai-assistant' ) ),
+			'topic_added'          => array( 'success', __( 'Added to the queue.', 'nexcove-seo-audit-content-assistant' ) ),
+			'topic_empty'          => array( 'error', __( 'Please enter a topic/keyword.', 'nexcove-seo-audit-content-assistant' ) ),
+			'topic_error'          => array( 'error', __( 'Could not add to the queue.', 'nexcove-seo-audit-content-assistant' ) ),
+			'topic_deleted'        => array( 'success', __( 'Entry deleted.', 'nexcove-seo-audit-content-assistant' ) ),
+			'product_not_analyzed' => array( 'error', __( 'Click "Analyze Product" and wait for it to succeed before adding to the queue.', 'nexcove-seo-audit-content-assistant' ) ),
+			'duplicate_product'    => array( 'error', __( 'This product is already queued or currently generating.', 'nexcove-seo-audit-content-assistant' ) ),
+			'generated'       => array( 'success', __( 'Draft generated and sent to the Review Queue.', 'nexcove-seo-audit-content-assistant' ) ),
+			'generate_error'  => array( 'error', __( 'Generation failed. Check the Logs screen for details.', 'nexcove-seo-audit-content-assistant' ) ),
+			'approved'        => array( 'success', __( 'Post approved and published.', 'nexcove-seo-audit-content-assistant' ) ),
+			'rejected'        => array( 'success', __( 'Post rejected and moved to Trash.', 'nexcove-seo-audit-content-assistant' ) ),
+			'settings_saved'  => array( 'success', __( 'Settings saved.', 'nexcove-seo-audit-content-assistant' ) ),
+			'settings_saved_no_key' => array( 'warning', __( 'Settings saved — but the selected Text Provider has no API key entered. Generation will fail until you add one.', 'nexcove-seo-audit-content-assistant' ) ),
+			'settings_saved_no_connector' => array( 'warning', __( 'Settings saved — but no AI provider is connected in WordPress yet. Connect one under Settings → Connectors before generating content.', 'nexcove-seo-audit-content-assistant' ) ),
+			'logs_cleared'    => array( 'success', __( 'Logs cleared.', 'nexcove-seo-audit-content-assistant' ) ),
 		);
 
 		if ( ! isset( $messages[ $notice ] ) ) {

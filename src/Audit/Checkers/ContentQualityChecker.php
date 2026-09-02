@@ -37,7 +37,7 @@ final class ContentQualityChecker extends PostChecker {
 	 * {@inheritDoc}
 	 */
 	public function label(): string {
-		return __( 'Content depth', 'seo-audit-content-ai-assistant' );
+		return __( 'Content depth', 'nexcove-seo-audit-content-assistant' );
 	}
 
 	/**
@@ -51,7 +51,7 @@ final class ContentQualityChecker extends PostChecker {
 	 * {@inheritDoc}
 	 */
 	public function description(): string {
-		return __( 'Finds indexable pages with too little content to compete, and pages that have not been touched in years.', 'seo-audit-content-ai-assistant' );
+		return __( 'Finds indexable pages with too little content to compete, and pages that have not been touched in years.', 'nexcove-seo-audit-content-assistant' );
 	}
 
 	/**
@@ -93,8 +93,8 @@ final class ContentQualityChecker extends PostChecker {
 					array(
 						'code'     => 'content.empty',
 						'severity' => Issue::SEVERITY_HIGH,
-						'title'    => __( 'Published page with no content', 'seo-audit-content-ai-assistant' ),
-						'detail'   => __( 'This page is published and indexable but has no body text. Either fill it in or take it out of the index.', 'seo-audit-content-ai-assistant' ),
+						'title'    => __( 'Published page with no content', 'nexcove-seo-audit-content-assistant' ),
+						'detail'   => __( 'This page is published and indexable but has no body text. Either fill it in or take it out of the index.', 'nexcove-seo-audit-content-assistant' ),
 						'evidence' => $evidence,
 						'fix_mode' => Issue::MODE_MANUAL,
 					)
@@ -107,10 +107,10 @@ final class ContentQualityChecker extends PostChecker {
 					array(
 						'code'     => 'content.thin',
 						'severity' => Issue::SEVERITY_MEDIUM,
-						'title'    => __( 'Thin content', 'seo-audit-content-ai-assistant' ),
+						'title'    => __( 'Thin content', 'nexcove-seo-audit-content-assistant' ),
 						'detail'   => sprintf(
 							/* translators: 1: word count, 2: threshold. */
-							__( 'This page has %1$d words against a working minimum of %2$d. Thin pages rarely rank and, in volume, drag down how the whole site is assessed.', 'seo-audit-content-ai-assistant' ),
+							__( 'This page has %1$d words against a working minimum of %2$d. Thin pages rarely rank and, in volume, drag down how the whole site is assessed.', 'nexcove-seo-audit-content-assistant' ),
 							$words,
 							$min
 						),
@@ -130,10 +130,10 @@ final class ContentQualityChecker extends PostChecker {
 					array(
 						'code'     => 'content.stale',
 						'severity' => Issue::SEVERITY_INFO,
-						'title'    => __( 'Substantial page not updated in over two years', 'seo-audit-content-ai-assistant' ),
+						'title'    => __( 'Substantial page not updated in over two years', 'nexcove-seo-audit-content-assistant' ),
 						'detail'   => sprintf(
 							/* translators: %s: last modified date. */
-							__( 'Last edited %s. Pages with real content are usually worth refreshing rather than leaving to decay.', 'seo-audit-content-ai-assistant' ),
+							__( 'Last edited %s. Pages with real content are usually worth refreshing rather than leaving to decay.', 'nexcove-seo-audit-content-assistant' ),
 							(string) $post->post_modified_gmt
 						),
 						'evidence' => $evidence,

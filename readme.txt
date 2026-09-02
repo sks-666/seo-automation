@@ -1,10 +1,10 @@
-=== SEO Audit and Content AI Assistant ===
+=== Nexcove SEO Audit and Content Assistant ===
 Contributors: lafaa, ssomai
 Tags: seo, content, audit, woocommerce, schema
 Requires at least: 5.8
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 2.1.0
+Stable tag: 2.2.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -12,7 +12,7 @@ Audit your site's SEO, fix what it finds, and generate optimised content — wit
 
 == Description ==
 
-SEO Audit and Content AI Assistant combines two things most sites handle separately: finding what is wrong with your SEO, and producing content that is right from the start.
+Nexcove SEO Audit and Content Assistant combines two things most sites handle separately: finding what is wrong with your SEO, and producing content that is right from the start.
 
 **The audit loop**
 
@@ -88,10 +88,10 @@ Google: [Terms](https://developers.google.com/terms) | [Privacy Policy](https://
 
 == Installation ==
 
-1. Upload the `seo-audit-content-ai-assistant` folder to `/wp-content/plugins/`, or install the plugin through the WordPress Plugins screen.
+1. Upload the `nexcove-seo-audit-content-assistant` folder to `/wp-content/plugins/`, or install the plugin through the WordPress Plugins screen.
 2. Activate the plugin through the Plugins screen.
-3. Go to **SEO Audit & Content → Audit: Settings** to choose which post types and taxonomies to audit and to set your safety mode.
-4. To generate content, go to **SEO Audit & Content → Content: Settings** and choose a Text Provider. On WordPress 7.0 and later, leave it on **WordPress AI** and connect a provider under **Settings → Connectors**; on earlier versions, pick a provider and enter its API key.
+3. Go to **Nexcove SEO → Audit: Settings** to choose which post types and taxonomies to audit and to set your safety mode.
+4. To generate content, go to **Nexcove SEO → Content: Settings** and choose a Text Provider. On WordPress 7.0 and later, leave it on **WordPress AI** and connect a provider under **Settings → Connectors**; on earlier versions, pick a provider and enter its API key.
 
 The plugin is fully functional for auditing without any API key. Keys are only needed for content generation and for field-data Core Web Vitals.
 
@@ -127,16 +127,19 @@ No. WooCommerce-specific checks and the product-to-article feature activate only
 
 == Changelog ==
 
+= 2.2.0 =
+* Renamed the plugin to Nexcove SEO Audit and Content Assistant.
+
 = 2.1.0 =
-* Renamed the plugin to SEO Audit and Content AI Assistant.
+* Renamed the plugin to Nexcove SEO Audit and Content Assistant.
 * Content generation now runs through the AI Client built into WordPress 7.0 by default, so WordPress holds the provider credentials and this plugin stores no API key. Direct Anthropic, OpenAI, and DeepSeek providers remain available, and are used automatically on WordPress 6.9 and earlier.
 * Hardened the FAQ JSON-LD output so a stored answer containing markup can no longer break out of the script element.
 * Confined the plugin's admin notices to the screens where they are actionable.
 * Corrected the DeepSeek terms and privacy policy links in the external services disclosure.
 
 = 2.0.0 =
-* Renamed the plugin to SEO Audit and Content AI Assistant.
-* Fixed internationalisation: all user-facing strings now use the `seo-audit-content-ai-assistant` text domain and are translatable. Previously the declared text domain did not match the strings in the code, so no string could be translated.
+* Renamed the plugin to Nexcove SEO Audit and Content Assistant.
+* Fixed internationalisation: all user-facing strings now use the `nexcove-seo-audit-content-assistant` text domain and are translatable. Previously the declared text domain did not match the strings in the code, so no string could be translated.
 * API keys are now write-only in the admin. Stored keys are no longer rendered into the settings page HTML, and saving an unrelated setting no longer risks clearing a configured key. Removing a key is now an explicit action.
 * Added `readme.txt` with full disclosure of every external service the plugin can contact.
 * Added the missing `License` and `License URI` plugin headers.
@@ -148,6 +151,9 @@ No. WooCommerce-specific checks and the product-to-article feature activate only
 * Removed a redundant suppress_filters argument and an unnecessary load_plugin_textdomain() call.
 
 == Upgrade Notice ==
+
+= 2.2.0 =
+The plugin has been renamed and its main file renamed with it, so WordPress will deactivate the plugin during this update. Reactivate it once from the Plugins screen. All settings, audits, issues, and change history are preserved.
 
 = 2.1.0 =
 The plugin has been renamed and its main file renamed with it, so WordPress will deactivate the plugin during this update. Reactivate it once from the Plugins screen. All settings, audits, issues, and change history are preserved. On WordPress 7.0 and later you can switch the Text Provider to "WordPress AI" and remove the API keys stored by this plugin.

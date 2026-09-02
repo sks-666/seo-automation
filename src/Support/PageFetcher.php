@@ -159,7 +159,7 @@ class PageFetcher {
 	private function user_agent(): string {
 		return sprintf(
 			'SEOAgent/%s (+%s) WordPress/%s',
-			defined( 'SEOACAI_VERSION' ) ? SEOACAI_VERSION : 'dev',
+			defined( 'NEXCOVE_SEO_VERSION' ) ? NEXCOVE_SEO_VERSION : 'dev',
 			home_url( '/' ),
 			get_bloginfo( 'version' )
 		);

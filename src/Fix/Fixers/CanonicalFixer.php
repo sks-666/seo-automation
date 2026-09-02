@@ -33,7 +33,7 @@ final class CanonicalFixer extends AbstractFixer {
 	 * {@inheritDoc}
 	 */
 	public function label(): string {
-		return __( 'Set canonical URL', 'seo-audit-content-ai-assistant' );
+		return __( 'Set canonical URL', 'nexcove-seo-audit-content-assistant' );
 	}
 
 	/**
@@ -41,7 +41,7 @@ final class CanonicalFixer extends AbstractFixer {
 	 */
 	public function required_input(): array {
 		return array(
-			'canonical' => __( 'The absolute URL that should rank. Omit to use the value the issue proposes.', 'seo-audit-content-ai-assistant' ),
+			'canonical' => __( 'The absolute URL that should rank. Omit to use the value the issue proposes.', 'nexcove-seo-audit-content-assistant' ),
 		);
 	}
 
@@ -71,11 +71,11 @@ final class CanonicalFixer extends AbstractFixer {
 		// Pointing a page at itself is the default behaviour anyway; storing it
 		// explicitly is harmless but pointing it at a 404 is not.
 		if ( untrailingslashit( $canonical ) === untrailingslashit( (string) get_permalink( $post ) ) ) {
-			$note = __( 'Set an explicit self-referencing canonical', 'seo-audit-content-ai-assistant' );
+			$note = __( 'Set an explicit self-referencing canonical', 'nexcove-seo-audit-content-assistant' );
 		} else {
 			$note = sprintf(
 				/* translators: 1: post title, 2: canonical target. */
-				__( 'Pointed "%1$s" at %2$s as the canonical version', 'seo-audit-content-ai-assistant' ),
+				__( 'Pointed "%1$s" at %2$s as the canonical version', 'nexcove-seo-audit-content-assistant' ),
 				$post->post_title,
 				$canonical
 			);

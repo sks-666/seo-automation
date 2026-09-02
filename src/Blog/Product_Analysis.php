@@ -29,7 +29,7 @@ class Product_Analysis {
 		if ( '' === trim( $product['long_description'] ) ) {
 			return new \WP_Error(
 				'theblog_no_long_description',
-				__( 'Product found, but the long description is empty. Add a long description before generating SEO content.', 'seo-audit-content-ai-assistant' )
+				__( 'Product found, but the long description is empty. Add a long description before generating SEO content.', 'nexcove-seo-audit-content-assistant' )
 			);
 		}
 
@@ -76,7 +76,7 @@ class Product_Analysis {
 		}
 
 		if ( empty( $brief['outline'] ) || empty( $brief['primary_keyword'] ) ) {
-			return new \WP_Error( 'theblog_analysis_incomplete', __( 'Product analysis was missing an outline or primary keyword.', 'seo-audit-content-ai-assistant' ) );
+			return new \WP_Error( 'theblog_analysis_incomplete', __( 'Product analysis was missing an outline or primary keyword.', 'nexcove-seo-audit-content-assistant' ) );
 		}
 
 		return $brief;

@@ -35,7 +35,7 @@ final class MetaDescriptionChecker extends PostChecker {
 	 * {@inheritDoc}
 	 */
 	public function label(): string {
-		return __( 'Meta descriptions', 'seo-audit-content-ai-assistant' );
+		return __( 'Meta descriptions', 'nexcove-seo-audit-content-assistant' );
 	}
 
 	/**
@@ -49,7 +49,7 @@ final class MetaDescriptionChecker extends PostChecker {
 	 * {@inheritDoc}
 	 */
 	public function description(): string {
-		return __( 'Checks that every indexable page has a description that fits the search snippet and earns the click.', 'seo-audit-content-ai-assistant' );
+		return __( 'Checks that every indexable page has a description that fits the search snippet and earns the click.', 'nexcove-seo-audit-content-assistant' );
 	}
 
 	/**
@@ -91,8 +91,8 @@ final class MetaDescriptionChecker extends PostChecker {
 						array(
 							'code'        => 'meta.description.missing',
 							'severity'    => Issue::SEVERITY_HIGH,
-							'title'       => __( 'No meta description', 'seo-audit-content-ai-assistant' ),
-							'detail'      => __( 'Google will pull an arbitrary sentence from the page for the snippet. Writing one puts the pitch under your control.', 'seo-audit-content-ai-assistant' ),
+							'title'       => __( 'No meta description', 'nexcove-seo-audit-content-assistant' ),
+							'detail'      => __( 'Google will pull an arbitrary sentence from the page for the snippet. Writing one puts the pitch under your control.', 'nexcove-seo-audit-content-assistant' ),
 							'evidence'    => $evidence,
 							'fix_mode'    => Issue::MODE_ASSISTED,
 							'fix_payload' => array(
@@ -113,9 +113,9 @@ final class MetaDescriptionChecker extends PostChecker {
 						array(
 							'code'        => 'meta.description.unresolved_variable',
 							'severity'    => Issue::SEVERITY_HIGH,
-							'title'       => __( 'Description contains an unresolved variable', 'seo-audit-content-ai-assistant' ),
+							'title'       => __( 'Description contains an unresolved variable', 'nexcove-seo-audit-content-assistant' ),
 							/* translators: %s: the rendered description. */
-							'detail'      => sprintf( __( 'The description renders as "%s", publishing the raw placeholder.', 'seo-audit-content-ai-assistant' ), $description ),
+							'detail'      => sprintf( __( 'The description renders as "%s", publishing the raw placeholder.', 'nexcove-seo-audit-content-assistant' ), $description ),
 							'evidence'    => $evidence,
 							'fix_mode'    => Issue::MODE_ASSISTED,
 							'fix_payload' => array(
@@ -137,10 +137,10 @@ final class MetaDescriptionChecker extends PostChecker {
 					array(
 						'code'        => 'meta.description.too_long',
 						'severity'    => Issue::SEVERITY_LOW,
-						'title'       => __( 'Description will be truncated', 'seo-audit-content-ai-assistant' ),
+						'title'       => __( 'Description will be truncated', 'nexcove-seo-audit-content-assistant' ),
 						'detail'      => sprintf(
 							/* translators: 1: character count, 2: limit. */
-							__( 'The description is %1$d characters against a practical limit of %2$d, so the end will be cut off.', 'seo-audit-content-ai-assistant' ),
+							__( 'The description is %1$d characters against a practical limit of %2$d, so the end will be cut off.', 'nexcove-seo-audit-content-assistant' ),
 							$length,
 							$max
 						),
@@ -160,10 +160,10 @@ final class MetaDescriptionChecker extends PostChecker {
 					array(
 						'code'        => 'meta.description.too_short',
 						'severity'    => Issue::SEVERITY_LOW,
-						'title'       => __( 'Description is too short to be persuasive', 'seo-audit-content-ai-assistant' ),
+						'title'       => __( 'Description is too short to be persuasive', 'nexcove-seo-audit-content-assistant' ),
 						'detail'      => sprintf(
 							/* translators: 1: character count, 2: minimum. */
-							__( 'The description is %1$d characters against a target of at least %2$d.', 'seo-audit-content-ai-assistant' ),
+							__( 'The description is %1$d characters against a target of at least %2$d.', 'nexcove-seo-audit-content-assistant' ),
 							$length,
 							$min
 						),
@@ -188,8 +188,8 @@ final class MetaDescriptionChecker extends PostChecker {
 					array(
 						'code'        => 'meta.description.duplicates_content',
 						'severity'    => Issue::SEVERITY_LOW,
-						'title'       => __( 'Description is copied from the first lines of the page', 'seo-audit-content-ai-assistant' ),
-						'detail'      => __( 'The description repeats the opening sentence verbatim. Write a distinct summary that gives a reason to click.', 'seo-audit-content-ai-assistant' ),
+						'title'       => __( 'Description is copied from the first lines of the page', 'nexcove-seo-audit-content-assistant' ),
+						'detail'      => __( 'The description repeats the opening sentence verbatim. Write a distinct summary that gives a reason to click.', 'nexcove-seo-audit-content-assistant' ),
 						'evidence'    => $evidence,
 						'fix_mode'    => Issue::MODE_ASSISTED,
 						'fix_payload' => array( 'field' => 'description' ),

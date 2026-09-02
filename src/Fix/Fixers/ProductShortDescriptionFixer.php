@@ -33,7 +33,7 @@ final class ProductShortDescriptionFixer extends AbstractFixer {
 	 * {@inheritDoc}
 	 */
 	public function label(): string {
-		return __( 'Write product short description', 'seo-audit-content-ai-assistant' );
+		return __( 'Write product short description', 'nexcove-seo-audit-content-assistant' );
 	}
 
 	/**
@@ -41,7 +41,7 @@ final class ProductShortDescriptionFixer extends AbstractFixer {
 	 */
 	public function required_input(): array {
 		return array(
-			'value' => __( 'The short description shown beside the price. Lead with what the product is and who it is for.', 'seo-audit-content-ai-assistant' ),
+			'value' => __( 'The short description shown beside the price. Lead with what the product is and who it is for.', 'nexcove-seo-audit-content-assistant' ),
 		);
 	}
 
@@ -88,7 +88,7 @@ final class ProductShortDescriptionFixer extends AbstractFixer {
 				$value,
 				sprintf(
 					/* translators: %s: product name. */
-					__( 'Added a short description to "%s"', 'seo-audit-content-ai-assistant' ),
+					__( 'Added a short description to "%s"', 'nexcove-seo-audit-content-assistant' ),
 					$post->post_title
 				)
 			),

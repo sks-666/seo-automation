@@ -35,7 +35,7 @@ final class InlineImageAltFixer extends AbstractFixer {
 	 * {@inheritDoc}
 	 */
 	public function label(): string {
-		return __( 'Add alt text to inline images', 'seo-audit-content-ai-assistant' );
+		return __( 'Add alt text to inline images', 'nexcove-seo-audit-content-assistant' );
 	}
 
 	/**
@@ -43,7 +43,7 @@ final class InlineImageAltFixer extends AbstractFixer {
 	 */
 	public function required_input(): array {
 		return array(
-			'alts' => __( 'A map of image src to the alt text it should get. Sources not listed are left alone.', 'seo-audit-content-ai-assistant' ),
+			'alts' => __( 'A map of image src to the alt text it should get. Sources not listed are left alone.', 'nexcove-seo-audit-content-assistant' ),
 		);
 	}
 
@@ -116,7 +116,7 @@ final class InlineImageAltFixer extends AbstractFixer {
 				$updated,
 				sprintf(
 					/* translators: 1: number of images, 2: post title. */
-					__( 'Added alt text to %1$d images in "%2$s"', 'seo-audit-content-ai-assistant' ),
+					__( 'Added alt text to %1$d images in "%2$s"', 'nexcove-seo-audit-content-assistant' ),
 					count( $applied ),
 					$post->post_title
 				),

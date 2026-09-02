@@ -16,13 +16,13 @@ $article_lengths = CPT_Topic::article_lengths();
 $wc_active       = WooCommerce::is_active();
 ?>
 <div class="wrap theblog-wrap">
-	<h1><?php esc_html_e( 'Add Content', 'seo-audit-content-ai-assistant' ); ?></h1>
-	<p class="description"><?php esc_html_e( 'Generate from a topic/keyword, or ground an article in a WooCommerce product\'s own description. Autopilot picks queued items up automatically on schedule, or click "Generate Now" to run the pipeline immediately.', 'seo-audit-content-ai-assistant' ); ?></p>
+	<h1><?php esc_html_e( 'Add Content', 'nexcove-seo-audit-content-assistant' ); ?></h1>
+	<p class="description"><?php esc_html_e( 'Generate from a topic/keyword, or ground an article in a WooCommerce product\'s own description. Autopilot picks queued items up automatically on schedule, or click "Generate Now" to run the pipeline immediately.', 'nexcove-seo-audit-content-assistant' ); ?></p>
 
 	<div class="theblog-panel">
-		<h2><?php esc_html_e( 'Content Source', 'seo-audit-content-ai-assistant' ); ?></h2>
+		<h2><?php esc_html_e( 'Content Source', 'nexcove-seo-audit-content-assistant' ); ?></h2>
 
-		<div class="theblog-source-toggle" role="radiogroup" aria-label="<?php esc_attr_e( 'Content Source', 'seo-audit-content-ai-assistant' ); ?>">
+		<div class="theblog-source-toggle" role="radiogroup" aria-label="<?php esc_attr_e( 'Content Source', 'nexcove-seo-audit-content-assistant' ); ?>">
 			<label class="theblog-toggle-option">
 				<input type="radio" name="content_source_ui" value="topic" checked />
 				<?php echo esc_html( $content_sources['topic'] ); ?>
@@ -34,7 +34,7 @@ $wc_active       = WooCommerce::is_active();
 		</div>
 
 		<?php if ( ! $wc_active ) : ?>
-			<p class="description theblog-warning-text"><?php esc_html_e( 'WooCommerce is not active on this site, so product-based generation is unavailable. The Topic / Keyword workflow below is unaffected.', 'seo-audit-content-ai-assistant' ); ?></p>
+			<p class="description theblog-warning-text"><?php esc_html_e( 'WooCommerce is not active on this site, so product-based generation is unavailable. The Topic / Keyword workflow below is unaffected.', 'nexcove-seo-audit-content-assistant' ); ?></p>
 		<?php endif; ?>
 
 		<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" id="theblog-add-content-form">
@@ -45,34 +45,34 @@ $wc_active       = WooCommerce::is_active();
 			<!-- Topic / Keyword mode -->
 			<table class="form-table theblog-mode-panel" id="theblog-mode-topic">
 				<tr>
-					<th><label for="keyword"><?php esc_html_e( 'Topic / Keyword', 'seo-audit-content-ai-assistant' ); ?></label></th>
-					<td><input type="text" id="keyword" name="keyword" class="regular-text" placeholder="<?php esc_attr_e( 'e.g. best productivity apps for remote teams', 'seo-audit-content-ai-assistant' ); ?>" /></td>
+					<th><label for="keyword"><?php esc_html_e( 'Topic / Keyword', 'nexcove-seo-audit-content-assistant' ); ?></label></th>
+					<td><input type="text" id="keyword" name="keyword" class="regular-text" placeholder="<?php esc_attr_e( 'e.g. best productivity apps for remote teams', 'nexcove-seo-audit-content-assistant' ); ?>" /></td>
 				</tr>
 			</table>
 
 			<!-- WooCommerce Product mode -->
 			<table class="form-table theblog-mode-panel" id="theblog-mode-product" style="display:none;">
 				<tr>
-					<th><label for="theblog-product-url-input"><?php esc_html_e( 'Product URL', 'seo-audit-content-ai-assistant' ); ?></label></th>
+					<th><label for="theblog-product-url-input"><?php esc_html_e( 'Product URL', 'nexcove-seo-audit-content-assistant' ); ?></label></th>
 					<td>
 						<input type="url" id="theblog-product-url-input" class="regular-text" placeholder="https://example.com/product/example/" />
-						<button type="button" class="button" id="theblog-analyze-product"><?php esc_html_e( 'Analyze Product', 'seo-audit-content-ai-assistant' ); ?></button>
+						<button type="button" class="button" id="theblog-analyze-product"><?php esc_html_e( 'Analyze Product', 'nexcove-seo-audit-content-assistant' ); ?></button>
 						<span class="spinner theblog-inline-spinner" id="theblog-analyze-spinner"></span>
-						<p class="description"><?php esc_html_e( 'The product is resolved directly from WordPress/WooCommerce — no scraping.', 'seo-audit-content-ai-assistant' ); ?></p>
+						<p class="description"><?php esc_html_e( 'The product is resolved directly from WordPress/WooCommerce — no scraping.', 'nexcove-seo-audit-content-assistant' ); ?></p>
 						<div id="theblog-analyze-result" class="theblog-analyze-result" style="display:none;"></div>
 						<div id="theblog-analyze-error" class="theblog-analyze-error" style="display:none;"></div>
 					</td>
 				</tr>
 				<tr class="theblog-product-fields" style="display:none;">
-					<th><label for="theblog-primary-keyword"><?php esc_html_e( 'Primary Keyword', 'seo-audit-content-ai-assistant' ); ?></label></th>
+					<th><label for="theblog-primary-keyword"><?php esc_html_e( 'Primary Keyword', 'nexcove-seo-audit-content-assistant' ); ?></label></th>
 					<td>
 						<input type="text" id="theblog-primary-keyword" name="primary_keyword" class="regular-text" />
 						<p class="description" id="theblog-secondary-keywords-display"></p>
-						<p class="description"><?php esc_html_e( 'AI-suggested keyword candidates, not verified search-volume data. Edit if you know better.', 'seo-audit-content-ai-assistant' ); ?></p>
+						<p class="description"><?php esc_html_e( 'AI-suggested keyword candidates, not verified search-volume data. Edit if you know better.', 'nexcove-seo-audit-content-assistant' ); ?></p>
 					</td>
 				</tr>
 				<tr class="theblog-product-fields" style="display:none;">
-					<th><label for="content_type"><?php esc_html_e( 'Content Type', 'seo-audit-content-ai-assistant' ); ?></label></th>
+					<th><label for="content_type"><?php esc_html_e( 'Content Type', 'nexcove-seo-audit-content-assistant' ); ?></label></th>
 					<td>
 						<select name="content_type" id="content_type">
 							<?php foreach ( $content_types as $key => $label ) : ?>
@@ -82,7 +82,7 @@ $wc_active       = WooCommerce::is_active();
 					</td>
 				</tr>
 				<tr class="theblog-product-fields" style="display:none;">
-					<th><label for="article_length"><?php esc_html_e( 'Article Length', 'seo-audit-content-ai-assistant' ); ?></label></th>
+					<th><label for="article_length"><?php esc_html_e( 'Article Length', 'nexcove-seo-audit-content-assistant' ); ?></label></th>
 					<td>
 						<select name="article_length" id="article_length">
 							<?php foreach ( $article_lengths as $key => $label ) : ?>
@@ -92,13 +92,13 @@ $wc_active       = WooCommerce::is_active();
 					</td>
 				</tr>
 				<tr class="theblog-product-fields" style="display:none;">
-					<th><?php esc_html_e( 'SEO', 'seo-audit-content-ai-assistant' ); ?></th>
+					<th><?php esc_html_e( 'SEO', 'nexcove-seo-audit-content-assistant' ); ?></th>
 					<td>
-						<label><input type="checkbox" name="seo_rank_math" value="1" checked /> <?php esc_html_e( 'Optimize for Rank Math', 'seo-audit-content-ai-assistant' ); ?></label><br>
-						<label><input type="checkbox" name="seo_yoast" value="1" checked /> <?php esc_html_e( 'Optimize for Yoast SEO', 'seo-audit-content-ai-assistant' ); ?></label><br>
-						<label><input type="checkbox" name="seo_faq" value="1" checked /> <?php esc_html_e( 'Generate FAQ', 'seo-audit-content-ai-assistant' ); ?></label><br>
-						<label><input type="checkbox" name="seo_internal_links" value="1" checked /> <?php esc_html_e( 'Add internal links', 'seo-audit-content-ai-assistant' ); ?></label><br>
-						<label><input type="checkbox" name="seo_alt_text" value="1" checked /> <?php esc_html_e( 'Generate image alt text', 'seo-audit-content-ai-assistant' ); ?></label>
+						<label><input type="checkbox" name="seo_rank_math" value="1" checked /> <?php esc_html_e( 'Optimize for Rank Math', 'nexcove-seo-audit-content-assistant' ); ?></label><br>
+						<label><input type="checkbox" name="seo_yoast" value="1" checked /> <?php esc_html_e( 'Optimize for Yoast SEO', 'nexcove-seo-audit-content-assistant' ); ?></label><br>
+						<label><input type="checkbox" name="seo_faq" value="1" checked /> <?php esc_html_e( 'Generate FAQ', 'nexcove-seo-audit-content-assistant' ); ?></label><br>
+						<label><input type="checkbox" name="seo_internal_links" value="1" checked /> <?php esc_html_e( 'Add internal links', 'nexcove-seo-audit-content-assistant' ); ?></label><br>
+						<label><input type="checkbox" name="seo_alt_text" value="1" checked /> <?php esc_html_e( 'Generate image alt text', 'nexcove-seo-audit-content-assistant' ); ?></label>
 					</td>
 				</tr>
 				<input type="hidden" name="product_id" id="theblog-product-id" value="" />
@@ -109,34 +109,34 @@ $wc_active       = WooCommerce::is_active();
 
 			<table class="form-table">
 				<tr>
-					<th><label for="scheduled_at"><?php esc_html_e( 'Schedule For', 'seo-audit-content-ai-assistant' ); ?></label></th>
+					<th><label for="scheduled_at"><?php esc_html_e( 'Schedule For', 'nexcove-seo-audit-content-assistant' ); ?></label></th>
 					<td>
 						<input type="datetime-local" id="scheduled_at" name="scheduled_at" />
-						<p class="description"><?php esc_html_e( 'Leave blank to make it available immediately (still requires "Generate Now" or an autopilot run).', 'seo-audit-content-ai-assistant' ); ?></p>
+						<p class="description"><?php esc_html_e( 'Leave blank to make it available immediately (still requires "Generate Now" or an autopilot run).', 'nexcove-seo-audit-content-assistant' ); ?></p>
 					</td>
 				</tr>
 			</table>
 
-			<?php submit_button( __( 'Add to Queue', 'seo-audit-content-ai-assistant' ), 'primary', 'submit', true, array( 'id' => 'theblog-add-to-queue' ) ); ?>
+			<?php submit_button( __( 'Add to Queue', 'nexcove-seo-audit-content-assistant' ), 'primary', 'submit', true, array( 'id' => 'theblog-add-to-queue' ) ); ?>
 		</form>
 	</div>
 
 	<div class="theblog-panel">
-		<h2><?php esc_html_e( 'Queue', 'seo-audit-content-ai-assistant' ); ?></h2>
+		<h2><?php esc_html_e( 'Queue', 'nexcove-seo-audit-content-assistant' ); ?></h2>
 		<table class="widefat striped">
 			<thead>
 				<tr>
-					<th><?php esc_html_e( 'Topic / Product', 'seo-audit-content-ai-assistant' ); ?></th>
-					<th><?php esc_html_e( 'Source', 'seo-audit-content-ai-assistant' ); ?></th>
-					<th><?php esc_html_e( 'Primary Keyword', 'seo-audit-content-ai-assistant' ); ?></th>
-					<th><?php esc_html_e( 'Status', 'seo-audit-content-ai-assistant' ); ?></th>
-					<th><?php esc_html_e( 'Scheduled', 'seo-audit-content-ai-assistant' ); ?></th>
-					<th><?php esc_html_e( 'Actions', 'seo-audit-content-ai-assistant' ); ?></th>
+					<th><?php esc_html_e( 'Topic / Product', 'nexcove-seo-audit-content-assistant' ); ?></th>
+					<th><?php esc_html_e( 'Source', 'nexcove-seo-audit-content-assistant' ); ?></th>
+					<th><?php esc_html_e( 'Primary Keyword', 'nexcove-seo-audit-content-assistant' ); ?></th>
+					<th><?php esc_html_e( 'Status', 'nexcove-seo-audit-content-assistant' ); ?></th>
+					<th><?php esc_html_e( 'Scheduled', 'nexcove-seo-audit-content-assistant' ); ?></th>
+					<th><?php esc_html_e( 'Actions', 'nexcove-seo-audit-content-assistant' ); ?></th>
 				</tr>
 			</thead>
 			<tbody>
 				<?php if ( empty( $topics ) ) : ?>
-					<tr><td colspan="6"><?php esc_html_e( 'Nothing queued yet. Add a topic or product above.', 'seo-audit-content-ai-assistant' ); ?></td></tr>
+					<tr><td colspan="6"><?php esc_html_e( 'Nothing queued yet. Add a topic or product above.', 'nexcove-seo-audit-content-assistant' ); ?></td></tr>
 				<?php endif; ?>
 				<?php foreach ( $topics as $topic ) :
 					$status       = CPT_Topic::get_status( $topic->ID );
@@ -171,11 +171,11 @@ $wc_active       = WooCommerce::is_active();
 									<button type="submit" class="button button-secondary">
 										<?php
 										if ( 'processing' === $status ) {
-											esc_html_e( 'Retry (stuck)', 'seo-audit-content-ai-assistant' );
+											esc_html_e( 'Retry (stuck)', 'nexcove-seo-audit-content-assistant' );
 										} elseif ( $can_regenerate ) {
-											esc_html_e( 'Generate Again', 'seo-audit-content-ai-assistant' );
+											esc_html_e( 'Generate Again', 'nexcove-seo-audit-content-assistant' );
 										} else {
-											esc_html_e( 'Generate Now', 'seo-audit-content-ai-assistant' );
+											esc_html_e( 'Generate Now', 'nexcove-seo-audit-content-assistant' );
 										}
 										?>
 									</button>
@@ -183,14 +183,14 @@ $wc_active       = WooCommerce::is_active();
 							<?php endif; ?>
 
 							<?php if ( $post_id ) : ?>
-								<a class="button" href="<?php echo esc_url( get_edit_post_link( $post_id ) ); ?>"><?php esc_html_e( 'View Draft', 'seo-audit-content-ai-assistant' ); ?></a>
+								<a class="button" href="<?php echo esc_url( get_edit_post_link( $post_id ) ); ?>"><?php esc_html_e( 'View Draft', 'nexcove-seo-audit-content-assistant' ); ?></a>
 							<?php endif; ?>
 
-							<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" style="display:inline;" onsubmit="return confirm('<?php echo esc_js( __( 'Delete this queue entry?', 'seo-audit-content-ai-assistant' ) ); ?>');">
+							<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" style="display:inline;" onsubmit="return confirm('<?php echo esc_js( __( 'Delete this queue entry?', 'nexcove-seo-audit-content-assistant' ) ); ?>');">
 								<?php wp_nonce_field( 'theblog_delete_topic_' . $topic->ID ); ?>
 								<input type="hidden" name="action" value="theblog_delete_topic" />
 								<input type="hidden" name="topic_id" value="<?php echo (int) $topic->ID; ?>" />
-								<button type="submit" class="button-link-delete theblog-link-delete"><?php esc_html_e( 'Delete', 'seo-audit-content-ai-assistant' ); ?></button>
+								<button type="submit" class="button-link-delete theblog-link-delete"><?php esc_html_e( 'Delete', 'nexcove-seo-audit-content-assistant' ); ?></button>
 							</form>
 						</td>
 					</tr>

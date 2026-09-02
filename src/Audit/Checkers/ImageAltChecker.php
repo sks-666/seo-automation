@@ -41,7 +41,7 @@ final class ImageAltChecker extends PostChecker {
 	 * {@inheritDoc}
 	 */
 	public function label(): string {
-		return __( 'Image alt text', 'seo-audit-content-ai-assistant' );
+		return __( 'Image alt text', 'nexcove-seo-audit-content-assistant' );
 	}
 
 	/**
@@ -55,7 +55,7 @@ final class ImageAltChecker extends PostChecker {
 	 * {@inheritDoc}
 	 */
 	public function description(): string {
-		return __( 'Finds images that are invisible to search engines and screen readers because they have no meaningful alt text.', 'seo-audit-content-ai-assistant' );
+		return __( 'Finds images that are invisible to search engines and screen readers because they have no meaningful alt text.', 'nexcove-seo-audit-content-assistant' );
 	}
 
 	/**
@@ -124,10 +124,10 @@ final class ImageAltChecker extends PostChecker {
 					array(
 						'code'     => 'image.alt.missing_inline',
 						'severity' => Issue::SEVERITY_MEDIUM,
-						'title'    => __( 'Inline images with no alt attribute', 'seo-audit-content-ai-assistant' ),
+						'title'    => __( 'Inline images with no alt attribute', 'nexcove-seo-audit-content-assistant' ),
 						'detail'   => sprintf(
 							/* translators: %d: number of images. */
-							__( '%d images in this page\'s content have no alt attribute at all and are not in the media library, so the alt has to be written into the content itself.', 'seo-audit-content-ai-assistant' ),
+							__( '%d images in this page\'s content have no alt attribute at all and are not in the media library, so the alt has to be written into the content itself.', 'nexcove-seo-audit-content-assistant' ),
 							count( $missing )
 						),
 						'evidence' => array_merge(
@@ -152,8 +152,8 @@ final class ImageAltChecker extends PostChecker {
 					array(
 						'code'     => 'image.alt.unhelpful_inline',
 						'severity' => Issue::SEVERITY_LOW,
-						'title'    => __( 'Inline images with placeholder alt text', 'seo-audit-content-ai-assistant' ),
-						'detail'   => __( 'Alt values like "image" or "DSC_0042" describe nothing. Replace them with what the image actually shows.', 'seo-audit-content-ai-assistant' ),
+						'title'    => __( 'Inline images with placeholder alt text', 'nexcove-seo-audit-content-assistant' ),
+						'detail'   => __( 'Alt values like "image" or "DSC_0042" describe nothing. Replace them with what the image actually shows.', 'nexcove-seo-audit-content-assistant' ),
 						'evidence' => array_merge(
 							$this->post_context( $post ),
 							array(
@@ -214,11 +214,11 @@ final class ImageAltChecker extends PostChecker {
 						'code'     => $is_featured ? 'image.alt.missing_featured' : 'image.alt.missing',
 						'severity' => $is_featured ? Issue::SEVERITY_MEDIUM : Issue::SEVERITY_LOW,
 						'title'    => $is_featured
-							? __( 'Featured image has no alt text', 'seo-audit-content-ai-assistant' )
-							: __( 'Image has no alt text', 'seo-audit-content-ai-assistant' ),
+							? __( 'Featured image has no alt text', 'nexcove-seo-audit-content-assistant' )
+							: __( 'Image has no alt text', 'nexcove-seo-audit-content-assistant' ),
 						'detail'   => sprintf(
 							/* translators: 1: filename, 2: post title. */
-							__( '"%1$s" (used on "%2$s") has an empty alt attribute in the media library. It contributes nothing to image search and is silent to screen readers.', 'seo-audit-content-ai-assistant' ),
+							__( '"%1$s" (used on "%2$s") has an empty alt attribute in the media library. It contributes nothing to image search and is silent to screen readers.', 'nexcove-seo-audit-content-assistant' ),
 							$filename,
 							$post->post_title
 						),
@@ -235,10 +235,10 @@ final class ImageAltChecker extends PostChecker {
 					array(
 						'code'     => 'image.alt.unhelpful',
 						'severity' => Issue::SEVERITY_LOW,
-						'title'    => __( 'Alt text does not describe the image', 'seo-audit-content-ai-assistant' ),
+						'title'    => __( 'Alt text does not describe the image', 'nexcove-seo-audit-content-assistant' ),
 						'detail'   => sprintf(
 							/* translators: 1: current alt text, 2: filename. */
-							__( 'The alt text for "%2$s" is "%1$s", which carries no information about the image.', 'seo-audit-content-ai-assistant' ),
+							__( 'The alt text for "%2$s" is "%1$s", which carries no information about the image.', 'nexcove-seo-audit-content-assistant' ),
 							$alt,
 							$filename
 						),

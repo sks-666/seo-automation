@@ -36,7 +36,7 @@ final class ProductSeoChecker extends PostChecker {
 	 * {@inheritDoc}
 	 */
 	public function label(): string {
-		return __( 'Product SEO', 'seo-audit-content-ai-assistant' );
+		return __( 'Product SEO', 'nexcove-seo-audit-content-assistant' );
 	}
 
 	/**
@@ -50,7 +50,7 @@ final class ProductSeoChecker extends PostChecker {
 	 * {@inheritDoc}
 	 */
 	public function description(): string {
-		return __( 'Checks WooCommerce products for the fields that rich results and shopping surfaces require.', 'seo-audit-content-ai-assistant' );
+		return __( 'Checks WooCommerce products for the fields that rich results and shopping surfaces require.', 'nexcove-seo-audit-content-assistant' );
 	}
 
 	/**
@@ -106,8 +106,8 @@ final class ProductSeoChecker extends PostChecker {
 					array(
 						'code'        => 'product.short_description.missing',
 						'severity'    => Issue::SEVERITY_MEDIUM,
-						'title'       => __( 'Product has no short description', 'seo-audit-content-ai-assistant' ),
-						'detail'      => __( 'The short description is what appears beside the price and is the natural source for the meta description. Without it the product page opens with nothing but attributes.', 'seo-audit-content-ai-assistant' ),
+						'title'       => __( 'Product has no short description', 'nexcove-seo-audit-content-assistant' ),
+						'detail'      => __( 'The short description is what appears beside the price and is the natural source for the meta description. Without it the product page opens with nothing but attributes.', 'nexcove-seo-audit-content-assistant' ),
 						'evidence'    => $evidence,
 						'fixer'       => 'product_short_description',
 						'fix_mode'    => Issue::MODE_ASSISTED,
@@ -124,8 +124,8 @@ final class ProductSeoChecker extends PostChecker {
 					array(
 						'code'     => 'product.description.thin',
 						'severity' => Issue::SEVERITY_MEDIUM,
-						'title'    => __( 'Product description is very thin', 'seo-audit-content-ai-assistant' ),
-						'detail'   => __( 'Under 50 words of description gives search engines almost nothing to distinguish this product from every other listing of the same item.', 'seo-audit-content-ai-assistant' ),
+						'title'    => __( 'Product description is very thin', 'nexcove-seo-audit-content-assistant' ),
+						'detail'   => __( 'Under 50 words of description gives search engines almost nothing to distinguish this product from every other listing of the same item.', 'nexcove-seo-audit-content-assistant' ),
 						'evidence' => array_merge( $evidence, array( 'word_count' => Text::word_count( (string) $post->post_content ) ) ),
 						'fix_mode' => Issue::MODE_MANUAL,
 					)
@@ -140,8 +140,8 @@ final class ProductSeoChecker extends PostChecker {
 					array(
 						'code'     => 'product.image.missing',
 						'severity' => Issue::SEVERITY_HIGH,
-						'title'    => __( 'Product has no main image', 'seo-audit-content-ai-assistant' ),
-						'detail'   => __( 'Product rich results require an image. Without one this product cannot appear as a product snippet or in shopping surfaces.', 'seo-audit-content-ai-assistant' ),
+						'title'    => __( 'Product has no main image', 'nexcove-seo-audit-content-assistant' ),
+						'detail'   => __( 'Product rich results require an image. Without one this product cannot appear as a product snippet or in shopping surfaces.', 'nexcove-seo-audit-content-assistant' ),
 						'evidence' => $evidence,
 						'fix_mode' => Issue::MODE_MANUAL,
 					)
@@ -156,8 +156,8 @@ final class ProductSeoChecker extends PostChecker {
 					array(
 						'code'     => 'product.sku.missing',
 						'severity' => Issue::SEVERITY_MEDIUM,
-						'title'    => __( 'Product has no SKU', 'seo-audit-content-ai-assistant' ),
-						'detail'   => __( 'The SKU populates the product identifier in structured data and is how feeds match this item across channels.', 'seo-audit-content-ai-assistant' ),
+						'title'    => __( 'Product has no SKU', 'nexcove-seo-audit-content-assistant' ),
+						'detail'   => __( 'The SKU populates the product identifier in structured data and is how feeds match this item across channels.', 'nexcove-seo-audit-content-assistant' ),
 						'evidence' => $evidence,
 						'fix_mode' => Issue::MODE_MANUAL,
 					)
@@ -174,8 +174,8 @@ final class ProductSeoChecker extends PostChecker {
 					array(
 						'code'     => 'product.price.missing',
 						'severity' => Issue::SEVERITY_HIGH,
-						'title'    => __( 'Product has no price', 'seo-audit-content-ai-assistant' ),
-						'detail'   => __( 'Product structured data requires an offer with a price. A priceless product produces invalid Product schema and is dropped from rich results.', 'seo-audit-content-ai-assistant' ),
+						'title'    => __( 'Product has no price', 'nexcove-seo-audit-content-assistant' ),
+						'detail'   => __( 'Product structured data requires an offer with a price. A priceless product produces invalid Product schema and is dropped from rich results.', 'nexcove-seo-audit-content-assistant' ),
 						'evidence' => $evidence,
 						'fix_mode' => Issue::MODE_MANUAL,
 					)
@@ -190,8 +190,8 @@ final class ProductSeoChecker extends PostChecker {
 					array(
 						'code'     => 'product.out_of_stock_indexable',
 						'severity' => Issue::SEVERITY_LOW,
-						'title'    => __( 'Out-of-stock product is indexable', 'seo-audit-content-ai-assistant' ),
-						'detail'   => __( 'This is fine if the product is coming back — keep the URL and the schema availability accurate. If it is gone for good, redirect it rather than leaving a dead-end result in the index.', 'seo-audit-content-ai-assistant' ),
+						'title'    => __( 'Out-of-stock product is indexable', 'nexcove-seo-audit-content-assistant' ),
+						'detail'   => __( 'This is fine if the product is coming back — keep the URL and the schema availability accurate. If it is gone for good, redirect it rather than leaving a dead-end result in the index.', 'nexcove-seo-audit-content-assistant' ),
 						'evidence' => $evidence,
 						'fix_mode' => Issue::MODE_MANUAL,
 					)
@@ -207,8 +207,8 @@ final class ProductSeoChecker extends PostChecker {
 					array(
 						'code'     => 'product.category.missing',
 						'severity' => Issue::SEVERITY_MEDIUM,
-						'title'    => __( 'Product is not in any category', 'seo-audit-content-ai-assistant' ),
-						'detail'   => __( 'An uncategorised product is reachable only from search and the shop listing. It receives no internal links from category pages, which is where most product authority comes from.', 'seo-audit-content-ai-assistant' ),
+						'title'    => __( 'Product is not in any category', 'nexcove-seo-audit-content-assistant' ),
+						'detail'   => __( 'An uncategorised product is reachable only from search and the shop listing. It receives no internal links from category pages, which is where most product authority comes from.', 'nexcove-seo-audit-content-assistant' ),
 						'evidence' => $evidence,
 						'fix_mode' => Issue::MODE_MANUAL,
 					)
@@ -257,8 +257,8 @@ final class ProductSeoChecker extends PostChecker {
 					array(
 						'code'     => 'product.brand.missing',
 						'severity' => Issue::SEVERITY_LOW,
-						'title'    => __( 'Product has no brand', 'seo-audit-content-ai-assistant' ),
-						'detail'   => __( 'Brand is a recommended property of Product structured data and is used to match listings across shopping surfaces.', 'seo-audit-content-ai-assistant' ),
+						'title'    => __( 'Product has no brand', 'nexcove-seo-audit-content-assistant' ),
+						'detail'   => __( 'Brand is a recommended property of Product structured data and is used to match listings across shopping surfaces.', 'nexcove-seo-audit-content-assistant' ),
 						'evidence' => $evidence,
 						'fix_mode' => Issue::MODE_MANUAL,
 					)
@@ -283,8 +283,8 @@ final class ProductSeoChecker extends PostChecker {
 					array(
 						'code'     => 'product.gtin.missing',
 						'severity' => Issue::SEVERITY_INFO,
-						'title'    => __( 'Product has no GTIN, EAN or MPN', 'seo-audit-content-ai-assistant' ),
-						'detail'   => __( 'A global identifier lets shopping surfaces match this listing to the same product elsewhere. Optional, but it is what unlocks price comparison placement.', 'seo-audit-content-ai-assistant' ),
+						'title'    => __( 'Product has no GTIN, EAN or MPN', 'nexcove-seo-audit-content-assistant' ),
+						'detail'   => __( 'A global identifier lets shopping surfaces match this listing to the same product elsewhere. Optional, but it is what unlocks price comparison placement.', 'nexcove-seo-audit-content-assistant' ),
 						'evidence' => $evidence,
 						'fix_mode' => Issue::MODE_MANUAL,
 					)

@@ -39,7 +39,7 @@ abstract class MetaFieldFixer extends AbstractFixer {
 		return array(
 			'value' => sprintf(
 				/* translators: 1: field name, 2: maximum length. */
-				__( 'The %1$s to write, at most %2$d characters. When fixing several pages at once, pass "values" as a map of post ID to string instead.', 'seo-audit-content-ai-assistant' ),
+				__( 'The %1$s to write, at most %2$d characters. When fixing several pages at once, pass "values" as a map of post ID to string instead.', 'nexcove-seo-audit-content-assistant' ),
 				$this->field(),
 				$this->max_length()
 			),
@@ -112,7 +112,7 @@ abstract class MetaFieldFixer extends AbstractFixer {
 				$value,
 				sprintf(
 					/* translators: 1: field, 2: post title. */
-					__( 'Set the %1$s on "%2$s"', 'seo-audit-content-ai-assistant' ),
+					__( 'Set the %1$s on "%2$s"', 'nexcove-seo-audit-content-assistant' ),
 					$this->field(),
 					$post->post_title
 				)

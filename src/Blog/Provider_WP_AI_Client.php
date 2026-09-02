@@ -49,7 +49,7 @@ class Provider_WP_AI_Client implements AI_Provider_Interface {
 	}
 
 	public function get_name() {
-		return __( 'WordPress AI (core)', 'seo-audit-content-ai-assistant' );
+		return __( 'WordPress AI (core)', 'nexcove-seo-audit-content-assistant' );
 	}
 
 	/**
@@ -75,7 +75,7 @@ class Provider_WP_AI_Client implements AI_Provider_Interface {
 		if ( ! $builder ) {
 			return new \WP_Error(
 				'theblog_not_configured',
-				__( 'This site does not have the WordPress AI Client (WordPress 6.9 or earlier). Choose a direct AI provider instead.', 'seo-audit-content-ai-assistant' )
+				__( 'This site does not have the WordPress AI Client (WordPress 6.9 or earlier). Choose a direct AI provider instead.', 'nexcove-seo-audit-content-assistant' )
 			);
 		}
 
@@ -96,7 +96,7 @@ class Provider_WP_AI_Client implements AI_Provider_Interface {
 		if ( ! $builder->is_supported_for_text_generation() ) {
 			return new \WP_Error(
 				'theblog_not_configured',
-				__( 'No AI provider is connected in WordPress. Connect one under Settings -> Connectors, then try again.', 'seo-audit-content-ai-assistant' )
+				__( 'No AI provider is connected in WordPress. Connect one under Settings -> Connectors, then try again.', 'nexcove-seo-audit-content-assistant' )
 			);
 		}
 
@@ -109,7 +109,7 @@ class Provider_WP_AI_Client implements AI_Provider_Interface {
 		$text = (string) $text;
 
 		if ( '' === trim( $text ) ) {
-			return new \WP_Error( 'theblog_empty_response', __( 'The AI provider returned an empty response.', 'seo-audit-content-ai-assistant' ) );
+			return new \WP_Error( 'theblog_empty_response', __( 'The AI provider returned an empty response.', 'nexcove-seo-audit-content-assistant' ) );
 		}
 
 		return $text;
@@ -132,14 +132,14 @@ class Provider_WP_AI_Client implements AI_Provider_Interface {
 		if ( ! $builder ) {
 			return new \WP_Error(
 				'theblog_not_configured',
-				__( 'This site does not have the WordPress AI Client (WordPress 6.9 or earlier). Choose a direct image provider instead.', 'seo-audit-content-ai-assistant' )
+				__( 'This site does not have the WordPress AI Client (WordPress 6.9 or earlier). Choose a direct image provider instead.', 'nexcove-seo-audit-content-assistant' )
 			);
 		}
 
 		if ( ! $builder->is_supported_for_image_generation() ) {
 			return new \WP_Error(
 				'theblog_unsupported',
-				__( 'The AI provider connected in WordPress cannot generate images.', 'seo-audit-content-ai-assistant' )
+				__( 'The AI provider connected in WordPress cannot generate images.', 'nexcove-seo-audit-content-assistant' )
 			);
 		}
 
@@ -150,7 +150,7 @@ class Provider_WP_AI_Client implements AI_Provider_Interface {
 		}
 
 		if ( ! is_object( $file ) ) {
-			return new \WP_Error( 'theblog_empty_response', __( 'The AI provider returned no image.', 'seo-audit-content-ai-assistant' ) );
+			return new \WP_Error( 'theblog_empty_response', __( 'The AI provider returned no image.', 'nexcove-seo-audit-content-assistant' ) );
 		}
 
 		if ( method_exists( $file, 'isRemote' ) && $file->isRemote() ) {
@@ -177,13 +177,13 @@ class Provider_WP_AI_Client implements AI_Provider_Interface {
 		$base64 = method_exists( $file, 'getBase64Data' ) ? $file->getBase64Data() : null;
 
 		if ( empty( $base64 ) ) {
-			return new \WP_Error( 'theblog_empty_response', __( 'The AI provider returned no usable image data.', 'seo-audit-content-ai-assistant' ) );
+			return new \WP_Error( 'theblog_empty_response', __( 'The AI provider returned no usable image data.', 'nexcove-seo-audit-content-assistant' ) );
 		}
 
 		$binary = base64_decode( $base64, true ); // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.obfuscation_base64_decode -- Decoding the image bytes the AI Client handed back inline, not obfuscated code.
 
 		if ( false === $binary || '' === $binary ) {
-			return new \WP_Error( 'theblog_empty_response', __( 'The AI provider returned an image that could not be decoded.', 'seo-audit-content-ai-assistant' ) );
+			return new \WP_Error( 'theblog_empty_response', __( 'The AI provider returned an image that could not be decoded.', 'nexcove-seo-audit-content-assistant' ) );
 		}
 
 		$mime = method_exists( $file, 'getMimeType' ) ? (string) $file->getMimeType() : 'image/png';
@@ -200,7 +200,7 @@ class Provider_WP_AI_Client implements AI_Provider_Interface {
 				'theblog_unsupported',
 				sprintf(
 					/* translators: %s: MIME type returned by the AI provider. */
-					__( 'The AI provider returned an unsupported image type (%s).', 'seo-audit-content-ai-assistant' ),
+					__( 'The AI provider returned an unsupported image type (%s).', 'nexcove-seo-audit-content-assistant' ),
 					$mime
 				)
 			);
@@ -211,13 +211,13 @@ class Provider_WP_AI_Client implements AI_Provider_Interface {
 		global $wp_filesystem;
 
 		if ( ! WP_Filesystem() || ! $wp_filesystem ) {
-			return new \WP_Error( 'theblog_filesystem', __( 'The generated image could not be saved: WordPress has no direct filesystem access.', 'seo-audit-content-ai-assistant' ) );
+			return new \WP_Error( 'theblog_filesystem', __( 'The generated image could not be saved: WordPress has no direct filesystem access.', 'nexcove-seo-audit-content-assistant' ) );
 		}
 
 		$path = trailingslashit( get_temp_dir() ) . 'seo-generated-image-' . wp_generate_password( 12, false ) . '.' . $extensions[ $mime ];
 
 		if ( ! $wp_filesystem->put_contents( $path, $binary, FS_CHMOD_FILE ) ) {
-			return new \WP_Error( 'theblog_filesystem', __( 'The generated image could not be written to the temporary directory.', 'seo-audit-content-ai-assistant' ) );
+			return new \WP_Error( 'theblog_filesystem', __( 'The generated image could not be written to the temporary directory.', 'nexcove-seo-audit-content-assistant' ) );
 		}
 
 		return $path;

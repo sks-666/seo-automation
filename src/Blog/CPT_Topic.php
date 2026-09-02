@@ -22,7 +22,7 @@ class CPT_Topic {
 		register_post_type(
 			self::POST_TYPE,
 			array(
-				'label'           => __( 'Topics', 'seo-audit-content-ai-assistant' ),
+				'label'           => __( 'Topics', 'nexcove-seo-audit-content-assistant' ),
 				'public'          => false,
 				'show_ui'         => false, // we render our own list screen
 				'show_in_menu'    => false,
@@ -38,12 +38,12 @@ class CPT_Topic {
 	 */
 	public static function statuses() {
 		return array(
-			'queued'     => __( 'Queued', 'seo-audit-content-ai-assistant' ),
-			'processing' => __( 'Processing', 'seo-audit-content-ai-assistant' ),
-			'ready'      => __( 'Ready for Review', 'seo-audit-content-ai-assistant' ),
-			'published'  => __( 'Published', 'seo-audit-content-ai-assistant' ),
-			'rejected'   => __( 'Rejected', 'seo-audit-content-ai-assistant' ),
-			'error'      => __( 'Error', 'seo-audit-content-ai-assistant' ),
+			'queued'     => __( 'Queued', 'nexcove-seo-audit-content-assistant' ),
+			'processing' => __( 'Processing', 'nexcove-seo-audit-content-assistant' ),
+			'ready'      => __( 'Ready for Review', 'nexcove-seo-audit-content-assistant' ),
+			'published'  => __( 'Published', 'nexcove-seo-audit-content-assistant' ),
+			'rejected'   => __( 'Rejected', 'nexcove-seo-audit-content-assistant' ),
+			'error'      => __( 'Error', 'nexcove-seo-audit-content-assistant' ),
 		);
 	}
 
@@ -53,8 +53,8 @@ class CPT_Topic {
 	 */
 	public static function content_sources() {
 		return array(
-			'topic'       => __( 'Topic / Keyword', 'seo-audit-content-ai-assistant' ),
-			'product_url' => __( 'WooCommerce Product', 'seo-audit-content-ai-assistant' ),
+			'topic'       => __( 'Topic / Keyword', 'nexcove-seo-audit-content-assistant' ),
+			'product_url' => __( 'WooCommerce Product', 'nexcove-seo-audit-content-assistant' ),
 		);
 	}
 
@@ -65,16 +65,16 @@ class CPT_Topic {
 	 */
 	public static function content_types() {
 		return array(
-			'seo_blog_article' => __( 'SEO Blog Article', 'seo-audit-content-ai-assistant' ),
+			'seo_blog_article' => __( 'SEO Blog Article', 'nexcove-seo-audit-content-assistant' ),
 		);
 	}
 
 	public static function article_lengths() {
 		return array(
-			'800-1200'   => __( '800–1200 words', 'seo-audit-content-ai-assistant' ),
-			'1200-1800'  => __( '1200–1800 words', 'seo-audit-content-ai-assistant' ),
-			'1500-2000'  => __( '1500–2000 words', 'seo-audit-content-ai-assistant' ),
-			'2000-2800'  => __( '2000–2800 words', 'seo-audit-content-ai-assistant' ),
+			'800-1200'   => __( '800–1200 words', 'nexcove-seo-audit-content-assistant' ),
+			'1200-1800'  => __( '1200–1800 words', 'nexcove-seo-audit-content-assistant' ),
+			'1500-2000'  => __( '1500–2000 words', 'nexcove-seo-audit-content-assistant' ),
+			'2000-2800'  => __( '2000–2800 words', 'nexcove-seo-audit-content-assistant' ),
 		);
 	}
 

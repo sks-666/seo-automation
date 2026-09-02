@@ -38,7 +38,7 @@ final class CategorySeoChecker extends TermChecker {
 	 * {@inheritDoc}
 	 */
 	public function label(): string {
-		return __( 'Category and archive SEO', 'seo-audit-content-ai-assistant' );
+		return __( 'Category and archive SEO', 'nexcove-seo-audit-content-assistant' );
 	}
 
 	/**
@@ -52,7 +52,7 @@ final class CategorySeoChecker extends TermChecker {
 	 * {@inheritDoc}
 	 */
 	public function description(): string {
-		return __( 'Checks category and product-category archives for titles, descriptions, on-page copy and index-worthiness.', 'seo-audit-content-ai-assistant' );
+		return __( 'Checks category and product-category archives for titles, descriptions, on-page copy and index-worthiness.', 'nexcove-seo-audit-content-assistant' );
 	}
 
 	/**
@@ -80,9 +80,9 @@ final class CategorySeoChecker extends TermChecker {
 						array(
 							'code'        => 'category.empty',
 							'severity'    => Issue::SEVERITY_MEDIUM,
-							'title'       => __( 'Empty archive is indexable', 'seo-audit-content-ai-assistant' ),
+							'title'       => __( 'Empty archive is indexable', 'nexcove-seo-audit-content-assistant' ),
 							/* translators: %s: term name. */
-							'detail'      => sprintf( __( 'The "%s" archive contains nothing. An indexable empty listing is a soft 404 — either populate it, merge it, or exclude it from the index.', 'seo-audit-content-ai-assistant' ), $term->name ),
+							'detail'      => sprintf( __( 'The "%s" archive contains nothing. An indexable empty listing is a soft 404 — either populate it, merge it, or exclude it from the index.', 'nexcove-seo-audit-content-assistant' ), $term->name ),
 							'evidence'    => $evidence,
 							'fixer'       => 'term_robots',
 							'fix_mode'    => Issue::MODE_AUTO,
@@ -115,9 +115,9 @@ final class CategorySeoChecker extends TermChecker {
 					array(
 						'code'        => 'category.description.missing',
 						'severity'    => Issue::SEVERITY_MEDIUM,
-						'title'       => __( 'Archive has no meta description', 'seo-audit-content-ai-assistant' ),
+						'title'       => __( 'Archive has no meta description', 'nexcove-seo-audit-content-assistant' ),
 						/* translators: %s: term name. */
-						'detail'      => sprintf( __( 'The "%s" archive has no description, so its search snippet is whatever Google assembles from the listing.', 'seo-audit-content-ai-assistant' ), $term->name ),
+						'detail'      => sprintf( __( 'The "%s" archive has no description, so its search snippet is whatever Google assembles from the listing.', 'nexcove-seo-audit-content-assistant' ), $term->name ),
 						'evidence'    => $evidence,
 						'fixer'       => 'term_meta',
 						'fix_mode'    => Issue::MODE_ASSISTED,
@@ -138,8 +138,8 @@ final class CategorySeoChecker extends TermChecker {
 					array(
 						'code'        => 'category.title.missing',
 						'severity'    => Issue::SEVERITY_HIGH,
-						'title'       => __( 'Archive has no title tag', 'seo-audit-content-ai-assistant' ),
-						'detail'      => __( 'This archive produces an empty title tag.', 'seo-audit-content-ai-assistant' ),
+						'title'       => __( 'Archive has no title tag', 'nexcove-seo-audit-content-assistant' ),
+						'detail'      => __( 'This archive produces an empty title tag.', 'nexcove-seo-audit-content-assistant' ),
 						'evidence'    => $evidence,
 						'fixer'       => 'term_meta',
 						'fix_mode'    => Issue::MODE_ASSISTED,
@@ -162,10 +162,10 @@ final class CategorySeoChecker extends TermChecker {
 					array(
 						'code'        => 'category.copy.missing',
 						'severity'    => Issue::SEVERITY_MEDIUM,
-						'title'       => __( 'Archive has no introductory copy', 'seo-audit-content-ai-assistant' ),
+						'title'       => __( 'Archive has no introductory copy', 'nexcove-seo-audit-content-assistant' ),
 						'detail'      => sprintf(
 							/* translators: 1: term name, 2: item count. */
-							__( 'The "%1$s" archive lists %2$d items but has no description text of its own. Category pages compete for high-intent queries and need copy to do it.', 'seo-audit-content-ai-assistant' ),
+							__( 'The "%1$s" archive lists %2$d items but has no description text of its own. Category pages compete for high-intent queries and need copy to do it.', 'nexcove-seo-audit-content-assistant' ),
 							$term->name,
 							(int) $term->count
 						),
@@ -185,9 +185,9 @@ final class CategorySeoChecker extends TermChecker {
 					array(
 						'code'     => 'category.single_item',
 						'severity' => Issue::SEVERITY_LOW,
-						'title'    => __( 'Archive contains a single item', 'seo-audit-content-ai-assistant' ),
+						'title'    => __( 'Archive contains a single item', 'nexcove-seo-audit-content-assistant' ),
 						/* translators: %s: term name. */
-						'detail'   => sprintf( __( 'The "%s" archive holds one item, so it duplicates that item\'s page with none of its detail. Consider merging it into a broader category.', 'seo-audit-content-ai-assistant' ), $term->name ),
+						'detail'   => sprintf( __( 'The "%s" archive holds one item, so it duplicates that item\'s page with none of its detail. Consider merging it into a broader category.', 'nexcove-seo-audit-content-assistant' ), $term->name ),
 						'evidence' => $evidence,
 						'fix_mode' => Issue::MODE_MANUAL,
 					)
@@ -203,10 +203,10 @@ final class CategorySeoChecker extends TermChecker {
 					array(
 						'code'        => 'category.thin_tag',
 						'severity'    => Issue::SEVERITY_LOW,
-						'title'       => __( 'Thin tag archive', 'seo-audit-content-ai-assistant' ),
+						'title'       => __( 'Thin tag archive', 'nexcove-seo-audit-content-assistant' ),
 						'detail'      => sprintf(
 							/* translators: 1: term name, 2: count. */
-							__( 'The tag "%1$s" covers only %2$d items. Tags used once or twice create indexable pages with nothing on them.', 'seo-audit-content-ai-assistant' ),
+							__( 'The tag "%1$s" covers only %2$d items. Tags used once or twice create indexable pages with nothing on them.', 'nexcove-seo-audit-content-assistant' ),
 							$term->name,
 							(int) $term->count
 						),
@@ -234,10 +234,10 @@ final class CategorySeoChecker extends TermChecker {
 						array(
 							'code'     => 'category.title.missing_focus_keyword',
 							'severity' => Issue::SEVERITY_LOW,
-							'title'    => __( 'Archive title does not contain its focus keyword', 'seo-audit-content-ai-assistant' ),
+							'title'    => __( 'Archive title does not contain its focus keyword', 'nexcove-seo-audit-content-assistant' ),
 							'detail'   => sprintf(
 								/* translators: 1: keyword, 2: title. */
-								__( 'The focus keyword is "%1$s" but the archive title reads "%2$s".', 'seo-audit-content-ai-assistant' ),
+								__( 'The focus keyword is "%1$s" but the archive title reads "%2$s".', 'nexcove-seo-audit-content-assistant' ),
 								$primary,
 								$title
 							),

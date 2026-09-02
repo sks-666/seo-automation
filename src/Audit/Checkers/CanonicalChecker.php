@@ -38,7 +38,7 @@ final class CanonicalChecker extends PostChecker {
 	 * {@inheritDoc}
 	 */
 	public function label(): string {
-		return __( 'Canonical URLs', 'seo-audit-content-ai-assistant' );
+		return __( 'Canonical URLs', 'nexcove-seo-audit-content-assistant' );
 	}
 
 	/**
@@ -52,7 +52,7 @@ final class CanonicalChecker extends PostChecker {
 	 * {@inheritDoc}
 	 */
 	public function description(): string {
-		return __( 'Examines custom canonical URLs for the mistakes that silently de-index a page.', 'seo-audit-content-ai-assistant' );
+		return __( 'Examines custom canonical URLs for the mistakes that silently de-index a page.', 'nexcove-seo-audit-content-assistant' );
 	}
 
 	/**
@@ -92,9 +92,9 @@ final class CanonicalChecker extends PostChecker {
 					array(
 						'code'        => 'canonical.relative',
 						'severity'    => Issue::SEVERITY_HIGH,
-						'title'       => __( 'Canonical URL is not absolute', 'seo-audit-content-ai-assistant' ),
+						'title'       => __( 'Canonical URL is not absolute', 'nexcove-seo-audit-content-assistant' ),
 						/* translators: %s: the stored canonical value. */
-						'detail'      => sprintf( __( 'The canonical is set to "%s". Canonical URLs must be absolute, including the scheme and host, or they are ignored.', 'seo-audit-content-ai-assistant' ), $canonical ),
+						'detail'      => sprintf( __( 'The canonical is set to "%s". Canonical URLs must be absolute, including the scheme and host, or they are ignored.', 'nexcove-seo-audit-content-assistant' ), $canonical ),
 						'evidence'    => $evidence,
 						'fix_mode'    => Issue::MODE_AUTO,
 						'fix_payload' => array(
@@ -117,10 +117,10 @@ final class CanonicalChecker extends PostChecker {
 					array(
 						'code'     => 'canonical.cross_domain',
 						'severity' => Issue::SEVERITY_HIGH,
-						'title'    => __( 'Canonical points to another domain', 'seo-audit-content-ai-assistant' ),
+						'title'    => __( 'Canonical points to another domain', 'nexcove-seo-audit-content-assistant' ),
 						'detail'   => sprintf(
 							/* translators: 1: canonical URL, 2: site host. */
-							__( 'This page names %1$s as its canonical, handing all its ranking value to a site other than %2$s. Correct if unintended — syndicated content is the only case where this is right.', 'seo-audit-content-ai-assistant' ),
+							__( 'This page names %1$s as its canonical, handing all its ranking value to a site other than %2$s. Correct if unintended — syndicated content is the only case where this is right.', 'nexcove-seo-audit-content-assistant' ),
 							$canonical,
 							$this->site_host()
 						),
@@ -145,10 +145,10 @@ final class CanonicalChecker extends PostChecker {
 					array(
 						'code'        => 'canonical.inconsistent_form',
 						'severity'    => Issue::SEVERITY_LOW,
-						'title'       => __( 'Canonical differs from the permalink only in form', 'seo-audit-content-ai-assistant' ),
+						'title'       => __( 'Canonical differs from the permalink only in form', 'nexcove-seo-audit-content-assistant' ),
 						'detail'      => sprintf(
 							/* translators: 1: canonical, 2: permalink. */
-							__( 'The canonical is "%1$s" but the page is served at "%2$s". They differ only in scheme or trailing slash; align them so there is one unambiguous URL.', 'seo-audit-content-ai-assistant' ),
+							__( 'The canonical is "%1$s" but the page is served at "%2$s". They differ only in scheme or trailing slash; align them so there is one unambiguous URL.', 'nexcove-seo-audit-content-assistant' ),
 							$canonical,
 							$permalink
 						),

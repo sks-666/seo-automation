@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Registers the SEO Audit and Content AI Assistant menu and renders its screens.
+ * Registers the Nexcove SEO Audit and Content Assistant menu and renders its screens.
  *
  * This is the single top-level admin menu for the whole plugin: SEO
  * auditing screens (this class) plus the content-generation screens
@@ -54,7 +54,7 @@ class AdminMenu {
 	/**
 	 * Add the menu and its subpages.
 	 *
-	 * One top-level "SEO Audit and Content AI Assistant" menu holds both the audit screens (this
+	 * One top-level "Nexcove SEO Audit and Content Assistant" menu holds both the audit screens (this
 	 * class) and the content-generation screens (SEOAgent\Blog\Admin),
 	 * so the plugin surfaces as a single entry in wp-admin.
 	 */
@@ -62,9 +62,9 @@ class AdminMenu {
 		$capability = current_user_can( Plugin::CAPABILITY ) ? Plugin::CAPABILITY : 'manage_options';
 
 		add_menu_page(
-			__( 'SEO Audit and Content AI Assistant', 'seo-audit-content-ai-assistant' ),
+			__( 'Nexcove SEO Audit and Content Assistant', 'nexcove-seo-audit-content-assistant' ),
 			// Shorter label: the full plugin name does not fit the admin menu.
-			__( 'SEO Audit & Content', 'seo-audit-content-ai-assistant' ),
+			__( 'Nexcove SEO', 'nexcove-seo-audit-content-assistant' ),
 			$capability,
 			self::SLUG,
 			array( $this, 'render_dashboard' ),
@@ -72,10 +72,10 @@ class AdminMenu {
 			58
 		);
 
-		add_submenu_page( self::SLUG, __( 'Dashboard', 'seo-audit-content-ai-assistant' ), __( 'Audit: Dashboard', 'seo-audit-content-ai-assistant' ), $capability, self::SLUG, array( $this, 'render_dashboard' ) );
-		add_submenu_page( self::SLUG, __( 'Issues', 'seo-audit-content-ai-assistant' ), __( 'Audit: Issues', 'seo-audit-content-ai-assistant' ), $capability, self::SLUG . '-issues', array( $this, 'render_issues' ) );
-		add_submenu_page( self::SLUG, __( 'Change log', 'seo-audit-content-ai-assistant' ), __( 'Audit: Change log', 'seo-audit-content-ai-assistant' ), $capability, self::SLUG . '-changes', array( $this, 'render_changes' ) );
-		add_submenu_page( self::SLUG, __( 'Settings', 'seo-audit-content-ai-assistant' ), __( 'Audit: Settings', 'seo-audit-content-ai-assistant' ), $capability, self::SLUG . '-settings', array( $this, 'render_settings' ) );
+		add_submenu_page( self::SLUG, __( 'Dashboard', 'nexcove-seo-audit-content-assistant' ), __( 'Audit: Dashboard', 'nexcove-seo-audit-content-assistant' ), $capability, self::SLUG, array( $this, 'render_dashboard' ) );
+		add_submenu_page( self::SLUG, __( 'Issues', 'nexcove-seo-audit-content-assistant' ), __( 'Audit: Issues', 'nexcove-seo-audit-content-assistant' ), $capability, self::SLUG . '-issues', array( $this, 'render_issues' ) );
+		add_submenu_page( self::SLUG, __( 'Change log', 'nexcove-seo-audit-content-assistant' ), __( 'Audit: Change log', 'nexcove-seo-audit-content-assistant' ), $capability, self::SLUG . '-changes', array( $this, 'render_changes' ) );
+		add_submenu_page( self::SLUG, __( 'Settings', 'nexcove-seo-audit-content-assistant' ), __( 'Audit: Settings', 'nexcove-seo-audit-content-assistant' ), $capability, self::SLUG . '-settings', array( $this, 'render_settings' ) );
 
 		// Content-generation screens (formerly TheBlog Automation's own
 		// top-level menu) now live as submenus of this same parent.
@@ -94,7 +94,7 @@ class AdminMenu {
 			return;
 		}
 
-		wp_register_style( 'seo-agent-admin', false, array(), SEOACAI_VERSION );
+		wp_register_style( 'seo-agent-admin', false, array(), NEXCOVE_SEO_VERSION );
 		wp_enqueue_style( 'seo-agent-admin' );
 		wp_add_inline_style( 'seo-agent-admin', $this->styles() );
 	}
@@ -104,7 +104,7 @@ class AdminMenu {
 	 */
 	public function handle_action(): void {
 		if ( ! current_user_can( Plugin::CAPABILITY ) && ! current_user_can( 'manage_options' ) ) {
-			wp_die( esc_html__( 'You cannot manage SEO Agent.', 'seo-audit-content-ai-assistant' ), 403 );
+			wp_die( esc_html__( 'You cannot manage SEO Agent.', 'nexcove-seo-audit-content-assistant' ), 403 );
 		}
 
 		$action = isset( $_POST['seo_agent_action'] ) ? sanitize_key( wp_unslash( $_POST['seo_agent_action'] ) ) : '';
@@ -122,12 +122,12 @@ class AdminMenu {
 				$notice = empty( $report['complete'] )
 					? sprintf(
 						/* translators: %d: audit ID. */
-						__( 'Audit #%d started and is running in the background.', 'seo-audit-content-ai-assistant' ),
+						__( 'Audit #%d started and is running in the background.', 'nexcove-seo-audit-content-assistant' ),
 						$audit_id
 					)
 					: sprintf(
 						/* translators: 1: audit ID, 2: score. */
-						__( 'Audit #%1$d finished with a score of %2$s/100.', 'seo-audit-content-ai-assistant' ),
+						__( 'Audit #%1$d finished with a score of %2$s/100.', 'nexcove-seo-audit-content-assistant' ),
 						$audit_id,
 						$report['score'] ?? '?'
 					);
@@ -153,12 +153,12 @@ class AdminMenu {
 				$notice = ! empty( $result['ok'] )
 					? sprintf(
 						/* translators: %d: number of changes. */
-						__( 'Applied %d change(s).', 'seo-audit-content-ai-assistant' ),
+						__( 'Applied %d change(s).', 'nexcove-seo-audit-content-assistant' ),
 						(int) ( $result['count'] ?? 0 )
 					)
 					: sprintf(
 						/* translators: %s: error message. */
-						__( 'Could not apply: %s', 'seo-audit-content-ai-assistant' ),
+						__( 'Could not apply: %s', 'nexcove-seo-audit-content-assistant' ),
 						(string) ( $result['message'] ?? '' )
 					);
 				break;
@@ -166,7 +166,7 @@ class AdminMenu {
 			case 'ignore_issue':
 				$issue_id = isset( $_POST['issue_id'] ) ? (int) $_POST['issue_id'] : 0;
 				$this->plugin->issues()->set_status( $issue_id, 'ignored' );
-				$notice = __( 'Issue dismissed.', 'seo-audit-content-ai-assistant' );
+				$notice = __( 'Issue dismissed.', 'nexcove-seo-audit-content-assistant' );
 				break;
 
 			case 'revert_batch':
@@ -174,14 +174,14 @@ class AdminMenu {
 				$result = $this->plugin->fix_runner()->revert_batch( $batch );
 				$notice = sprintf(
 					/* translators: %d: number of changes. */
-					__( 'Reverted %d change(s).', 'seo-audit-content-ai-assistant' ),
+					__( 'Reverted %d change(s).', 'nexcove-seo-audit-content-assistant' ),
 					(int) ( $result['reverted'] ?? 0 )
 				);
 				break;
 
 			case 'save_settings':
 				$this->save_settings();
-				$notice = __( 'Settings saved.', 'seo-audit-content-ai-assistant' );
+				$notice = __( 'Settings saved.', 'nexcove-seo-audit-content-assistant' );
 				break;
 
 			case 'generate_token':
@@ -189,7 +189,7 @@ class AdminMenu {
 				Options::update( array( 'agent_token_hash' => hash( 'sha256', $token ) ) );
 
 				set_transient( 'seo_agent_new_token', $token, 5 * MINUTE_IN_SECONDS );
-				$notice = __( 'Token generated.', 'seo-audit-content-ai-assistant' );
+				$notice = __( 'Token generated.', 'nexcove-seo-audit-content-assistant' );
 				break;
 		}
 

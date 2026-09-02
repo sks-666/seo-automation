@@ -35,7 +35,7 @@ final class PostSlugFixer extends AbstractFixer {
 	 * {@inheritDoc}
 	 */
 	public function label(): string {
-		return __( 'Change page slug', 'seo-audit-content-ai-assistant' );
+		return __( 'Change page slug', 'nexcove-seo-audit-content-assistant' );
 	}
 
 	/**
@@ -43,8 +43,8 @@ final class PostSlugFixer extends AbstractFixer {
 	 */
 	public function required_input(): array {
 		return array(
-			'value'           => __( 'The new slug, lowercase and hyphen-separated.', 'seo-audit-content-ai-assistant' ),
-			'acknowledge_301' => __( 'Must be true. Confirms you accept that the old URL stops working unless you add a 301 redirect to the new one.', 'seo-audit-content-ai-assistant' ),
+			'value'           => __( 'The new slug, lowercase and hyphen-separated.', 'nexcove-seo-audit-content-assistant' ),
+			'acknowledge_301' => __( 'Must be true. Confirms you accept that the old URL stops working unless you add a 301 redirect to the new one.', 'nexcove-seo-audit-content-assistant' ),
 		);
 	}
 
@@ -98,7 +98,7 @@ final class PostSlugFixer extends AbstractFixer {
 				$new_slug,
 				sprintf(
 					/* translators: 1: old URL, 2: new slug. */
-					__( 'Changed slug on "%1$s" to "%2$s" — add a 301 from the old URL.', 'seo-audit-content-ai-assistant' ),
+					__( 'Changed slug on "%1$s" to "%2$s" — add a 301 from the old URL.', 'nexcove-seo-audit-content-assistant' ),
 					(string) get_permalink( $post ),
 					$new_slug
 				),

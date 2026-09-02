@@ -108,7 +108,7 @@ class AI_Client {
 	public static function generate_text( $system_prompt, $user_prompt, $args = array() ) {
 		$provider = self::text_provider();
 		if ( ! $provider ) {
-			return new \WP_Error( 'theblog_no_provider', __( 'No AI provider is configured.', 'seo-audit-content-ai-assistant' ) );
+			return new \WP_Error( 'theblog_no_provider', __( 'No AI provider is configured.', 'nexcove-seo-audit-content-assistant' ) );
 		}
 		return $provider->generate_text( $system_prompt, $user_prompt, $args );
 	}
@@ -148,7 +148,7 @@ class AI_Client {
 
 		if ( null === $decoded ) {
 			Logger::error( 'AI response could not be parsed as JSON. Raw response (truncated): ' . substr( $raw, 0, 1500 ) );
-			return new \WP_Error( 'theblog_bad_json', __( 'AI response could not be parsed as JSON. See Logs for the raw response.', 'seo-audit-content-ai-assistant' ), $raw );
+			return new \WP_Error( 'theblog_bad_json', __( 'AI response could not be parsed as JSON. See Logs for the raw response.', 'nexcove-seo-audit-content-assistant' ), $raw );
 		}
 
 		return $decoded;

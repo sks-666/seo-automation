@@ -78,7 +78,7 @@ class SEO_Validator {
 		$categories = array();
 
 		$categories['focus_keyword'] = array(
-			'label'  => __( 'Focus Keyword', 'seo-audit-content-ai-assistant' ),
+			'label'  => __( 'Focus Keyword', 'nexcove-seo-audit-content-assistant' ),
 			'checks' => array(
 				'primary_keyword_identified' => (bool) $keyword,
 				'keyword_in_seo_title'       => $keyword && false !== stripos( $p['seo_title'], $keyword ),
@@ -96,7 +96,7 @@ class SEO_Validator {
 		);
 
 		$categories['content'] = array(
-			'label'  => __( 'Content', 'seo-audit-content-ai-assistant' ),
+			'label'  => __( 'Content', 'nexcove-seo-audit-content-assistant' ),
 			'checks' => array(
 				'minimum_length'           => $word_count >= 600,
 				'comprehensive_coverage'   => substr_count( $p['content_html'], '<h2' ) >= 3,
@@ -114,7 +114,7 @@ class SEO_Validator {
 		);
 
 		$categories['links'] = array(
-			'label'  => __( 'Links', 'seo-audit-content-ai-assistant' ),
+			'label'  => __( 'Links', 'nexcove-seo-audit-content-assistant' ),
 			'checks' => array(
 				'internal_links_present' => (bool) $p['has_internal_link'],
 				'external_resource_noted' => (bool) $p['external_reference_suggestion'] || self::has_external_link( $p['content_html'] ),
@@ -123,7 +123,7 @@ class SEO_Validator {
 		);
 
 		$categories['url'] = array(
-			'label'  => __( 'URL', 'seo-audit-content-ai-assistant' ),
+			'label'  => __( 'URL', 'nexcove-seo-audit-content-assistant' ),
 			'checks' => array(
 				'keyword_in_slug' => $keyword && false !== strpos( $p['slug'], sanitize_title( $keyword ) ),
 				'slug_is_short'   => strlen( $p['slug'] ) <= 75,
@@ -132,7 +132,7 @@ class SEO_Validator {
 		);
 
 		$categories['seo_title'] = array(
-			'label'  => __( 'SEO Title', 'seo-audit-content-ai-assistant' ),
+			'label'  => __( 'SEO Title', 'nexcove-seo-audit-content-assistant' ),
 			'checks' => array(
 				'keyword_included'    => $keyword && false !== stripos( $p['seo_title'], $keyword ),
 				'keyword_near_start'  => self::keyword_near_start( $p['seo_title'], $keyword ),
@@ -142,7 +142,7 @@ class SEO_Validator {
 		);
 
 		$categories['meta_description'] = array(
-			'label'  => __( 'Meta Description', 'seo-audit-content-ai-assistant' ),
+			'label'  => __( 'Meta Description', 'nexcove-seo-audit-content-assistant' ),
 			'checks' => array(
 				'exists'             => '' !== trim( $p['meta_description'] ),
 				'keyword_included'   => $keyword && false !== stripos( $p['meta_description'], $keyword ),
@@ -152,7 +152,7 @@ class SEO_Validator {
 		);
 
 		$categories['images'] = array(
-			'label'  => __( 'Images', 'seo-audit-content-ai-assistant' ),
+			'label'  => __( 'Images', 'nexcove-seo-audit-content-assistant' ),
 			'checks' => array(
 				'relevant_image_exists' => $p['has_featured_image'] || false !== strpos( $p['content_html'], '<img' ),
 				'keyword_in_alt'        => self::keyword_in_alt_texts( $p['image_alt_texts'], $keyword ),
@@ -161,7 +161,7 @@ class SEO_Validator {
 		);
 
 		$categories['readability'] = array(
-			'label'  => __( 'Readability', 'seo-audit-content-ai-assistant' ),
+			'label'  => __( 'Readability', 'nexcove-seo-audit-content-assistant' ),
 			'checks' => array(
 				'short_paragraphs'   => self::paragraphs_ok( $p['content_html'] ),
 				'logical_headings'   => self::headings_well_nested( $p['content_html'] ),
@@ -173,7 +173,7 @@ class SEO_Validator {
 		if ( 'product_url' === $p['content_source'] && ! empty( $p['product'] ) ) {
 			$analysis = $p['brief']['product_analysis'] ?? array();
 			$categories['woocommerce'] = array(
-				'label'  => __( 'WooCommerce Product SEO', 'seo-audit-content-ai-assistant' ),
+				'label'  => __( 'WooCommerce Product SEO', 'nexcove-seo-audit-content-assistant' ),
 				'checks' => array(
 					'product_name_in_title' => self::product_name_referenced_in_title( $p['article_title'], $p['product']['title'] ),
 					'short_description_used' => '' !== trim( $p['product']['short_description'] ?? '' ),
@@ -194,20 +194,20 @@ class SEO_Validator {
 			if ( $p['external_reference_suggestion'] ) {
 				$warnings[] = sprintf(
 					/* translators: %s: AI-suggested kind of external source */
-					__( 'Consider adding an external reference — %s. Verify the source yourself before linking; the AI does not fabricate URLs.', 'seo-audit-content-ai-assistant' ),
+					__( 'Consider adding an external reference — %s. Verify the source yourself before linking; the AI does not fabricate URLs.', 'nexcove-seo-audit-content-assistant' ),
 					$p['external_reference_suggestion']
 				);
 			} else {
-				$warnings[] = __( 'Add an external reference to a reputable source.', 'seo-audit-content-ai-assistant' );
+				$warnings[] = __( 'Add an external reference to a reputable source.', 'nexcove-seo-audit-content-assistant' );
 			}
 		}
 		if ( ! $p['has_image_alt'] ) {
-			$warnings[] = __( 'Add descriptive image alt text.', 'seo-audit-content-ai-assistant' );
+			$warnings[] = __( 'Add descriptive image alt text.', 'nexcove-seo-audit-content-assistant' );
 		} else {
-			$warnings[] = __( 'Image filenames are set at upload time and not renamed automatically — rename them to include the keyword if they are generic (e.g. "IMG_1234.jpg").', 'seo-audit-content-ai-assistant' );
+			$warnings[] = __( 'Image filenames are set at upload time and not renamed automatically — rename them to include the keyword if they are generic (e.g. "IMG_1234.jpg").', 'nexcove-seo-audit-content-assistant' );
 		}
 		if ( $word_count < 600 ) {
-			$warnings[] = __( 'Content is on the short side for this topic — consider expanding it.', 'seo-audit-content-ai-assistant' );
+			$warnings[] = __( 'Content is on the short side for this topic — consider expanding it.', 'nexcove-seo-audit-content-assistant' );
 		}
 
 		// Score: percentage of true checks across all per-article categories.
@@ -248,7 +248,7 @@ class SEO_Validator {
 			'technical'                     => self::technical_status(),
 			'warnings'                      => $warnings,
 			'external_reference_suggestion' => $p['external_reference_suggestion'],
-			'disclaimer'                    => __( 'These are this plugin\'s own compatibility checks, not the exact score Rank Math or Yoast will display.', 'seo-audit-content-ai-assistant' ),
+			'disclaimer'                    => __( 'These are this plugin\'s own compatibility checks, not the exact score Rank Math or Yoast will display.', 'nexcove-seo-audit-content-assistant' ),
 		);
 	}
 
@@ -521,7 +521,7 @@ class SEO_Validator {
 		$seo_plugin_active = $yoast || $rank_math;
 
 		return array(
-			'label'  => __( 'Technical SEO (site-wide, not per-article)', 'seo-audit-content-ai-assistant' ),
+			'label'  => __( 'Technical SEO (site-wide, not per-article)', 'nexcove-seo-audit-content-assistant' ),
 			'checks' => array(
 				'https_enabled'        => is_ssl() || 0 === strpos( home_url(), 'https://' ),
 				'canonical_url'        => $seo_plugin_active || false !== has_action( 'wp_head', 'rel_canonical' ),
@@ -531,8 +531,8 @@ class SEO_Validator {
 				'breadcrumbs_available' => function_exists( 'yoast_breadcrumb' ) || function_exists( 'rank_math_the_breadcrumbs' ),
 			),
 			'note'   => $seo_plugin_active
-				? __( 'Schema, Open Graph, and sitemap output are handled by your active SEO plugin.', 'seo-audit-content-ai-assistant' )
-				: __( 'No SEO plugin detected — schema and Open Graph tags will not be output. Consider activating Yoast SEO or Rank Math.', 'seo-audit-content-ai-assistant' ),
+				? __( 'Schema, Open Graph, and sitemap output are handled by your active SEO plugin.', 'nexcove-seo-audit-content-assistant' )
+				: __( 'No SEO plugin detected — schema and Open Graph tags will not be output. Consider activating Yoast SEO or Rank Math.', 'nexcove-seo-audit-content-assistant' ),
 		);
 	}
 }

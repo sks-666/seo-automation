@@ -18,38 +18,38 @@ defined( 'ABSPATH' ) || exit;
 // phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound, WordPress.WP.GlobalVariablesOverride.Prohibited -- This template is include()d from inside a class method, so the variables below are function-scoped locals, not globals.
 ?>
 <div class="wrap">
-	<h1><?php esc_html_e( 'SEO Audit settings', 'seo-audit-content-ai-assistant' ); ?></h1>
+	<h1><?php esc_html_e( 'SEO Audit settings', 'nexcove-seo-audit-content-assistant' ); ?></h1>
 
 	<?php if ( $new_token ) : ?>
 		<div class="notice notice-warning">
-			<p><strong><?php esc_html_e( 'Your agent token — copy it now, it is not shown again.', 'seo-audit-content-ai-assistant' ); ?></strong></p>
+			<p><strong><?php esc_html_e( 'Your agent token — copy it now, it is not shown again.', 'nexcove-seo-audit-content-assistant' ); ?></strong></p>
 			<p><code style="font-size:14px;user-select:all"><?php echo esc_html( $new_token ); ?></code></p>
-			<p><?php esc_html_e( 'Send it as the X-SEO-Agent-Token header alongside normal WordPress authentication.', 'seo-audit-content-ai-assistant' ); ?></p>
+			<p><?php esc_html_e( 'Send it as the X-SEO-Agent-Token header alongside normal WordPress authentication.', 'nexcove-seo-audit-content-assistant' ); ?></p>
 		</div>
 	<?php endif; ?>
 
 	<?php AdminMenu::form_open( 'save_settings' ); ?>
 	<div style="display:block">
 
-		<h2><?php esc_html_e( 'How much the agent may do on its own', 'seo-audit-content-ai-assistant' ); ?></h2>
+		<h2><?php esc_html_e( 'How much the agent may do on its own', 'nexcove-seo-audit-content-assistant' ); ?></h2>
 
 		<table class="form-table" role="presentation">
 			<tr>
-				<th scope="row"><?php esc_html_e( 'Autonomy', 'seo-audit-content-ai-assistant' ); ?></th>
+				<th scope="row"><?php esc_html_e( 'Autonomy', 'nexcove-seo-audit-content-assistant' ); ?></th>
 				<td>
 					<?php
 					$modes = array(
 						'review'    => array(
-							__( 'Review everything', 'seo-audit-content-ai-assistant' ),
-							__( 'Nothing is written without an explicit approval. Fixes can still be previewed freely.', 'seo-audit-content-ai-assistant' ),
+							__( 'Review everything', 'nexcove-seo-audit-content-assistant' ),
+							__( 'Nothing is written without an explicit approval. Fixes can still be previewed freely.', 'nexcove-seo-audit-content-assistant' ),
 						),
 						'auto_safe' => array(
-							__( 'Apply safe fixes automatically', 'seo-audit-content-ai-assistant' ),
-							__( 'Deterministic fixes run unattended. Anything needing written copy still waits for approval.', 'seo-audit-content-ai-assistant' ),
+							__( 'Apply safe fixes automatically', 'nexcove-seo-audit-content-assistant' ),
+							__( 'Deterministic fixes run unattended. Anything needing written copy still waits for approval.', 'nexcove-seo-audit-content-assistant' ),
 						),
 						'auto_all'  => array(
-							__( 'Apply everything automatically', 'seo-audit-content-ai-assistant' ),
-							__( 'Any fix with sufficient input is applied without asking. Every change remains reversible from the change log.', 'seo-audit-content-ai-assistant' ),
+							__( 'Apply everything automatically', 'nexcove-seo-audit-content-assistant' ),
+							__( 'Any fix with sufficient input is applied without asking. Every change remains reversible from the change log.', 'nexcove-seo-audit-content-assistant' ),
 						),
 					);
 
@@ -64,21 +64,21 @@ defined( 'ABSPATH' ) || exit;
 				</td>
 			</tr>
 			<tr>
-				<th scope="row"><?php esc_html_e( 'Nightly audits', 'seo-audit-content-ai-assistant' ); ?></th>
+				<th scope="row"><?php esc_html_e( 'Nightly audits', 'nexcove-seo-audit-content-assistant' ); ?></th>
 				<td>
 					<label>
 						<input type="checkbox" name="scheduled_audits_enabled" value="1" <?php checked( ! empty( $settings['scheduled_audits_enabled'] ) ); ?> />
-						<?php esc_html_e( 'Run a full audit once a day via WP-Cron', 'seo-audit-content-ai-assistant' ); ?>
+						<?php esc_html_e( 'Run a full audit once a day via WP-Cron', 'nexcove-seo-audit-content-assistant' ); ?>
 					</label>
 				</td>
 			</tr>
 		</table>
 
-		<h2><?php esc_html_e( 'What gets audited', 'seo-audit-content-ai-assistant' ); ?></h2>
+		<h2><?php esc_html_e( 'What gets audited', 'nexcove-seo-audit-content-assistant' ); ?></h2>
 
 		<table class="form-table" role="presentation">
 			<tr>
-				<th scope="row"><?php esc_html_e( 'Post types', 'seo-audit-content-ai-assistant' ); ?></th>
+				<th scope="row"><?php esc_html_e( 'Post types', 'nexcove-seo-audit-content-assistant' ); ?></th>
 				<td>
 					<?php foreach ( $post_types as $post_type ) : ?>
 						<label style="display:inline-block;margin:0 16px 6px 0">
@@ -90,7 +90,7 @@ defined( 'ABSPATH' ) || exit;
 				</td>
 			</tr>
 			<tr>
-				<th scope="row"><?php esc_html_e( 'Taxonomies', 'seo-audit-content-ai-assistant' ); ?></th>
+				<th scope="row"><?php esc_html_e( 'Taxonomies', 'nexcove-seo-audit-content-assistant' ); ?></th>
 				<td>
 					<?php foreach ( $taxonomies as $taxonomy ) : ?>
 						<label style="display:inline-block;margin:0 16px 6px 0">
@@ -103,20 +103,20 @@ defined( 'ABSPATH' ) || exit;
 			</tr>
 		</table>
 
-		<h2><?php esc_html_e( 'Thresholds', 'seo-audit-content-ai-assistant' ); ?></h2>
-		<p class="description"><?php esc_html_e( 'These define what counts as a problem. Defaults follow common practice; change them if your site has a reason to differ.', 'seo-audit-content-ai-assistant' ); ?></p>
+		<h2><?php esc_html_e( 'Thresholds', 'nexcove-seo-audit-content-assistant' ); ?></h2>
+		<p class="description"><?php esc_html_e( 'These define what counts as a problem. Defaults follow common practice; change them if your site has a reason to differ.', 'nexcove-seo-audit-content-assistant' ); ?></p>
 
 		<table class="form-table" role="presentation">
 			<?php
 			$numbers = array(
-				'title_min_length'       => __( 'Minimum title length', 'seo-audit-content-ai-assistant' ),
-				'title_max_length'       => __( 'Maximum title length', 'seo-audit-content-ai-assistant' ),
-				'description_min_length' => __( 'Minimum description length', 'seo-audit-content-ai-assistant' ),
-				'description_max_length' => __( 'Maximum description length', 'seo-audit-content-ai-assistant' ),
-				'min_word_count'         => __( 'Thin content below (words)', 'seo-audit-content-ai-assistant' ),
-				'min_internal_links'     => __( 'Minimum internal links per page', 'seo-audit-content-ai-assistant' ),
-				'batch_size'             => __( 'Objects per audit slice', 'seo-audit-content-ai-assistant' ),
-				'request_timeout'        => __( 'HTTP timeout (seconds)', 'seo-audit-content-ai-assistant' ),
+				'title_min_length'       => __( 'Minimum title length', 'nexcove-seo-audit-content-assistant' ),
+				'title_max_length'       => __( 'Maximum title length', 'nexcove-seo-audit-content-assistant' ),
+				'description_min_length' => __( 'Minimum description length', 'nexcove-seo-audit-content-assistant' ),
+				'description_max_length' => __( 'Maximum description length', 'nexcove-seo-audit-content-assistant' ),
+				'min_word_count'         => __( 'Thin content below (words)', 'nexcove-seo-audit-content-assistant' ),
+				'min_internal_links'     => __( 'Minimum internal links per page', 'nexcove-seo-audit-content-assistant' ),
+				'batch_size'             => __( 'Objects per audit slice', 'nexcove-seo-audit-content-assistant' ),
+				'request_timeout'        => __( 'HTTP timeout (seconds)', 'nexcove-seo-audit-content-assistant' ),
 			);
 
 			foreach ( $numbers as $key => $label ) :
@@ -131,68 +131,68 @@ defined( 'ABSPATH' ) || exit;
 			<?php endforeach; ?>
 		</table>
 
-		<h2><?php esc_html_e( 'Core Web Vitals', 'seo-audit-content-ai-assistant' ); ?></h2>
+		<h2><?php esc_html_e( 'Core Web Vitals', 'nexcove-seo-audit-content-assistant' ); ?></h2>
 
 		<table class="form-table" role="presentation">
 			<tr>
-				<th scope="row"><label for="psi_api_key"><?php esc_html_e( 'PageSpeed Insights API key', 'seo-audit-content-ai-assistant' ); ?></label></th>
+				<th scope="row"><label for="psi_api_key"><?php esc_html_e( 'PageSpeed Insights API key', 'nexcove-seo-audit-content-assistant' ); ?></label></th>
 				<td>
 					<?php $psi_is_set = '' !== trim( (string) $settings['psi_api_key'] ); ?>
 					<input type="password" id="psi_api_key" name="psi_api_key" class="regular-text"
 						value="" autocomplete="new-password"
-						placeholder="<?php echo esc_attr( $psi_is_set ? __( 'A key is stored — leave blank to keep it', 'seo-audit-content-ai-assistant' ) : __( 'Not set', 'seo-audit-content-ai-assistant' ) ); ?>" />
+						placeholder="<?php echo esc_attr( $psi_is_set ? __( 'A key is stored — leave blank to keep it', 'nexcove-seo-audit-content-assistant' ) : __( 'Not set', 'nexcove-seo-audit-content-assistant' ) ); ?>" />
 					<?php if ( $psi_is_set ) : ?>
 						<p>
 							<label>
 								<input type="checkbox" name="psi_api_key_remove" value="1" />
-								<?php esc_html_e( 'Remove the stored key', 'seo-audit-content-ai-assistant' ); ?>
+								<?php esc_html_e( 'Remove the stored key', 'nexcove-seo-audit-content-assistant' ); ?>
 							</label>
 						</p>
 					<?php endif; ?>
 					<p class="description">
-						<?php esc_html_e( 'With a key, Core Web Vitals are reported from the field data Google holds for real visits to your site. Without one, the plugin falls back to inspecting your markup for the known causes of poor vitals, and labels those findings as diagnostic rather than measured.', 'seo-audit-content-ai-assistant' ); ?>
+						<?php esc_html_e( 'With a key, Core Web Vitals are reported from the field data Google holds for real visits to your site. Without one, the plugin falls back to inspecting your markup for the known causes of poor vitals, and labels those findings as diagnostic rather than measured.', 'nexcove-seo-audit-content-assistant' ); ?>
 					</p>
 				</td>
 			</tr>
 		</table>
 
 		<p class="submit">
-			<button type="submit" class="button button-primary"><?php esc_html_e( 'Save settings', 'seo-audit-content-ai-assistant' ); ?></button>
+			<button type="submit" class="button button-primary"><?php esc_html_e( 'Save settings', 'nexcove-seo-audit-content-assistant' ); ?></button>
 		</p>
 	</div>
 	</form>
 
 	<hr />
 
-	<h2><?php esc_html_e( 'Agent access', 'seo-audit-content-ai-assistant' ); ?></h2>
+	<h2><?php esc_html_e( 'Agent access', 'nexcove-seo-audit-content-assistant' ); ?></h2>
 
 	<table class="form-table" role="presentation">
 		<tr>
-			<th scope="row"><?php esc_html_e( 'REST endpoint', 'seo-audit-content-ai-assistant' ); ?></th>
+			<th scope="row"><?php esc_html_e( 'REST endpoint', 'nexcove-seo-audit-content-assistant' ); ?></th>
 			<td><code><?php echo esc_html( rest_url( 'seo-agent/v1' ) ); ?></code></td>
 		</tr>
 		<tr>
-			<th scope="row"><?php esc_html_e( 'Metadata adapter', 'seo-audit-content-ai-assistant' ); ?></th>
+			<th scope="row"><?php esc_html_e( 'Metadata adapter', 'nexcove-seo-audit-content-assistant' ); ?></th>
 			<td>
 				<?php echo esc_html( $seo->label() ); ?>
-				<p class="description"><?php esc_html_e( 'Detected automatically. Titles and descriptions are read and written through this plugin, so fixes appear wherever you normally edit them.', 'seo-audit-content-ai-assistant' ); ?></p>
+				<p class="description"><?php esc_html_e( 'Detected automatically. Titles and descriptions are read and written through this plugin, so fixes appear wherever you normally edit them.', 'nexcove-seo-audit-content-assistant' ); ?></p>
 			</td>
 		</tr>
 		<tr>
-			<th scope="row"><?php esc_html_e( 'Token', 'seo-audit-content-ai-assistant' ); ?></th>
+			<th scope="row"><?php esc_html_e( 'Token', 'nexcove-seo-audit-content-assistant' ); ?></th>
 			<td>
 				<?php if ( '' !== trim( (string) ( $settings['agent_token_hash'] ?? '' ) ) ) : ?>
-					<p><?php esc_html_e( 'A token is configured and required on every API call.', 'seo-audit-content-ai-assistant' ); ?></p>
+					<p><?php esc_html_e( 'A token is configured and required on every API call.', 'nexcove-seo-audit-content-assistant' ); ?></p>
 				<?php else : ?>
-					<p><?php esc_html_e( 'No token configured. API calls need only a WordPress application password and the plugin\'s own audit capability.', 'seo-audit-content-ai-assistant' ); ?></p>
+					<p><?php esc_html_e( 'No token configured. API calls need only a WordPress application password and the plugin\'s own audit capability.', 'nexcove-seo-audit-content-assistant' ); ?></p>
 				<?php endif; ?>
 
 				<?php AdminMenu::form_open( 'generate_token' ); ?>
-					<button type="submit" class="button"><?php esc_html_e( 'Generate a new token', 'seo-audit-content-ai-assistant' ); ?></button>
+					<button type="submit" class="button"><?php esc_html_e( 'Generate a new token', 'nexcove-seo-audit-content-assistant' ); ?></button>
 				</form>
 
 				<p class="description">
-					<?php esc_html_e( 'The token is an extra factor on top of normal authentication, never a replacement for it. Only its hash is stored, so a database leak does not expose it.', 'seo-audit-content-ai-assistant' ); ?>
+					<?php esc_html_e( 'The token is an extra factor on top of normal authentication, never a replacement for it. Only its hash is stored, so a database leak does not expose it.', 'nexcove-seo-audit-content-assistant' ); ?>
 				</p>
 			</td>
 		</tr>

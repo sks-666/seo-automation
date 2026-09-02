@@ -33,7 +33,7 @@ final class AnchorTextFixer extends AbstractFixer {
 	 * {@inheritDoc}
 	 */
 	public function label(): string {
-		return __( 'Rewrite anchor text', 'seo-audit-content-ai-assistant' );
+		return __( 'Rewrite anchor text', 'nexcove-seo-audit-content-assistant' );
 	}
 
 	/**
@@ -41,7 +41,7 @@ final class AnchorTextFixer extends AbstractFixer {
 	 */
 	public function required_input(): array {
 		return array(
-			'anchors' => __( 'A list of {href, from, to} objects: the link URL, its current text, and what it should say. The new text should describe the destination.', 'seo-audit-content-ai-assistant' ),
+			'anchors' => __( 'A list of {href, from, to} objects: the link URL, its current text, and what it should say. The new text should describe the destination.', 'nexcove-seo-audit-content-assistant' ),
 		);
 	}
 
@@ -114,7 +114,7 @@ final class AnchorTextFixer extends AbstractFixer {
 				$updated,
 				sprintf(
 					/* translators: 1: number of links, 2: post title. */
-					__( 'Rewrote the anchor text on %1$d links in "%2$s"', 'seo-audit-content-ai-assistant' ),
+					__( 'Rewrote the anchor text on %1$d links in "%2$s"', 'nexcove-seo-audit-content-assistant' ),
 					$applied,
 					$post->post_title
 				)
